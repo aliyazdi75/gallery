@@ -1,0 +1,10 @@
+{
+  "ceitAlumniTitle": "فارغ التحصیلان سیت",
+  "login": "ورود",
+  "username": "نام کاربری",
+  "usernameNotEmpty": "نام کاربری نباید خالی باشد",
+  "password": "رمز عبور",
+  "passwordNotEmpty": "رمز عبور نباید خالی باشد",
+  "authenticationFailure": "احراز هویت ناموفق",
+  "galleryFailure": "گرفتن گالری ناموفق"
+}

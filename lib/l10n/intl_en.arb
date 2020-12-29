@@ -1,0 +1,34 @@
+{
+  "ceitAlumniTitle": "Ceit Alumni",
+  "@ceitAlumniTitle": {
+    "description": "Title for app"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login Text"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Username Text"
+  },
+  "usernameNotEmpty": "Username must not empty",
+  "@usernameNotEmpty": {
+    "description": "UsernameNotEmpty Text"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Password Text"
+  },
+  "passwordNotEmpty": "Password must not empty",
+  "@passwordNotEmpty": {
+    "description": "PasswordNotEmpty Text"
+  },
+  "authenticationFailure": "Authentication Failure",
+  "@authenticationFailure": {
+    "description": "Authentication Failure"
+  },
+  "galleryFailure": "Gallery Failure",
+  "@galleryFailure": {
+    "description": "Gallery Failure"
+  }
+}

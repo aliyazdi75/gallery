@@ -1,0 +1,79 @@
+name: ceit_alumni
+description: A new Flutter application for CEIT 94 Alumni.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  # Flutter
+  flutter:
+    sdk: flutter
+
+  # Localization
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  flutter_localized_locales: any
+
+  # State Management and Data Layer
+  http: any
+  built_collection: ^4.3.2
+  built_value: ^7.1.0
+  equatable: ^1.2.5
+  bloc: ^6.1.1
+  flutter_bloc: ^6.1.1
+
+  # Presentation Layer
+  cupertino_icons: any
+  google_fonts: ^1.1.1
+
+  # Utility
+  animations: ^1.1.2
+  shared_preferences: '>=0.5.10 <2.0.0'
+  shimmer: ^1.1.2
+  url_launcher: ^5.7.10
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_driver:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  build_runner: ^1.10.11
+  built_value_generator: ^7.1.0
+  pedantic: ^1.9.2
+#  flutter_launcher_icons: ^0.8.0
+#
+#flutter_icons:
+#  android: "launcher_icon"
+#  ios: true
+#  image_path: "assets/icons/icon.png"
+
+dependency_overrides:
+  analyzer: 0.41.1
+  _fe_analyzer_shared: 14.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - fonts/google_fonts/
+    - assets/response.json
+
+  fonts:
+    - family: IRANSans-Medium
+      fonts:
+        - asset: fonts/IRANSans-Medium.ttf
+    - family: IRANSans-Regular
+      fonts:
+        - asset: fonts/IRANSans-Regular.ttf
+    - family: IRANSans-SemiBold
+      fonts:
+        - asset: fonts/IRANSans-SemiBold.ttf
+    - family: IRANSans-Bold
+      fonts:
+        - asset: fonts/IRANSans-Bold.ttf

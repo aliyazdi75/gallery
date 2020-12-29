@@ -1,0 +1,23 @@
+{
+    "name": "ceit_alumni",
+    "short_name": "Ceit Alumni",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#030303",
+    "theme_color": "#030303",
+    "description": "A new Flutter application for CEIT 94 Alumni.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

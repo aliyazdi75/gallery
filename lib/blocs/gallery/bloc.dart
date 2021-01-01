@@ -5,6 +5,7 @@ import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:ceit_alumni/data/repositories/gallery/index.dart';
 import 'package:ceit_alumni/http/index.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
 part 'event.dart';

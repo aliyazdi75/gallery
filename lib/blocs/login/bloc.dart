@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:ceit_alumni/data/models/account/index.dart';
-import 'package:ceit_alumni/data/models/authentication/index.dart';
 import 'package:ceit_alumni/data/models/response/index.dart';
 import 'package:ceit_alumni/data/repositories/account/index.dart';
 import 'package:ceit_alumni/data/repositories/authentication/index.dart';
@@ -67,15 +65,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  void _saveAccount(Login authenticated) {
-    accountRepository.account = Account(
-      (b) => b
-        ..token = authenticated.token
-        ..id = authenticated.id
-        ..username = authenticated.username
-        ..email = authenticated.email
-        ..firstName = authenticated.firstName
-        ..lastName = authenticated.lastName,
-    );
-  }
+  // void _saveAccount(Login authenticated) {
+  //   accountRepository.account = Account(
+  //     (b) => b
+  //       ..token = authenticated.token
+  //       ..id = authenticated.id
+  //       ..username = authenticated.username
+  //       ..email = authenticated.email
+  //       ..firstName = authenticated.firstName
+  //       ..lastName = authenticated.lastName,
+  //   );
+  // }
 }

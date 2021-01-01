@@ -1,6 +1,7 @@
 import 'package:ceit_alumni/blocs/gallery/bloc.dart';
 import 'package:ceit_alumni/data/repositories/gallery/index.dart';
 import 'package:ceit_alumni/presentation/layout/adaptive.dart';
+import 'package:ceit_alumni/presentation/screens/gallery/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,10 +26,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final adaptiveBody = MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider.value(value: galleryRepository),
-      ],
+    final adaptiveBody = RepositoryProvider.value(
+      value: galleryRepository,
       child: BlocProvider<GalleryBloc>(
         create: (context) => GalleryBloc(
           galleryRepository: RepositoryProvider.of<GalleryRepository>(context),
@@ -38,7 +37,7 @@ class HomePage extends StatelessWidget {
           listener: (context, state) async {
             switch (state.status) {
               case GalleryStatus.failure:
-                Scaffold.of(context)
+                ScaffoldMessenger.of(context)
                   ..hideCurrentSnackBar()
                   ..showSnackBar(
                     SnackBar(
@@ -55,30 +54,14 @@ class HomePage extends StatelessWidget {
           child: BlocBuilder<GalleryBloc, GalleryState>(
             builder: (context, state) {
               if (state.status == GalleryStatus.initial) {
-                context.bloc<GalleryBloc>().add(const GalleryRequested('kir'));
+                context.watch<GalleryBloc>().add(const GalleryRequested('kir'));
               }
               return Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
                   Container(
-                    width: 400.0,
-                    height: 100.0,
                     child: state.status == GalleryStatus.success
-                        ? PageView(
-                            // controller:
-                            //     context.bloc<GalleryBloc>().pageController,
-                            children: state.gallery.images
-                                .map(
-                                  (image) => Card(
-                                    child: Column(
-                                      children: [
-                                        Text(image.name),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                                .toList(),
-                          )
+                        ? MediaGallery(medias: state.gallery.medias)
                         : const Card(
                             child: Center(
                               child: CircularProgressIndicator(),

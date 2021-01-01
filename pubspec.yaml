@@ -31,8 +31,10 @@ dependencies:
 
   # Utility
   animations: ^1.1.2
+  scrollable_positioned_list: ^0.1.8
+  photo_view: ^0.10.3
+  video_player: ^2.0.0-nullsafety.4
   shared_preferences: '>=0.5.10 <2.0.0'
-  shimmer: ^1.1.2
   url_launcher: ^5.7.10
 
 dev_dependencies:

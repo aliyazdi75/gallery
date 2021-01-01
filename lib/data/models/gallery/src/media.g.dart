@@ -1,41 +1,47 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'image.dart';
+part of 'media.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Image> _$imageSerializer = new _$ImageSerializer();
+Serializer<Media> _$mediaSerializer = new _$MediaSerializer();
 
-class _$ImageSerializer implements StructuredSerializer<Image> {
+class _$MediaSerializer implements StructuredSerializer<Media> {
   @override
-  final Iterable<Type> types = const [Image, _$Image];
+  final Iterable<Type> types = const [Media, _$Media];
   @override
-  final String wireName = 'Image';
+  final String wireName = 'Media';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Image object,
+  Iterable<Object> serialize(Serializers serializers, Media object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'thumbnail',
-      serializers.serialize(object.thumbnail,
-          specifiedType: const FullType(String)),
+      'type',
+      serializers.serialize(object.type, specifiedType: const FullType(String)),
+      'url',
+      serializers.serialize(object.url, specifiedType: const FullType(String)),
       'height',
       serializers.serialize(object.height, specifiedType: const FullType(int)),
       'width',
       serializers.serialize(object.width, specifiedType: const FullType(int)),
     ];
-
+    if (object.thumbnail != null) {
+      result
+        ..add('thumbnail')
+        ..add(serializers.serialize(object.thumbnail,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
   @override
-  Image deserialize(Serializers serializers, Iterable<Object> serialized,
+  Media deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new ImageBuilder();
+    final result = new MediaBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -47,8 +53,16 @@ class _$ImageSerializer implements StructuredSerializer<Image> {
           result.name = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'type':
+          result.type = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
         case 'thumbnail':
           result.thumbnail = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'url':
+          result.url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'height':
@@ -66,47 +80,58 @@ class _$ImageSerializer implements StructuredSerializer<Image> {
   }
 }
 
-class _$Image extends Image {
+class _$Media extends Media {
   @override
   final String name;
   @override
+  final String type;
+  @override
   final String thumbnail;
+  @override
+  final String url;
   @override
   final int height;
   @override
   final int width;
 
-  factory _$Image([void Function(ImageBuilder) updates]) =>
-      (new ImageBuilder()..update(updates)).build();
+  factory _$Media([void Function(MediaBuilder) updates]) =>
+      (new MediaBuilder()..update(updates)).build();
 
-  _$Image._({this.name, this.thumbnail, this.height, this.width}) : super._() {
+  _$Media._(
+      {this.name, this.type, this.thumbnail, this.url, this.height, this.width})
+      : super._() {
     if (name == null) {
-      throw new BuiltValueNullFieldError('Image', 'name');
+      throw new BuiltValueNullFieldError('Media', 'name');
     }
-    if (thumbnail == null) {
-      throw new BuiltValueNullFieldError('Image', 'thumbnail');
+    if (type == null) {
+      throw new BuiltValueNullFieldError('Media', 'type');
+    }
+    if (url == null) {
+      throw new BuiltValueNullFieldError('Media', 'url');
     }
     if (height == null) {
-      throw new BuiltValueNullFieldError('Image', 'height');
+      throw new BuiltValueNullFieldError('Media', 'height');
     }
     if (width == null) {
-      throw new BuiltValueNullFieldError('Image', 'width');
+      throw new BuiltValueNullFieldError('Media', 'width');
     }
   }
 
   @override
-  Image rebuild(void Function(ImageBuilder) updates) =>
+  Media rebuild(void Function(MediaBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ImageBuilder toBuilder() => new ImageBuilder()..replace(this);
+  MediaBuilder toBuilder() => new MediaBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Image &&
+    return other is Media &&
         name == other.name &&
+        type == other.type &&
         thumbnail == other.thumbnail &&
+        url == other.url &&
         height == other.height &&
         width == other.width;
   }
@@ -114,31 +139,46 @@ class _$Image extends Image {
   @override
   int get hashCode {
     return $jf($jc(
-        $jc($jc($jc(0, name.hashCode), thumbnail.hashCode), height.hashCode),
+        $jc(
+            $jc(
+                $jc($jc($jc(0, name.hashCode), type.hashCode),
+                    thumbnail.hashCode),
+                url.hashCode),
+            height.hashCode),
         width.hashCode));
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Image')
+    return (newBuiltValueToStringHelper('Media')
           ..add('name', name)
+          ..add('type', type)
           ..add('thumbnail', thumbnail)
+          ..add('url', url)
           ..add('height', height)
           ..add('width', width))
         .toString();
   }
 }
 
-class ImageBuilder implements Builder<Image, ImageBuilder> {
-  _$Image _$v;
+class MediaBuilder implements Builder<Media, MediaBuilder> {
+  _$Media _$v;
 
   String _name;
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
+  String _type;
+  String get type => _$this._type;
+  set type(String type) => _$this._type = type;
+
   String _thumbnail;
   String get thumbnail => _$this._thumbnail;
   set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
+
+  String _url;
+  String get url => _$this._url;
+  set url(String url) => _$this._url = url;
 
   int _height;
   int get height => _$this._height;
@@ -148,12 +188,14 @@ class ImageBuilder implements Builder<Image, ImageBuilder> {
   int get width => _$this._width;
   set width(int width) => _$this._width = width;
 
-  ImageBuilder();
+  MediaBuilder();
 
-  ImageBuilder get _$this {
+  MediaBuilder get _$this {
     if (_$v != null) {
       _name = _$v.name;
+      _type = _$v.type;
       _thumbnail = _$v.thumbnail;
+      _url = _$v.url;
       _height = _$v.height;
       _width = _$v.width;
       _$v = null;
@@ -162,23 +204,28 @@ class ImageBuilder implements Builder<Image, ImageBuilder> {
   }
 
   @override
-  void replace(Image other) {
+  void replace(Media other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Image;
+    _$v = other as _$Media;
   }
 
   @override
-  void update(void Function(ImageBuilder) updates) {
+  void update(void Function(MediaBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Image build() {
+  _$Media build() {
     final _$result = _$v ??
-        new _$Image._(
-            name: name, thumbnail: thumbnail, height: height, width: width);
+        new _$Media._(
+            name: name,
+            type: type,
+            thumbnail: thumbnail,
+            url: url,
+            height: height,
+            width: width);
     replace(_$result);
     return _$result;
   }

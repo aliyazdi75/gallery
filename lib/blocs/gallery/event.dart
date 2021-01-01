@@ -12,4 +12,7 @@ class GalleryRequested extends GalleryEvent {
   const GalleryRequested(this.path);
 
   final String path;
+
+  @override
+  List<Object> get props => [path];
 }

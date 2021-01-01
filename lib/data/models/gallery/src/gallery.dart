@@ -14,7 +14,7 @@ abstract class Gallery implements Built<Gallery, GalleryBuilder> {
   BuiltList<Album> get albums;
 
   @nullable
-  BuiltList<Image> get images;
+  BuiltList<Media> get medias;
 
   Gallery._();
 

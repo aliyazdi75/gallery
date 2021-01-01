@@ -30,12 +30,12 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(Album)])));
     }
-    if (object.images != null) {
+    if (object.medias != null) {
       result
-        ..add('images')
-        ..add(serializers.serialize(object.images,
+        ..add('medias')
+        ..add(serializers.serialize(object.medias,
             specifiedType:
-                const FullType(BuiltList, const [const FullType(Image)])));
+                const FullType(BuiltList, const [const FullType(Media)])));
     }
     return result;
   }
@@ -61,10 +61,10 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
                       const FullType(BuiltList, const [const FullType(Album)]))
               as BuiltList<Object>);
           break;
-        case 'images':
-          result.images.replace(serializers.deserialize(value,
+        case 'medias':
+          result.medias.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(BuiltList, const [const FullType(Image)]))
+                      const FullType(BuiltList, const [const FullType(Media)]))
               as BuiltList<Object>);
           break;
       }
@@ -121,12 +121,12 @@ class _$Gallery extends Gallery {
   @override
   final BuiltList<Album> albums;
   @override
-  final BuiltList<Image> images;
+  final BuiltList<Media> medias;
 
   factory _$Gallery([void Function(GalleryBuilder) updates]) =>
       (new GalleryBuilder()..update(updates)).build();
 
-  _$Gallery._({this.path, this.albums, this.images}) : super._() {
+  _$Gallery._({this.path, this.albums, this.medias}) : super._() {
     if (path == null) {
       throw new BuiltValueNullFieldError('Gallery', 'path');
     }
@@ -145,13 +145,13 @@ class _$Gallery extends Gallery {
     return other is Gallery &&
         path == other.path &&
         albums == other.albums &&
-        images == other.images;
+        medias == other.medias;
   }
 
   @override
   int get hashCode {
     return $jf(
-        $jc($jc($jc(0, path.hashCode), albums.hashCode), images.hashCode));
+        $jc($jc($jc(0, path.hashCode), albums.hashCode), medias.hashCode));
   }
 
   @override
@@ -159,7 +159,7 @@ class _$Gallery extends Gallery {
     return (newBuiltValueToStringHelper('Gallery')
           ..add('path', path)
           ..add('albums', albums)
-          ..add('images', images))
+          ..add('medias', medias))
         .toString();
   }
 }
@@ -175,9 +175,9 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
   ListBuilder<Album> get albums => _$this._albums ??= new ListBuilder<Album>();
   set albums(ListBuilder<Album> albums) => _$this._albums = albums;
 
-  ListBuilder<Image> _images;
-  ListBuilder<Image> get images => _$this._images ??= new ListBuilder<Image>();
-  set images(ListBuilder<Image> images) => _$this._images = images;
+  ListBuilder<Media> _medias;
+  ListBuilder<Media> get medias => _$this._medias ??= new ListBuilder<Media>();
+  set medias(ListBuilder<Media> medias) => _$this._medias = medias;
 
   GalleryBuilder();
 
@@ -185,7 +185,7 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
     if (_$v != null) {
       _path = _$v.path;
       _albums = _$v.albums?.toBuilder();
-      _images = _$v.images?.toBuilder();
+      _medias = _$v.medias?.toBuilder();
       _$v = null;
     }
     return this;
@@ -210,14 +210,14 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
     try {
       _$result = _$v ??
           new _$Gallery._(
-              path: path, albums: _albums?.build(), images: _images?.build());
+              path: path, albums: _albums?.build(), medias: _medias?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'albums';
         _albums?.build();
-        _$failedField = 'images';
-        _images?.build();
+        _$failedField = 'medias';
+        _medias?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Gallery', _$failedField, e.toString());

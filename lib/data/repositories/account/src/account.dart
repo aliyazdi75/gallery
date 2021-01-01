@@ -15,7 +15,7 @@ class AccountRepository {
           ..lastName = 'Yazdi',
       );
       // todo: try get from database
-      throw UnimplementedError('Get Local Account not implemented yet.');
+      // throw UnimplementedError('Get Local Account not implemented yet.');
     }
     return _account;
   }

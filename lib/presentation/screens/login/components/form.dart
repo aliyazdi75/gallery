@@ -13,11 +13,11 @@ class LoginForm extends StatelessWidget {
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
         if (state.status == LoginStatus.success) {
-          context.bloc<AuthenticationBloc>().add(
+          context.watch<AuthenticationBloc>().add(
               const AuthenticationStatusChanged(
                   AuthenticationStatus.authenticated));
         } else if (state.status == LoginStatus.failure) {
-          Scaffold.of(context)
+          ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
@@ -56,7 +56,7 @@ class _UsernameInput extends StatelessWidget {
       builder: (context, state) {
         return TextFormField(
           onChanged: (username) =>
-              context.bloc<LoginBloc>().add(LoginUsernameChanged(username)),
+              context.watch<LoginBloc>().add(LoginUsernameChanged(username)),
           validator: (username) => username.isEmpty
               ? CeitAlumniLocalizations.of(context).usernameNotEmpty
               : null,
@@ -76,7 +76,7 @@ class _PasswordInput extends StatelessWidget {
       builder: (context, state) {
         return TextFormField(
           onChanged: (password) =>
-              context.bloc<LoginBloc>().add(LoginPasswordChanged(password)),
+              context.watch<LoginBloc>().add(LoginPasswordChanged(password)),
           obscureText: true,
           validator: (password) => password.isEmpty
               ? CeitAlumniLocalizations.of(context).passwordNotEmpty
@@ -105,7 +105,7 @@ class _LoginButton extends StatelessWidget {
                 child: Text(CeitAlumniLocalizations.of(context).login),
                 onPressed: () {
                   if (formKey.currentState.validate()) {
-                    context.bloc<LoginBloc>().add(const LoginSubmitted());
+                    context.watch<LoginBloc>().add(const LoginSubmitted());
                   }
                 },
               );

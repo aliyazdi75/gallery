@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:ceit_alumni/main.dart';
+import 'package:ceit_alumni/presentation/screens/gallery/index.dart';
 import 'package:ceit_alumni/presentation/screens/home/home.dart';
 import 'package:ceit_alumni/presentation/screens/login/login.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 
 typedef PathWidgetBuilder = Widget Function(BuildContext, String, Object);
 
+//todo: add state to check weather the user is authenticated and if not route to login page
 class Path {
   const Path(this.pattern, this.builder);
 
@@ -58,6 +60,21 @@ class RouteConfiguration {
     //   r'^' + StarterApp.defaultRoute,
     //   (context, match) => const StudyWrapper(study: StarterApp()),
     // ),
+    Path(
+      r'^' +
+          MediaGallery.galleryRoute +
+          GalleryMediaFullscreen.mediaGalleryRoute +
+          r'/(.+)$',
+      (context, match, args) {
+        assert(args != null);
+        final arguments = args as GalleryMediaArguments;
+        return GalleryMediaFullscreen(
+          url: arguments.url,
+          thumbnail: arguments.thumbnail,
+          isImage: arguments.isImage,
+        );
+      },
+    ),
     Path(
       r'^' + HomePage.homeRoute,
       (context, match, args) {

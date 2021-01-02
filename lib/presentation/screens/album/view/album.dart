@@ -49,7 +49,7 @@ class AlbumPage extends StatelessWidget {
       },
       child: BlocBuilder<GalleryBloc, GalleryState>(
         builder: (context, state) {
-          if (state.galleriesViewed.isEmpty) {
+          if (state.status == GalleryStatus.initial) {
             BlocProvider.of<GalleryBloc>(context)
                 .add(const GalleryPushRequested(''));
           }

@@ -2,12 +2,14 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ceit_alumni/data/models/gallery/src/serializers.dart';
 
+import 'media_type.dart';
+
 part 'media.g.dart';
 
 abstract class Media implements Built<Media, MediaBuilder> {
   String get name;
 
-  String get type;
+  MediaType get type;
 
   @nullable
   String get thumbnail;
@@ -19,6 +21,7 @@ abstract class Media implements Built<Media, MediaBuilder> {
   int get width;
 
   Media._();
+
   factory Media([void Function(MediaBuilder) updates]) = _$Media;
 
   static Media fromJson(Map<String, dynamic> json) {

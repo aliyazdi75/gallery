@@ -1,7 +1,7 @@
 import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
 import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
-import 'package:ceit_alumni/presentation/screens/fullscreen/media/fullscreen_media.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -54,14 +54,10 @@ class _VideoBuilderWidgetState extends State<VideoBuilderWidget> {
                 if (selected) {
                   Navigator.of(context).pushNamed(
                     AlbumPage.albumRoute +
-                        FullscreenMedia.fullscreenRoute +
+                        MediaFullscreen.fullscreenRoute +
                         '/' +
                         widget.media.name,
-                    arguments: FullscreenMediaArguments(
-                      url: widget.media.url,
-                      thumbnail: widget.media.thumbnail,
-                      isImage: false,
-                    ),
+                    arguments: MediaFullscreenArguments(media: widget.media),
                   );
                 } else {
                   context.read<MediaCubit>().jump(widget.index);

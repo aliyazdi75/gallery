@@ -148,10 +148,10 @@ class _ControlsOverlay extends StatefulWidget {
   final VoidCallback handleFullscreenButton;
 
   @override
-  __ControlsOverlayState createState() => __ControlsOverlayState();
+  _ControlsOverlayState createState() => _ControlsOverlayState();
 }
 
-class __ControlsOverlayState extends State<_ControlsOverlay>
+class _ControlsOverlayState extends State<_ControlsOverlay>
     with SingleTickerProviderStateMixin {
   @override
   void initState() {

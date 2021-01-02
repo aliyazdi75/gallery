@@ -21,7 +21,8 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'type',
-      serializers.serialize(object.type, specifiedType: const FullType(String)),
+      serializers.serialize(object.type,
+          specifiedType: const FullType(MediaType)),
       'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
       'height',
@@ -55,7 +56,7 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
           break;
         case 'type':
           result.type = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(MediaType)) as MediaType;
           break;
         case 'thumbnail':
           result.thumbnail = serializers.deserialize(value,
@@ -84,7 +85,7 @@ class _$Media extends Media {
   @override
   final String name;
   @override
-  final String type;
+  final MediaType type;
   @override
   final String thumbnail;
   @override
@@ -168,9 +169,9 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
   String get name => _$this._name;
   set name(String name) => _$this._name = name;
 
-  String _type;
-  String get type => _$this._type;
-  set type(String type) => _$this._type = type;
+  MediaType _type;
+  MediaType get type => _$this._type;
+  set type(MediaType type) => _$this._type = type;
 
   String _thumbnail;
   String get thumbnail => _$this._thumbnail;

@@ -1,5 +1,6 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:ceit_alumni/data/models/gallery/index.dart';
+import 'package:ceit_alumni/data/models/gallery/src/media_type.dart';
 import 'package:ceit_alumni/presentation/screens/album/view/image/image_builder_widget.dart';
 import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
 import 'package:ceit_alumni/presentation/screens/album/view/video/video_builder_widget.dart';
@@ -44,7 +45,8 @@ class MediaWidget extends StatelessWidget {
             padding: const EdgeInsets.all(40.0),
             itemScrollController: itemScrollController,
             itemCount: medias.length,
-            itemBuilder: (context, index) => medias[index].type == 'image'
+            itemBuilder: (context, index) => medias[index].type ==
+                    MediaType.image
                 ? ImageBuilderWidget(
                     index: index,
                     media: medias[index],

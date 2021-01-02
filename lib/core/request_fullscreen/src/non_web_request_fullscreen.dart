@@ -10,6 +10,7 @@ class NonWebRequestFullscreen implements RequestFullscreen {
 
   @override
   void requestFullscreen() {
+    SystemChrome.setEnabledSystemUIOverlays([]);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
@@ -21,6 +22,7 @@ class NonWebRequestFullscreen implements RequestFullscreen {
 
   @override
   void exitFullscreen() {
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,

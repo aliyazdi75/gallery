@@ -1,40 +1,30 @@
 import 'package:ceit_alumni/core/request_fullscreen/index.dart';
+import 'package:ceit_alumni/data/models/gallery/index.dart';
+import 'package:ceit_alumni/data/models/gallery/src/media_type.dart';
 import 'package:ceit_alumni/presentation/screens/fullscreen/image/image_fullscreen.dart';
 import 'package:ceit_alumni/presentation/screens/fullscreen/video/video_fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class FullscreenMediaArguments {
-  const FullscreenMediaArguments({
-    @required this.url,
-    this.thumbnail,
-    this.isImage = true,
-  }) : assert(url != null);
+class MediaFullscreenArguments {
+  const MediaFullscreenArguments({
+    @required this.media,
+  }) : assert(media != null);
 
-  final String url;
-  final String thumbnail;
-
-  //todo: change to enum
-  final bool isImage;
+  final Media media;
 }
 
-class FullscreenMedia extends StatefulWidget {
-  FullscreenMedia({
-    @required this.url,
-    @required this.thumbnail,
-    @required this.isImage,
-  });
+class MediaFullscreen extends StatefulWidget {
+  MediaFullscreen({@required this.media});
 
-  final String url;
-  final String thumbnail;
-  final bool isImage;
+  final Media media;
   static const String fullscreenRoute = '/view';
 
   @override
-  _FullscreenMediaState createState() => _FullscreenMediaState();
+  _MediaFullscreenState createState() => _MediaFullscreenState();
 }
 
-class _FullscreenMediaState extends State<FullscreenMedia> {
+class _MediaFullscreenState extends State<MediaFullscreen> {
   bool _isFullscreen = false;
   RequestFullscreen _requestFullscreen;
 
@@ -57,11 +47,11 @@ class _FullscreenMediaState extends State<FullscreenMedia> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.isImage
-        ? ImageFullscreen(url: widget.url)
+    return widget.media.type == MediaType.image
+        ? ImageFullscreen(url: widget.media.url)
         : VideoFullscreen(
-            url: widget.url,
-            thumbnail: widget.thumbnail,
+            url: widget.media.url,
+            thumbnail: widget.media.thumbnail,
             isFullscreen: _isFullscreen,
             handleFullscreenButton: _handleFullscreenButton,
           );

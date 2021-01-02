@@ -10,6 +10,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Album.serializer)
       ..add(Gallery.serializer)
       ..add(Media.serializer)
+      ..add(MediaType.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(Album)]),
           () => new ListBuilder<Album>())

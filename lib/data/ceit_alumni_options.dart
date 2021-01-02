@@ -48,7 +48,8 @@ class CeitAlumniOptions {
   /// Returns a [SystemUiOverlayStyle] based on the [ThemeMode] setting.
   /// In other words, if the theme is dark, returns light; if the theme is
   /// light, returns dark.
-  SystemUiOverlayStyle resolvedSystemUiOverlayStyle(BuildContext context) {
+  SystemUiOverlayStyle resolvedSystemUiOverlayStyle(BuildContext context,
+      {Color systemNavigationBarColor}) {
     Brightness brightness;
     switch (themeMode) {
       case ThemeMode.light:
@@ -63,7 +64,8 @@ class CeitAlumniOptions {
 
     final scaffoldBackgroundColor = Theme.of(context).scaffoldBackgroundColor;
     final overlayStyle = SystemUiOverlayStyle(
-      systemNavigationBarColor: scaffoldBackgroundColor,
+      systemNavigationBarColor:
+          systemNavigationBarColor ?? scaffoldBackgroundColor,
       systemNavigationBarIconBrightness:
           brightness == Brightness.dark ? Brightness.light : Brightness.dark,
     );

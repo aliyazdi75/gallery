@@ -7,6 +7,7 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'album.dart';
 import 'gallery.dart';
 import 'media.dart';
+import 'media_type.dart';
 
 part 'serializers.g.dart';
 
@@ -23,6 +24,7 @@ part 'serializers.g.dart';
 /// You usually only need to do this once per project.
 @SerializersFor([
   Album,
+  MediaType,
   Media,
   Gallery,
 ])

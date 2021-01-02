@@ -48,10 +48,7 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
   }
 
   Future<void> _initialVideo(String videoUrl) async {
-    videoPlayerController = VideoPlayerController.network(
-      videoUrl,
-      videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
-    );
+    videoPlayerController = VideoPlayerController.network(videoUrl);
     videoPlayerController.addListener(
       () => add(const VideoUpdated()),
     );

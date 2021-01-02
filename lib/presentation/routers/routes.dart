@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:ceit_alumni/main.dart';
 import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
-import 'package:ceit_alumni/presentation/screens/fullscreen/media/fullscreen_media.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/fullscreen.dart';
 import 'package:ceit_alumni/presentation/screens/login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -61,15 +61,11 @@ class RouteConfiguration {
     //   (context, match) => const StudyWrapper(study: StarterApp()),
     // ),
     Path(
-      r'^' + AlbumPage.albumRoute + FullscreenMedia.fullscreenRoute + r'/(.+)$',
+      r'^' + AlbumPage.albumRoute + MediaFullscreen.fullscreenRoute + r'/(.+)$',
       (context, match, args) {
         assert(args != null);
-        final arguments = args as FullscreenMediaArguments;
-        return FullscreenMedia(
-          url: arguments.url,
-          thumbnail: arguments.thumbnail,
-          isImage: arguments.isImage,
-        );
+        final arguments = args as MediaFullscreenArguments;
+        return MediaFullscreen(media: arguments.media);
       },
     ),
     Path(

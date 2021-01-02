@@ -1,7 +1,7 @@
 import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/cubit/gallery_cubit.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/view/media_gallery.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/media/fullscreen_media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,17 +33,15 @@ class VideoBuilderWidget extends StatefulWidget {
 
 class _VideoBuilderWidgetState extends State<VideoBuilderWidget> {
   bool _onHover = false;
-  double _playIconSize;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GalleryCubit, int>(
+    return BlocBuilder<MediaCubit, int>(
       builder: (context, state) {
         final selected = widget.index == state;
         final playIconSize = selected
             ? widget.selectedHeight * kIconSizeSelected
             : widget.unSelectedHeight * kIconSizeUnselected;
-        _onHover = !selected;
         return Center(
           child: Card(
             elevation: 10.0,
@@ -55,18 +53,18 @@ class _VideoBuilderWidgetState extends State<VideoBuilderWidget> {
               onTap: () {
                 if (selected) {
                   Navigator.of(context).pushNamed(
-                    MediaGallery.galleryRoute +
-                        GalleryMediaFullscreen.mediaGalleryRoute +
+                    AlbumPage.albumRoute +
+                        FullscreenMedia.fullscreenRoute +
                         '/' +
                         widget.media.name,
-                    arguments: GalleryMediaArguments(
+                    arguments: FullscreenMediaArguments(
                       url: widget.media.url,
                       thumbnail: widget.media.thumbnail,
                       isImage: false,
                     ),
                   );
                 } else {
-                  context.read<GalleryCubit>().jump(widget.index);
+                  context.read<MediaCubit>().jump(widget.index);
                   widget.onTap();
                 }
               },
@@ -93,7 +91,7 @@ class _VideoBuilderWidgetState extends State<VideoBuilderWidget> {
                           return AnimatedOpacity(
                             child: child,
                             opacity: frame == null ? 0 : 1,
-                            duration: const Duration(seconds: 1),
+                            duration: const Duration(seconds: 2),
                             curve: Curves.easeOut,
                           );
                         },
@@ -123,7 +121,7 @@ class _VideoBuilderWidgetState extends State<VideoBuilderWidget> {
                       ),
                       Positioned.fill(
                         child: AnimatedOpacity(
-                          opacity: selected ? 0.0 : 1.0,
+                          opacity: selected || selected ? 0.0 : 1.0,
                           duration: widget.selectionAnimationDuration,
                           curve: widget.selectionAnimationCurve,
                           child: AnimatedOpacity(

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:ceit_alumni/data/repositories/gallery/index.dart';
 import 'package:ceit_alumni/http/index.dart';
@@ -15,31 +16,40 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
   GalleryBloc({
     @required this.galleryRepository,
   })  : assert(galleryRepository != null),
-        super(const GalleryState.initial());
+        super(GalleryState.initial());
 
   final GalleryRepository galleryRepository;
 
   @override
   Stream<GalleryState> mapEventToState(GalleryEvent event) async* {
-    if (event is GalleryRequested) {
-      yield* _mapGetGalleryRequestedToState(event);
+    if (event is GalleryPushRequested) {
+      yield* _mapGalleryPushRequestedToState(event);
+    } else if (event is GalleryPopRequested) {
+      final galleriesViewed = state.galleriesViewed.toBuilder();
+      galleriesViewed.removeLast();
+      yield state.copyWith(galleriesViewed: galleriesViewed.build());
     }
   }
 
-  Stream<GalleryState> _mapGetGalleryRequestedToState(
-      GalleryRequested event) async* {
-    yield const GalleryState.loading();
+  Stream<GalleryState> _mapGalleryPushRequestedToState(
+      GalleryPushRequested event) async* {
+    yield state.copyWith(status: GalleryStatus.loading);
     try {
       final gallery = await galleryRepository.getGallery(path: event.path);
-      yield GalleryState.success(gallery);
+      final galleriesViewed = state.galleriesViewed.toBuilder();
+      galleriesViewed.add(gallery);
+      yield state.copyWith(
+        status: GalleryStatus.success,
+        galleriesViewed: galleriesViewed.build(),
+      );
     } on BadRequestException catch (_) {
       //todo: create this bad request model
-      yield const GalleryState.failure();
+      yield state.copyWith(status: GalleryStatus.failure);
     } on SocketException catch (_) {
       print('kir to netet');
-      yield const GalleryState.failure();
+      yield state.copyWith(status: GalleryStatus.failure);
     } on Exception catch (_) {
-      yield const GalleryState.failure();
+      yield state.copyWith(status: GalleryStatus.failure);
     }
   }
 }

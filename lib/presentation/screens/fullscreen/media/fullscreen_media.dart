@@ -1,12 +1,11 @@
 import 'package:ceit_alumni/core/request_fullscreen/index.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/image/image_fullscreen.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/video/video_fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'image/image_fullscreen.dart';
-import 'video/video_fullscreen.dart';
-
-class GalleryMediaArguments {
-  const GalleryMediaArguments({
+class FullscreenMediaArguments {
+  const FullscreenMediaArguments({
     @required this.url,
     this.thumbnail,
     this.isImage = true,
@@ -19,8 +18,8 @@ class GalleryMediaArguments {
   final bool isImage;
 }
 
-class GalleryMediaFullscreen extends StatefulWidget {
-  GalleryMediaFullscreen({
+class FullscreenMedia extends StatefulWidget {
+  FullscreenMedia({
     @required this.url,
     @required this.thumbnail,
     @required this.isImage,
@@ -29,13 +28,13 @@ class GalleryMediaFullscreen extends StatefulWidget {
   final String url;
   final String thumbnail;
   final bool isImage;
-  static const String mediaGalleryRoute = '/view';
+  static const String fullscreenRoute = '/view';
 
   @override
-  _GalleryMediaFullscreenState createState() => _GalleryMediaFullscreenState();
+  _FullscreenMediaState createState() => _FullscreenMediaState();
 }
 
-class _GalleryMediaFullscreenState extends State<GalleryMediaFullscreen> {
+class _FullscreenMediaState extends State<FullscreenMedia> {
   bool _isFullscreen = false;
   RequestFullscreen _requestFullscreen;
 

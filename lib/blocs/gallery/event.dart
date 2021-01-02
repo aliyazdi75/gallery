@@ -8,11 +8,15 @@ abstract class GalleryEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GalleryRequested extends GalleryEvent {
-  const GalleryRequested(this.path);
+class GalleryPushRequested extends GalleryEvent {
+  const GalleryPushRequested(this.path);
 
   final String path;
 
   @override
   List<Object> get props => [path];
+}
+
+class GalleryPopRequested extends GalleryEvent {
+  const GalleryPopRequested();
 }

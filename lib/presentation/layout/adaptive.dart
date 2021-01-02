@@ -1,7 +1,7 @@
 import 'dart:io';
 
+import 'package:ceit_alumni/data/ceit_alumni_options.dart';
 import 'package:ceit_alumni/data/constants/index.dart';
-import 'package:ceit_alumni/data/koja_beram_options.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

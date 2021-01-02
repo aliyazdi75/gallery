@@ -1,7 +1,7 @@
 import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/cubit/gallery_cubit.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/view/media_gallery.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/media/fullscreen_media.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,16 +29,13 @@ class ImageBuilderWidget extends StatefulWidget {
 }
 
 class _ImageBuilderWidgetState extends State<ImageBuilderWidget> {
-  bool onHover = false;
+  bool _onHover = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GalleryCubit, int>(
+    return BlocBuilder<MediaCubit, int>(
       builder: (context, state) {
         final selected = widget.index == state;
-        if (selected) {
-          onHover = false;
-        }
         return Center(
           child: Card(
             elevation: 10.0,
@@ -50,16 +47,16 @@ class _ImageBuilderWidgetState extends State<ImageBuilderWidget> {
               onTap: () {
                 if (selected) {
                   Navigator.of(context).pushNamed(
-                    MediaGallery.galleryRoute +
-                        GalleryMediaFullscreen.mediaGalleryRoute +
+                    AlbumPage.albumRoute +
+                        FullscreenMedia.fullscreenRoute +
                         '/' +
                         widget.media.name,
-                    arguments: GalleryMediaArguments(
+                    arguments: FullscreenMediaArguments(
                       url: widget.media.url,
                     ),
                   );
                 } else {
-                  context.read<GalleryCubit>().jump(widget.index);
+                  context.read<MediaCubit>().jump(widget.index);
                   widget.onTap();
                 }
               },
@@ -85,7 +82,7 @@ class _ImageBuilderWidgetState extends State<ImageBuilderWidget> {
                           return AnimatedOpacity(
                             child: child,
                             opacity: frame == null ? 0 : 1,
-                            duration: const Duration(seconds: 1),
+                            duration: const Duration(seconds: 2),
                             curve: Curves.easeOut,
                           );
                         },
@@ -96,7 +93,7 @@ class _ImageBuilderWidgetState extends State<ImageBuilderWidget> {
                           duration: widget.selectionAnimationDuration,
                           curve: widget.selectionAnimationCurve,
                           child: AnimatedOpacity(
-                            opacity: onHover ? 0.0 : 1.0,
+                            opacity: _onHover || selected ? 0.0 : 1.0,
                             duration: const Duration(milliseconds: 250),
                             child: MouseRegion(
                               onEnter: _onMouseEnter,
@@ -124,13 +121,13 @@ class _ImageBuilderWidgetState extends State<ImageBuilderWidget> {
 
   void _onMouseEnter(PointerEvent details) {
     setState(() {
-      onHover = true;
+      _onHover = true;
     });
   }
 
   void _onMouseExit(PointerEvent details) {
     setState(() {
-      onHover = false;
+      _onHover = false;
     });
   }
 }

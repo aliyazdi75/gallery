@@ -1,10 +1,12 @@
 import 'package:ceit_alumni/blocs/authentication/bloc.dart';
+import 'package:ceit_alumni/blocs/gallery/bloc.dart';
+import 'package:ceit_alumni/data/ceit_alumni_options.dart';
 import 'package:ceit_alumni/data/constants/index.dart';
-import 'package:ceit_alumni/data/koja_beram_options.dart';
 import 'package:ceit_alumni/data/repositories/account/index.dart';
 import 'package:ceit_alumni/data/repositories/authentication/index.dart';
 import 'package:ceit_alumni/presentation/layout/adaptive.dart';
 import 'package:ceit_alumni/presentation/routers/routes.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
 import 'package:ceit_alumni/presentation/themes/ceit_alumni_theme_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +16,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
 
 import 'data/repositories/gallery/index.dart';
-import 'presentation/screens/home/home.dart';
 
 void main() {
   // Do something when app faced an error on release
@@ -39,6 +40,7 @@ class CeitAlumni extends StatelessWidget {
 
   final authenticationRepository = AuthenticationRepository();
   final accountRepository = AccountRepository();
+  final galleryRepository = GalleryRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +59,24 @@ class CeitAlumni extends StatelessWidget {
             providers: [
               RepositoryProvider.value(value: authenticationRepository),
               RepositoryProvider.value(value: accountRepository),
+              RepositoryProvider.value(value: galleryRepository),
             ],
-            child: BlocProvider(
-              create: (_) => AuthenticationBloc(
-                authenticationRepository: authenticationRepository,
-                accountRepository: accountRepository,
-              ),
+            child: MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (_) => AuthenticationBloc(
+                    authenticationRepository: authenticationRepository,
+                    accountRepository: accountRepository,
+                  ),
+                ),
+                BlocProvider<GalleryBloc>(
+                  create: (context) => GalleryBloc(
+                    galleryRepository:
+                        RepositoryProvider.of<GalleryRepository>(context),
+                  ),
+                  child: const AlbumPage(),
+                ),
+              ],
               child: AdaptiveDesign(
                 material: MaterialApp(
                   title: ceitAlumniTitle,
@@ -139,9 +153,7 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return HomePage(
-      galleryRepository: GalleryRepository(),
-    );
+    return const AlbumPage();
     // return const SplashPage();
   }
 }

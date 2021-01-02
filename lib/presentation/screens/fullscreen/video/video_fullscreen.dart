@@ -46,7 +46,7 @@ class VideoFullscreen extends StatelessWidget {
         child: BlocBuilder<VideoBloc, VideoState>(
           builder: (context, state) {
             if (state.status == VideoStatus.initial) {
-              context.watch<VideoBloc>().add(VideoInitialized(url));
+              BlocProvider.of<VideoBloc>(context).add(VideoInitialized(url));
             }
             return Hero(
               tag: thumbnail,
@@ -165,7 +165,8 @@ class __ControlsOverlayState extends State<_ControlsOverlay>
 
   @override
   Widget build(BuildContext context) {
-    final animationController = context.watch<VideoBloc>().animationController;
+    final animationController =
+        BlocProvider.of<VideoBloc>(context).animationController;
     const horizontalPadding = 8.0;
     const verticalPadding = 8.0;
     return Directionality(

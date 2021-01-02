@@ -1,6 +1,4 @@
 import 'package:ceit_alumni/blocs/authentication/bloc.dart';
-import 'package:ceit_alumni/data/repositories/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/home/home.dart';
 import 'package:ceit_alumni/presentation/screens/login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +15,12 @@ class SplashPage extends StatelessWidget {
       listener: (context, state) {
         switch (state.status) {
           case AuthenticationStatus.authenticated:
-            Navigator.of(context).pushNamed(
-              HomePage.homeRoute,
-              arguments: HomePageArguments(
-                galleryRepository: GalleryRepository(),
-              ),
-            );
+            // Navigator.of(context).pushNamed(
+            //   HomePage.homeRoute,
+            //   arguments: GalleryWidget(
+            //     galleryRepository: GalleryRepository(),
+            //   ),
+            // );
             break;
           case AuthenticationStatus.unauthenticated:
             break;

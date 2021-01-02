@@ -1,26 +1,24 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/cubit/gallery_cubit.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/image/image_builder_widget.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/video/video_builder_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import 'image/image_builder_widget.dart';
-import 'video/video_builder_widget.dart';
-
 const _horizontalDesktopPadding = 81.0;
 const _selectionAnimationDuration = Duration(milliseconds: 750);
 const _selectionAnimationCurve = Curves.easeInToLinear;
 
-class MediaGallery extends StatelessWidget {
-  MediaGallery({
+class MediaWidget extends StatelessWidget {
+  MediaWidget({
     @required this.medias,
   });
 
   final BuiltList<Media> medias;
   final itemScrollController = ItemScrollController();
-  static const String galleryRoute = '/gallery';
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +30,7 @@ class MediaGallery extends StatelessWidget {
     final kAlign = selectedHeight / deviceWidth / 2;
 
     return BlocProvider(
-      create: (_) => GalleryCubit(initialScrollIndex),
+      create: (_) => MediaCubit(initialScrollIndex),
       child: Stack(
         children: [
           ScrollablePositionedList.builder(
@@ -66,27 +64,27 @@ class MediaGallery extends StatelessWidget {
                     onTap: () => _animatedScroll(kAlign, index, medias[index]),
                   ),
           ),
-          BlocBuilder<GalleryCubit, int>(
+          BlocBuilder<MediaCubit, int>(
             builder: (context, state) => _DesktopPageButton(
               show: state > 0,
               isEnd: false,
               onTap: () {
                 if (state > 0) {
                   final index = state - 1;
-                  context.read<GalleryCubit>().previous();
+                  context.read<MediaCubit>().previous();
                   _animatedScroll(kAlign, index, medias[index]);
                 }
               },
             ),
           ),
-          BlocBuilder<GalleryCubit, int>(
+          BlocBuilder<MediaCubit, int>(
             builder: (context, state) => _DesktopPageButton(
               show: state < medias.length - 1,
               isEnd: true,
               onTap: () {
                 if (state < medias.length) {
                   final index = state + 1;
-                  context.read<GalleryCubit>().next();
+                  context.read<MediaCubit>().next();
                   _animatedScroll(kAlign, index, medias[index]);
                 }
               },

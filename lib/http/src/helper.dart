@@ -117,17 +117,29 @@ class HttpHelper implements HttpClientBase {
     try {
       return _responseData(
         await _httpClient.get(
-          usingSSL
-              ? Uri.https(
-                  isMobile ? avdAuthority : authority,
-                  '/api/$path/',
-                  queryParams,
-                )
-              : Uri.http(
-                  isMobile ? avdAuthority : authority,
-                  '/api/$path/',
-                  queryParams,
-                ),
+          usingLocal
+              ? usingSSL
+                  ? Uri.https(
+                      isMobile ? avdAuthority : authority,
+                      '/api/$path/',
+                      queryParams,
+                    )
+                  : Uri.http(
+                      isMobile ? avdAuthority : authority,
+                      '/api/$path/',
+                      queryParams,
+                    )
+              : usingSSL
+                  ? Uri.https(
+                      serverUrl,
+                      '/api/$path/',
+                      queryParams,
+                    )
+                  : Uri.http(
+                      serverUrl,
+                      '/api/$path/',
+                      queryParams,
+                    ),
           headers: HttpHeader.setHeader(headerType),
         ),
       );

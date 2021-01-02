@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:ceit_alumni/data/koja_beram_options.dart';
+import 'package:ceit_alumni/data/ceit_alumni_options.dart';
 import 'package:flutter/material.dart';
 
 double _textScaleFactor(BuildContext context) {

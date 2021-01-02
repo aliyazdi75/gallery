@@ -13,7 +13,7 @@ class LoginForm extends StatelessWidget {
       listenWhen: (previous, current) => previous.status != current.status,
       listener: (context, state) {
         if (state.status == LoginStatus.success) {
-          context.watch<AuthenticationBloc>().add(
+          BlocProvider.of<AuthenticationBloc>(context).add(
               const AuthenticationStatusChanged(
                   AuthenticationStatus.authenticated));
         } else if (state.status == LoginStatus.failure) {
@@ -55,8 +55,8 @@ class _UsernameInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.username != current.username,
       builder: (context, state) {
         return TextFormField(
-          onChanged: (username) =>
-              context.watch<LoginBloc>().add(LoginUsernameChanged(username)),
+          onChanged: (username) => BlocProvider.of<LoginBloc>(context)
+              .add(LoginUsernameChanged(username)),
           validator: (username) => username.isEmpty
               ? CeitAlumniLocalizations.of(context).usernameNotEmpty
               : null,
@@ -75,8 +75,8 @@ class _PasswordInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextFormField(
-          onChanged: (password) =>
-              context.watch<LoginBloc>().add(LoginPasswordChanged(password)),
+          onChanged: (password) => BlocProvider.of<LoginBloc>(context)
+              .add(LoginPasswordChanged(password)),
           obscureText: true,
           validator: (password) => password.isEmpty
               ? CeitAlumniLocalizations.of(context).passwordNotEmpty
@@ -105,7 +105,8 @@ class _LoginButton extends StatelessWidget {
                 child: Text(CeitAlumniLocalizations.of(context).login),
                 onPressed: () {
                   if (formKey.currentState.validate()) {
-                    context.watch<LoginBloc>().add(const LoginSubmitted());
+                    BlocProvider.of<LoginBloc>(context)
+                        .add(const LoginSubmitted());
                   }
                 },
               );

@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:ceit_alumni/main.dart';
-import 'package:ceit_alumni/presentation/screens/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/home/home.dart';
+import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
+import 'package:ceit_alumni/presentation/screens/fullscreen/media/fullscreen_media.dart';
 import 'package:ceit_alumni/presentation/screens/login/login.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -61,14 +61,11 @@ class RouteConfiguration {
     //   (context, match) => const StudyWrapper(study: StarterApp()),
     // ),
     Path(
-      r'^' +
-          MediaGallery.galleryRoute +
-          GalleryMediaFullscreen.mediaGalleryRoute +
-          r'/(.+)$',
+      r'^' + AlbumPage.albumRoute + FullscreenMedia.fullscreenRoute + r'/(.+)$',
       (context, match, args) {
         assert(args != null);
-        final arguments = args as GalleryMediaArguments;
-        return GalleryMediaFullscreen(
+        final arguments = args as FullscreenMediaArguments;
+        return FullscreenMedia(
           url: arguments.url,
           thumbnail: arguments.thumbnail,
           isImage: arguments.isImage,
@@ -76,15 +73,13 @@ class RouteConfiguration {
       },
     ),
     Path(
-      r'^' + HomePage.homeRoute,
-      (context, match, args) {
-        assert(args != null);
-        final arguments = args as HomePageArguments;
-        return HomePage(
-          galleryRepository: arguments.galleryRepository,
-        );
-      },
+      r'^' + AlbumPage.albumRoute + r'/(.+)$',
+      (context, match, args) => const AlbumPage(),
     ),
+    // Path(
+    //   r'^' + HomePage.homeRoute,
+    //   (context, match, args) => const HomePage(),
+    // ),
     Path(
       r'^' + LoginPage.loginRoute,
       (context, match, args) => const LoginPage(),

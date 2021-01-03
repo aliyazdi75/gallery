@@ -86,36 +86,12 @@ class VideoFullscreen extends StatelessWidget {
                           child: Stack(
                             alignment: Alignment.bottomCenter,
                             children: <Widget>[
+                              VideoPlayer(state.videoPlayerController),
                               GestureDetector(
                                 onTap: () => context
                                     .read<VideoBloc>()
                                     .add(const ToggleControllerRequested()),
-                                child: VideoPlayer(state.videoPlayerController),
                               ),
-                              // InkWell(
-                              //   onTap: () => handleFullscreenButton,
-                              //   child: Container(
-                              //     width: buttonSize,
-                              //     height: buttonSize,
-                              //     child: Icon(
-                              //       isFullscreen
-                              //           ? Icons.fullscreen_exit
-                              //           : Icons.fullscreen,
-                              //       color: Colors.white,
-                              //     ),
-                              //   ),
-                              // ),
-                              // Positioned.fill(
-                              //   child: Opacity(
-                              //     opacity: 0.3,
-                              //     child: Container(
-                              //       color: Colors.black,
-                              //     ),
-                              //   ),
-                              // ),
-                              // const CircularProgressIndicator(
-                              //   valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                              // ),
                               _ControlsOverlay(
                                 videoState: state,
                                 isFullscreen: isFullscreen,
@@ -189,7 +165,7 @@ class _ControlsOverlayState extends State<_ControlsOverlay>
                         alignment: Alignment.topLeft,
                         child: const BackButton(color: Colors.white),
                       ),
-                      GestureDetector(
+                      InkWell(
                         onTap: () {
                           if (widget.videoState.isPlaying) {
                             animationController.forward();

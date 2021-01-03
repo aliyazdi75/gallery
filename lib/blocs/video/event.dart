@@ -31,6 +31,13 @@ class ToggleControllerRequested extends VideoEvent {
   List<Object> get props => [];
 }
 
+class PersistShowingControllerRequested extends VideoEvent {
+  const PersistShowingControllerRequested();
+
+  @override
+  List<Object> get props => [];
+}
+
 class AutoOffControllerRequested extends VideoEvent {
   const AutoOffControllerRequested();
 

@@ -13,16 +13,19 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
   VideoBloc() : super(const VideoState());
 
   AnimationController animationController;
-  VideoPlayerController videoPlayerController;
+  VideoPlayerController _videoPlayerController;
+  Timer _timer;
 
   @override
   Stream<VideoState> mapEventToState(VideoEvent event) async* {
     if (event is VideoInitialized) {
       yield* _mapVideoInitializedToState(event);
     } else if (event is VideoUpdated) {
-      yield* _mapVideoUpdatedToState(event);
+      yield* _mapVideoUpdatedToState();
     } else if (event is ToggleControllerRequested) {
-      yield* _mapToggleControllerRequestedToState(event);
+      yield* _mapToggleControllerRequestedToState();
+    } else if (event is PersistShowingControllerRequested) {
+      yield* _mapPersistShowingControllerRequestedToState();
     } else if (event is AutoOffControllerRequested) {
       yield* _mapAutoOffControllerRequestedToState();
     }
@@ -30,15 +33,17 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
 
   @override
   Future<void> close() async {
-    await videoPlayerController.dispose();
+    animationController.dispose();
+    _timer?.cancel();
+    await _videoPlayerController.dispose();
     await super.close();
   }
 
   Stream<VideoState> _mapVideoInitializedToState(
       VideoInitialized event) async* {
     try {
-      if (videoPlayerController != null &&
-          videoPlayerController.value.isInitialized) {
+      if (_videoPlayerController != null &&
+          _videoPlayerController.value.isInitialized) {
         return;
       }
       await _initialVideo(event.videoUrl);
@@ -48,33 +53,34 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
   }
 
   Future<void> _initialVideo(String videoUrl) async {
-    videoPlayerController = VideoPlayerController.network(videoUrl);
-    videoPlayerController.addListener(
+    _videoPlayerController = VideoPlayerController.network(videoUrl);
+    _videoPlayerController.addListener(
       () => add(const VideoUpdated()),
     );
     // await videoPlayerController.setLooping(false);
-    await videoPlayerController.initialize();
-    if (videoPlayerController.value.isInitialized) {
-      await videoPlayerController.play();
+    await _videoPlayerController.initialize();
+    if (_videoPlayerController.value.isInitialized) {
+      await _videoPlayerController.play();
     }
   }
 
-  Stream<VideoState> _mapVideoUpdatedToState(VideoUpdated event) async* {
+  Stream<VideoState> _mapVideoUpdatedToState() async* {
     try {
-      if (videoPlayerController.value.errorDescription != null &&
+      if (_videoPlayerController.value.errorDescription != null &&
           state.status != VideoStatus.failure) {
         yield state.copyWith(status: VideoStatus.failure);
-      } else if (videoPlayerController.value.duration ==
-              videoPlayerController.value.position &&
-          !videoPlayerController.value.isPlaying) {
+      } else if (_videoPlayerController.value.duration ==
+              _videoPlayerController.value.position &&
+          !_videoPlayerController.value.isPlaying) {
         await state.videoPlayerController.pause();
         await state.videoPlayerController
             .seekTo(const Duration(milliseconds: 0));
         await animationController?.forward();
+        add(const PersistShowingControllerRequested());
       } else {
         yield state.copyWith(
           status: VideoStatus.initialized,
-          videoPlayerController: videoPlayerController,
+          videoPlayerController: _videoPlayerController,
         );
       }
     } on Exception catch (_) {
@@ -82,22 +88,31 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
     }
   }
 
-  Stream<VideoState> _mapToggleControllerRequestedToState(
-      ToggleControllerRequested event) async* {
-    Timer timer;
+  Stream<VideoState> _mapToggleControllerRequestedToState() async* {
     if (state.isShowingController) {
-      timer?.cancel();
+      _timer?.cancel();
       yield state.copyWith(isShowingController: false);
     } else {
-      timer?.cancel();
       yield state.copyWith(isShowingController: true);
-      timer = Timer.periodic(const Duration(seconds: 3), (t) async {
-        if (state.isPlaying) {
-          timer?.cancel();
-          add(const AutoOffControllerRequested());
-        }
-      });
+      _timerShowingController();
     }
+  }
+
+  Stream<VideoState> _mapPersistShowingControllerRequestedToState() async* {
+    if (!state.isShowingController) {
+      yield state.copyWith(isShowingController: true);
+      _timerShowingController();
+    }
+  }
+
+  void _timerShowingController() {
+    _timer?.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 3), (t) async {
+      if (state.isPlaying) {
+        _timer?.cancel();
+        add(const AutoOffControllerRequested());
+      }
+    });
   }
 
   Stream<VideoState> _mapAutoOffControllerRequestedToState() async* {

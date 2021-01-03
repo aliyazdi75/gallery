@@ -11,7 +11,6 @@ abstract class Media implements Built<Media, MediaBuilder> {
 
   MediaType get type;
 
-  @nullable
   String get thumbnail;
 
   String get url;

@@ -1,4 +1,5 @@
 import 'package:ceit_alumni/blocs/video/bloc.dart';
+import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,14 +10,12 @@ import 'video_progress_slider.dart';
 
 class VideoFullscreen extends StatelessWidget {
   VideoFullscreen({
-    @required this.url,
-    @required this.thumbnail,
+    @required this.media,
     @required this.isFullscreen,
     @required this.handleFullscreenButton,
   });
 
-  final String url;
-  final String thumbnail;
+  final Media media;
   final bool isFullscreen;
   final VoidCallback handleFullscreenButton;
   final buttonSize = 58.0;
@@ -46,10 +45,11 @@ class VideoFullscreen extends StatelessWidget {
         child: BlocBuilder<VideoBloc, VideoState>(
           builder: (context, state) {
             if (state.status == VideoStatus.initial) {
-              BlocProvider.of<VideoBloc>(context).add(VideoInitialized(url));
+              BlocProvider.of<VideoBloc>(context)
+                  .add(VideoInitialized(media.url));
             }
             return Hero(
-              tag: thumbnail,
+              tag: media.thumbnail,
               child: Material(
                 color: Colors.black,
                 child: Center(
@@ -58,7 +58,7 @@ class VideoFullscreen extends StatelessWidget {
                           alignment: Alignment.bottomCenter,
                           children: [
                             Image.network(
-                              thumbnail,
+                              media.thumbnail,
                               fit: BoxFit.contain,
                             ),
                             Positioned.fill(

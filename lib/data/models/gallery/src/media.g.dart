@@ -23,6 +23,9 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
       'type',
       serializers.serialize(object.type,
           specifiedType: const FullType(MediaType)),
+      'thumbnail',
+      serializers.serialize(object.thumbnail,
+          specifiedType: const FullType(String)),
       'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
       'height',
@@ -30,12 +33,7 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
       'width',
       serializers.serialize(object.width, specifiedType: const FullType(int)),
     ];
-    if (object.thumbnail != null) {
-      result
-        ..add('thumbnail')
-        ..add(serializers.serialize(object.thumbnail,
-            specifiedType: const FullType(String)));
-    }
+
     return result;
   }
 
@@ -106,6 +104,9 @@ class _$Media extends Media {
     }
     if (type == null) {
       throw new BuiltValueNullFieldError('Media', 'type');
+    }
+    if (thumbnail == null) {
+      throw new BuiltValueNullFieldError('Media', 'thumbnail');
     }
     if (url == null) {
       throw new BuiltValueNullFieldError('Media', 'url');

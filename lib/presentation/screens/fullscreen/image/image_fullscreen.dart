@@ -1,13 +1,14 @@
+import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ImageFullscreen extends StatelessWidget {
   ImageFullscreen({
-    @required this.url,
+    @required this.media,
   });
 
-  final String url;
+  final Media media;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +23,8 @@ class ImageFullscreen extends StatelessWidget {
         ),
       ),
       body: PhotoView(
-        imageProvider: NetworkImage(url),
-        heroAttributes: PhotoViewHeroAttributes(tag: url),
+        imageProvider: NetworkImage(media.url),
+        heroAttributes: PhotoViewHeroAttributes(tag: media.thumbnail),
         minScale: PhotoViewComputedScale.contained,
       ),
     );

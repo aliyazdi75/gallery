@@ -48,10 +48,9 @@ class _MediaFullscreenState extends State<MediaFullscreen> {
   @override
   Widget build(BuildContext context) {
     return widget.media.type == MediaType.image
-        ? ImageFullscreen(url: widget.media.url)
+        ? ImageFullscreen(media: widget.media)
         : VideoFullscreen(
-            url: widget.media.url,
-            thumbnail: widget.media.thumbnail,
+            media: widget.media,
             isFullscreen: _isFullscreen,
             handleFullscreenButton: _handleFullscreenButton,
           );

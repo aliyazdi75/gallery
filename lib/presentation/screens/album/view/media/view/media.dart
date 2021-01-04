@@ -7,6 +7,7 @@ import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cu
 import 'package:ceit_alumni/presentation/screens/album/view/video/video_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'page_button.dart';
@@ -27,14 +28,12 @@ class _MediaWidgetState extends State<MediaWidget> {
   final viewportFraction = 0.7;
   final initialScrollIndex = 0;
   int _scrolledIndex;
-  int _selectedIndex;
   ItemScrollController _itemScrollController;
   PageController _imagePageController;
 
   @override
   void initState() {
     _scrolledIndex = initialScrollIndex;
-    _selectedIndex = initialScrollIndex;
     _itemScrollController = ItemScrollController();
     _imagePageController = PageController(
       initialPage: initialScrollIndex,
@@ -60,7 +59,6 @@ class _MediaWidgetState extends State<MediaWidget> {
 
     Widget mediaItemBuilder(int index) => BlocBuilder<MediaCubit, int>(
           builder: (context, state) {
-            _selectedIndex = state;
             final isSelected = index == state;
             final containerHeight =
                 isSelected ? selectedHeight : unSelectedHeight;
@@ -91,29 +89,44 @@ class _MediaWidgetState extends State<MediaWidget> {
       create: (_) => MediaCubit(initialScrollIndex),
       child: Stack(
         children: [
-          AdaptiveSize(
-            large: ScrollablePositionedList.builder(
-              scrollDirection: Axis.horizontal,
-              physics: const NeverScrollableScrollPhysics(),
-              initialScrollIndex: initialScrollIndex,
-              initialAlignment: 0.5 -
-                  (kAlign *
-                      widget.medias[initialScrollIndex].width /
-                      widget.medias[initialScrollIndex].height),
-              padding: const EdgeInsets.all(40.0),
-              itemScrollController: _itemScrollController,
-              itemCount: widget.medias.length,
-              itemBuilder: (context, index) => mediaItemBuilder(index),
-            ),
-            medium: PageView.builder(
-              key: PageStorageKey(_scrolledIndex),
-              itemCount: widget.medias.length,
-              controller: _imagePageController,
-              scrollDirection: Axis.horizontal,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => mediaItemBuilder(index),
-            ),
-          ),
+          widget.medias.isEmpty
+              ? Center(
+                  child: Container(
+                    padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.3),
+                      borderRadius: const BorderRadius.all(
+                        Radius.elliptical(50, 50),
+                      ),
+                    ),
+                    child: Text(CeitAlumniLocalizations.of(context).noMedia),
+                  ),
+                )
+              : AdaptiveSize(
+                  large: ScrollablePositionedList.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const NeverScrollableScrollPhysics(),
+                    initialScrollIndex: initialScrollIndex,
+                    initialAlignment: widget.medias.length > initialScrollIndex
+                        ? 0.5 -
+                            (kAlign *
+                                widget.medias[initialScrollIndex].width /
+                                widget.medias[initialScrollIndex].height)
+                        : 0,
+                    padding: const EdgeInsets.all(40.0),
+                    itemScrollController: _itemScrollController,
+                    itemCount: widget.medias.length,
+                    itemBuilder: (context, index) => mediaItemBuilder(index),
+                  ),
+                  medium: PageView.builder(
+                    key: PageStorageKey(_scrolledIndex),
+                    itemCount: widget.medias.length,
+                    controller: _imagePageController,
+                    scrollDirection: Axis.horizontal,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) => mediaItemBuilder(index),
+                  ),
+                ),
           BlocBuilder<MediaCubit, int>(
             builder: (context, state) => PageButton(
               show: state > 0,

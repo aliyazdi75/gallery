@@ -9,6 +9,7 @@ part of serializers;
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(Album.serializer)
       ..add(Gallery.serializer)
+      ..add(GalleryQuery.serializer)
       ..add(Media.serializer)
       ..add(MediaType.serializer)
       ..addBuilderFactory(

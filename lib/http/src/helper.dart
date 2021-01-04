@@ -121,23 +121,23 @@ class HttpHelper implements HttpClientBase {
               ? usingSSL
                   ? Uri.https(
                       isMobile ? avdAuthority : authority,
-                      '/api/$path/',
+                      '/gallery/api/$path',
                       queryParams,
                     )
                   : Uri.http(
                       isMobile ? avdAuthority : authority,
-                      '/api/$path/',
+                      '/gallery/api/$path',
                       queryParams,
                     )
               : usingSSL
                   ? Uri.https(
                       serverUrl,
-                      '/api/$path/',
+                      '/gallery/api/$path',
                       queryParams,
                     )
                   : Uri.http(
                       serverUrl,
-                      '/api/$path/',
+                      '/gallery/api/$path',
                       queryParams,
                     ),
           headers: HttpHeader.setHeader(headerType),

@@ -72,10 +72,10 @@ class CeitAlumniThemeData {
         contentTextStyle: isFarsiLocale(context)
             ? _faTextTheme(themeData.textTheme, colorScheme.onPrimary)
                 .subtitle1
-                .apply(color: _darkFillColor)
+                .copyWith(color: _darkFillColor)
             : _textTheme(themeData.textTheme, colorScheme.onPrimary)
                 .subtitle1
-                .apply(color: _darkFillColor),
+                .copyWith(color: _darkFillColor),
       ),
       visualDensity: VisualDensity.adaptivePlatformDensity,
     );

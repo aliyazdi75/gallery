@@ -22,21 +22,16 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
     final result = <Object>[
       'path',
       serializers.serialize(object.path, specifiedType: const FullType(String)),
+      'albums',
+      serializers.serialize(object.albums,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Album)])),
+      'images',
+      serializers.serialize(object.medias,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(Media)])),
     ];
-    if (object.albums != null) {
-      result
-        ..add('albums')
-        ..add(serializers.serialize(object.albums,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Album)])));
-    }
-    if (object.medias != null) {
-      result
-        ..add('medias')
-        ..add(serializers.serialize(object.medias,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(Media)])));
-    }
+
     return result;
   }
 
@@ -61,7 +56,7 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
                       const FullType(BuiltList, const [const FullType(Album)]))
               as BuiltList<Object>);
           break;
-        case 'medias':
+        case 'images':
           result.medias.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(Media)]))
@@ -129,6 +124,12 @@ class _$Gallery extends Gallery {
   _$Gallery._({this.path, this.albums, this.medias}) : super._() {
     if (path == null) {
       throw new BuiltValueNullFieldError('Gallery', 'path');
+    }
+    if (albums == null) {
+      throw new BuiltValueNullFieldError('Gallery', 'albums');
+    }
+    if (medias == null) {
+      throw new BuiltValueNullFieldError('Gallery', 'medias');
     }
   }
 
@@ -210,14 +211,14 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
     try {
       _$result = _$v ??
           new _$Gallery._(
-              path: path, albums: _albums?.build(), medias: _medias?.build());
+              path: path, albums: albums.build(), medias: medias.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'albums';
-        _albums?.build();
+        albums.build();
         _$failedField = 'medias';
-        _medias?.build();
+        medias.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'Gallery', _$failedField, e.toString());

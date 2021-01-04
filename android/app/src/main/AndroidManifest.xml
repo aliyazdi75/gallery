@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.github.aliyazdi75.ceit_alumni">
    <application
-        android:label="ceit_alumni"
-        android:icon="@mipmap/ic_launcher">
+        android:label="CEIT Alumni"
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

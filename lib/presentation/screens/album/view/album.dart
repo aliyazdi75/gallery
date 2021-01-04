@@ -62,26 +62,26 @@ class AlbumPage extends StatelessWidget {
                     ? state.galleriesViewed.length == 1
                         ? null
                         : backButton
-                    : Row(
-                        mainAxisSize: MainAxisSize.min,
+                    : Wrap(
+                        alignment: WrapAlignment.center,
+                        runAlignment: WrapAlignment.center,
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        spacing: 5.0,
+                        runSpacing: 5.0,
                         children: [
                           if (state.galleriesViewed.length > 1) backButton,
                           for (Album album in state.galleriesViewed.last.albums)
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 4.0),
-                              child: FloatingActionButton.extended(
-                                heroTag: state.galleriesViewed.last.albums
-                                    .indexOf(album),
-                                onPressed: () {
-                                  context
-                                      .read<GalleryBloc>()
-                                      .add(GalleryPushRequested(album.path));
-                                },
-                                icon: const Icon(Icons.photo_album),
-                                label: Text(
-                                  album.name,
-                                ),
+                            FloatingActionButton.extended(
+                              heroTag: state.galleriesViewed.last.albums
+                                  .indexOf(album),
+                              onPressed: () {
+                                context
+                                    .read<GalleryBloc>()
+                                    .add(GalleryPushRequested(album.path));
+                              },
+                              icon: const Icon(Icons.photo_album),
+                              label: Text(
+                                album.name,
                               ),
                             ),
                         ],

@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#030303",
     "theme_color": "#030303",
-    "description": "A new Flutter application for CEIT 94 Alumni.",
+    "description": "A new application for CEIT 94 Alumni.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -10,10 +10,9 @@ part 'gallery.g.dart';
 abstract class Gallery implements Built<Gallery, GalleryBuilder> {
   String get path;
 
-  @nullable
   BuiltList<Album> get albums;
 
-  @nullable
+  @BuiltValueField(wireName: 'images')
   BuiltList<Media> get medias;
 
   Gallery._();

@@ -6,5 +6,6 @@
   "password": "رمز عبور",
   "passwordNotEmpty": "رمز عبور نباید خالی باشد",
   "authenticationFailure": "احراز هویت ناموفق",
-  "galleryFailure": "گرفتن گالری ناموفق"
+  "galleryFailure": "گرفتن گالری ناموفق",
+  "noMedia": "هیچ محتوایی موجود نمی باشد :("
 }

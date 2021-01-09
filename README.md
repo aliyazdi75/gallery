@@ -1,6 +1,6 @@
 # gallery
 
-A new gallery flutter application.
+A responsive Flutter gallery application for any platforms.
 
 ## Commands
 

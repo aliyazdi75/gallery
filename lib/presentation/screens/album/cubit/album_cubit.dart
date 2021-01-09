@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:ceit_alumni/data/models/gallery/index.dart';
+import 'package:gallery_service/gallery_service.dart';
 
 class GalleryCubit extends Cubit<List<Album>> {
   GalleryCubit() : super([]);

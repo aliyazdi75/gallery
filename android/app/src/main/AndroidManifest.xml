@@ -1,10 +1,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.aliyazdi75.ceit_alumni">
+    package="io.github.aliyazdi75.gallery">
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="CEIT Alumni"
-        android:icon="@mipmap/launcher_icon">
+        android:label="Gallery"
+        android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

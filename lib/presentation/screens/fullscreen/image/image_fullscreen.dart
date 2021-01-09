@@ -1,6 +1,6 @@
-import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:gallery_service/gallery_service.dart';
 import 'package:photo_view/photo_view.dart';
 
 class ImageFullscreen extends StatelessWidget {

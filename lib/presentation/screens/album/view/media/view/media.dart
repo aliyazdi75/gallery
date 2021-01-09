@@ -1,13 +1,12 @@
 import 'package:built_collection/built_collection.dart';
-import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/data/models/gallery/src/media_type.dart';
-import 'package:ceit_alumni/presentation/layout/adaptive.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/image/image_widget.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/video/video_image_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/presentation/screens/album/view/image/image_widget.dart';
+import 'package:gallery/presentation/screens/album/view/media/cubit/media_cubit.dart';
+import 'package:gallery/presentation/screens/album/view/video/video_image_widget.dart';
+import 'package:gallery_service/gallery_service.dart';
+import 'package:layout_service/layout_service.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'page_button.dart';
@@ -99,7 +98,7 @@ class _MediaWidgetState extends State<MediaWidget> {
                         Radius.elliptical(50, 50),
                       ),
                     ),
-                    child: Text(CeitAlumniLocalizations.of(context).noMedia),
+                    child: Text(GalleryLocalizations.of(context).noMedia),
                   ),
                 )
               : AdaptiveSize(

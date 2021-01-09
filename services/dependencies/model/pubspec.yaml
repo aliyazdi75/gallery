@@ -1,0 +1,11 @@
+name: model_dependency_service
+description: Models dependency service.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  built_collection: ^5.0.0-nullsafety.0
+  built_value: ^8.0.0-nullsafety.0

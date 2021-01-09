@@ -1,0 +1,13 @@
+name: account_service
+description: Account service.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  bloc_dependency_service:
+    path: ../dependencies/bloc
+  model_dependency_service:
+    path: ../dependencies/model

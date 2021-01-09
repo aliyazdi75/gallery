@@ -1,9 +1,9 @@
-import 'package:ceit_alumni/blocs/authentication/bloc.dart';
-import 'package:ceit_alumni/presentation/screens/login/login.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/presentation/screens/login/login.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage();
@@ -34,7 +34,7 @@ class SplashPage extends StatelessWidget {
             onPressed: () {
               Navigator.of(context).pushNamed(LoginPage.loginRoute);
             },
-            child: Text(CeitAlumniLocalizations.of(context).login),
+            child: Text(GalleryLocalizations.of(context).login),
           ),
         ),
       ),

@@ -1,0 +1,15 @@
+name: video_service
+description: Video service.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.7.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  bloc_dependency_service:
+    path: ../dependencies/bloc
+  vodeo_dependency_service:
+    path: ../dependencies/video

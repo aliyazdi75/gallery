@@ -1,9 +1,9 @@
-import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/media/cubit/media_cubit.dart';
-import 'package:ceit_alumni/presentation/screens/fullscreen/fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gallery/presentation/screens/album/view/album.dart';
+import 'package:gallery/presentation/screens/album/view/media/cubit/media_cubit.dart';
+import 'package:gallery/presentation/screens/fullscreen/fullscreen.dart';
+import 'package:gallery_service/gallery_service.dart';
 
 class ImageWidget extends StatefulWidget {
   ImageWidget({

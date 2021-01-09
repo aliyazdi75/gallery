@@ -1,6 +1,6 @@
-import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/image/image_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:gallery/presentation/screens/album/view/image/image_widget.dart';
+import 'package:gallery_service/gallery_service.dart';
 
 const kIconSizeSelected = 0.6;
 const kIconSizeUnselected = 0.25;

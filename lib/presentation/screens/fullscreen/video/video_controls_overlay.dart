@@ -1,8 +1,8 @@
-import 'package:ceit_alumni/blocs/video/bloc.dart';
-import 'package:ceit_alumni/presentation/layout/adaptive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:layout_service/layout_service.dart';
+import 'package:video_service/video_service.dart';
 
 import 'video_progress_slider.dart';
 

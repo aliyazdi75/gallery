@@ -1,6 +1,6 @@
-# ceit_alumni
+# gallery
 
-A new application for CEIT 94 Alumni.
+A new gallery flutter application.
 
 ## Commands
 

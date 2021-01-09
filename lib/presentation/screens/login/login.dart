@@ -1,9 +1,9 @@
-import 'package:ceit_alumni/blocs/login/bloc.dart';
-import 'package:ceit_alumni/data/repositories/account/index.dart';
-import 'package:ceit_alumni/data/repositories/authentication/index.dart';
+import 'package:account_service/account_service.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:login_service/login_service.dart';
 
 import 'components/form.dart';
 
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(CeitAlumniLocalizations.of(context).login)),
+      appBar: AppBar(title: Text(GalleryLocalizations.of(context).login)),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: BlocProvider(

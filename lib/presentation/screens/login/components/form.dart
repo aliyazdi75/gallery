@@ -1,8 +1,8 @@
-import 'package:ceit_alumni/blocs/authentication/bloc.dart';
-import 'package:ceit_alumni/blocs/login/bloc.dart';
+import 'package:authentication_service/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:login_service/login_service.dart';
 
 class LoginForm extends StatelessWidget {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
@@ -22,7 +22,7 @@ class LoginForm extends StatelessWidget {
             ..showSnackBar(
               SnackBar(
                 content: Text(
-                  CeitAlumniLocalizations.of(context).authenticationFailure,
+                  GalleryLocalizations.of(context).authenticationFailure,
                 ),
               ),
             );
@@ -58,10 +58,10 @@ class _UsernameInput extends StatelessWidget {
           onChanged: (username) => BlocProvider.of<LoginBloc>(context)
               .add(LoginUsernameChanged(username)),
           validator: (username) => username.isEmpty
-              ? CeitAlumniLocalizations.of(context).usernameNotEmpty
+              ? GalleryLocalizations.of(context).usernameNotEmpty
               : null,
           decoration: InputDecoration(
-              labelText: CeitAlumniLocalizations.of(context).username),
+              labelText: GalleryLocalizations.of(context).username),
         );
       },
     );
@@ -79,10 +79,10 @@ class _PasswordInput extends StatelessWidget {
               .add(LoginPasswordChanged(password)),
           obscureText: true,
           validator: (password) => password.isEmpty
-              ? CeitAlumniLocalizations.of(context).passwordNotEmpty
+              ? GalleryLocalizations.of(context).passwordNotEmpty
               : null,
           decoration: InputDecoration(
-              labelText: CeitAlumniLocalizations.of(context).password),
+              labelText: GalleryLocalizations.of(context).password),
         );
       },
     );
@@ -102,7 +102,7 @@ class _LoginButton extends StatelessWidget {
         return state.status == LoginStatus.loading
             ? const CircularProgressIndicator()
             : RaisedButton(
-                child: Text(CeitAlumniLocalizations.of(context).login),
+                child: Text(GalleryLocalizations.of(context).login),
                 onPressed: () {
                   if (formKey.currentState.validate()) {
                     BlocProvider.of<LoginBloc>(context)

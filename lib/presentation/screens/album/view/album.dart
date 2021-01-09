@@ -1,8 +1,7 @@
-import 'package:ceit_alumni/blocs/gallery/bloc.dart';
-import 'package:ceit_alumni/data/models/gallery/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery_service/gallery_service.dart';
 
 import 'media/view/media.dart';
 
@@ -38,7 +37,7 @@ class AlbumPage extends StatelessWidget {
               ..showSnackBar(
                 SnackBar(
                   content: Text(
-                    CeitAlumniLocalizations.of(context).galleryFailure,
+                    GalleryLocalizations.of(context).galleryFailure,
                   ),
                 ),
               );

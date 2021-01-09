@@ -1,6 +1,6 @@
-import 'package:ceit_alumni/blocs/video/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:video_service/video_service.dart';
 
 const playedColor = Color.fromRGBO(255, 0, 0, 0.7);
 const bufferedColor = Color.fromRGBO(200, 200, 200, 0.8);
@@ -13,10 +13,8 @@ class VideoProgressSlider extends StatelessWidget {
       builder: (context, state) {
         final sliderHeight = 6.0;
         final thumbSize = state.isShowingController ? 8.0 : 0.0;
-        final duration =
-            state.duration?.inMilliseconds;
-        final position =
-            state.position?.inMilliseconds;
+        final duration = state.duration?.inMilliseconds;
+        final position = state.position?.inMilliseconds;
         var maxBuffering = 0;
         for (var range in state.buffered) {
           final end = range.end.inMilliseconds;

@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(runner LANGUAGES CXX)
 
-set(BINARY_NAME "ceit_alumni")
-set(APPLICATION_ID "io.github.aliyazdi75.ceit_alumni")
+set(BINARY_NAME "gallery")
+set(APPLICATION_ID "io.github.aliyazdi75.gallery")
 
 cmake_policy(SET CMP0063 NEW)
 

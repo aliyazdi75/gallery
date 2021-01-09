@@ -1,6 +1,6 @@
 {
-  "ceitAlumniTitle": "Ceit Alumni",
-  "@ceitAlumniTitle": {
+  "galleryTitle": "Gallery",
+  "@galleryTitle": {
     "description": "Title for app"
   },
   "login": "Login",

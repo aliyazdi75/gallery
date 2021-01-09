@@ -1,10 +1,10 @@
-import 'package:ceit_alumni/core/request_fullscreen/index.dart';
-import 'package:ceit_alumni/data/models/gallery/index.dart';
-import 'package:ceit_alumni/data/models/gallery/src/media_type.dart';
-import 'package:ceit_alumni/presentation/screens/fullscreen/image/image_fullscreen.dart';
-import 'package:ceit_alumni/presentation/screens/fullscreen/video/video_fullscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gallery/core/request_fullscreen/index.dart';
+import 'package:gallery_service/gallery_service.dart';
+
+import 'image/image_fullscreen.dart';
+import 'video/video_fullscreen.dart';
 
 class MediaFullscreenArguments {
   const MediaFullscreenArguments({

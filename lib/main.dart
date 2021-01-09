@@ -1,21 +1,18 @@
-import 'package:ceit_alumni/blocs/authentication/bloc.dart';
-import 'package:ceit_alumni/blocs/gallery/bloc.dart';
-import 'package:ceit_alumni/data/ceit_alumni_options.dart';
-import 'package:ceit_alumni/data/constants/index.dart';
-import 'package:ceit_alumni/data/repositories/account/index.dart';
-import 'package:ceit_alumni/data/repositories/authentication/index.dart';
-import 'package:ceit_alumni/presentation/layout/adaptive.dart';
-import 'package:ceit_alumni/presentation/routers/routes.dart';
-import 'package:ceit_alumni/presentation/screens/album/view/album.dart';
-import 'package:ceit_alumni/presentation/themes/ceit_alumni_theme_data.dart';
+import 'package:account_service/account_service.dart';
+import 'package:authentication_service/authentication_service.dart';
+import 'package:constants_service/constants_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/ceit_alumni_localizations.dart';
-
-import 'data/repositories/gallery/index.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/presentation/screens/album/view/album.dart';
+import 'package:gallery_service/gallery_service.dart';
+import 'package:layout_service/layout_service.dart';
+import 'package:options_service/options_service.dart';
+import 'package:routers_service/routers_service.dart';
+import 'package:themes_service/themes_service.dart';
 
 void main() {
   // Do something when app faced an error on release
@@ -27,11 +24,11 @@ void main() {
   };
   //todo: should fix this
   // UrlStrategy.configure();
-  runApp(CeitAlumni());
+  runApp(GalleryAlumni());
 }
 
-class CeitAlumni extends StatelessWidget {
-  CeitAlumni({
+class GalleryAlumni extends StatelessWidget {
+  GalleryAlumni({
     Key key,
     this.initialRoute,
     this.isTestMode = false,
@@ -47,7 +44,7 @@ class CeitAlumni extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ModelBinding(
-      initialModel: CeitAlumniOptions(
+      initialModel: GalleryOptions(
         themeMode: ThemeMode.system,
         textScaleFactor: systemTextScaleFactorOption,
         // locale: Locale('fa'),
@@ -81,21 +78,20 @@ class CeitAlumni extends StatelessWidget {
               ],
               child: AdaptiveDesign(
                 material: MaterialApp(
-                  title: ceitAlumniTitle,
+                  title: galleryTitle,
                   onGenerateTitle: (context) =>
-                      CeitAlumniLocalizations.of(context).ceitAlumniTitle,
+                      GalleryLocalizations.of(context).galleryTitle,
                   debugShowCheckedModeBanner: false,
-                  themeMode: CeitAlumniOptions.of(context).themeMode,
-                  theme: CeitAlumniThemeData.lightThemeData(context).copyWith(
-                      platform: CeitAlumniOptions.of(context).platform),
-                  darkTheme: CeitAlumniThemeData.darkThemeData(context)
-                      .copyWith(
-                          platform: CeitAlumniOptions.of(context).platform),
+                  themeMode: GalleryOptions.of(context).themeMode,
+                  theme: GalleryThemeData.lightThemeData(context)
+                      .copyWith(platform: GalleryOptions.of(context).platform),
+                  darkTheme: GalleryThemeData.darkThemeData(context)
+                      .copyWith(platform: GalleryOptions.of(context).platform),
                   localizationsDelegates:
-                      CeitAlumniLocalizations.localizationsDelegates,
+                      GalleryLocalizations.localizationsDelegates,
                   initialRoute: initialRoute,
-                  supportedLocales: CeitAlumniLocalizations.supportedLocales,
-                  locale: CeitAlumniOptions.of(context).locale,
+                  supportedLocales: GalleryLocalizations.supportedLocales,
+                  locale: GalleryOptions.of(context).locale,
                   localeResolutionCallback: (locale, supportedLocales) {
                     deviceLocale = locale;
                     return locale;
@@ -104,7 +100,7 @@ class CeitAlumni extends StatelessWidget {
                   builder: (context, child) {
                     return ApplyTextOptions(
                       child: AnnotatedRegion<SystemUiOverlayStyle>(
-                        value: CeitAlumniOptions.of(context)
+                        value: GalleryOptions.of(context)
                             .resolvedSystemUiOverlayStyle(context),
                         child: child,
                       ),
@@ -112,18 +108,18 @@ class CeitAlumni extends StatelessWidget {
                   },
                 ),
                 cupertino: CupertinoApp(
-                  title: ceitAlumniTitle,
+                  title: galleryTitle,
                   onGenerateTitle: (context) =>
-                      CeitAlumniLocalizations.of(context).ceitAlumniTitle,
+                      GalleryLocalizations.of(context).galleryTitle,
                   debugShowCheckedModeBanner: false,
                   theme: MaterialBasedCupertinoThemeData(
                     materialTheme:
-                        CeitAlumniOptions.of(context).themeData(context),
+                        GalleryOptions.of(context).themeData(context),
                   ),
                   localizationsDelegates:
-                      CeitAlumniLocalizations.localizationsDelegates,
-                  supportedLocales: CeitAlumniLocalizations.supportedLocales,
-                  locale: CeitAlumniOptions.of(context).locale,
+                      GalleryLocalizations.localizationsDelegates,
+                  supportedLocales: GalleryLocalizations.supportedLocales,
+                  locale: GalleryOptions.of(context).locale,
                   localeResolutionCallback: (locale, supportedLocales) {
                     deviceLocale = locale;
                     return locale;
@@ -132,7 +128,7 @@ class CeitAlumni extends StatelessWidget {
                   builder: (context, child) {
                     return ApplyTextOptions(
                       child: AnnotatedRegion<SystemUiOverlayStyle>(
-                        value: CeitAlumniOptions.of(context)
+                        value: GalleryOptions.of(context)
                             .resolvedSystemUiOverlayStyle(context),
                         child: child,
                       ),

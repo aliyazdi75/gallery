@@ -14,7 +14,7 @@ import 'package:gallery/main.dart' as app;
 void main() => run(_testMain);
 
 void _testMain() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Counter increments smoke test', (tester) async {
     // Build our app and trigger a frame.
     app.main();
 

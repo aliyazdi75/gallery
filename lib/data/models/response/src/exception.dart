@@ -79,3 +79,24 @@ abstract class LoginBadRequest
   static Serializer<LoginBadRequest> get serializer =>
       _$loginBadRequestSerializer;
 }
+
+abstract class GalleryBadRequest
+    implements Built<GalleryBadRequest, GalleryBadRequestBuilder> {
+  @nullable
+  BuiltList<String> get path;
+
+  @nullable
+  @BuiltValueField(wireName: 'non_field_errors')
+  BuiltList<String> get nonFieldErrors;
+
+  GalleryBadRequest._();
+  factory GalleryBadRequest([void Function(GalleryBadRequestBuilder) updates]) =
+      _$GalleryBadRequest;
+
+  static GalleryBadRequest fromJson(Map<String, dynamic> json) {
+    return serializers.deserializeWith(GalleryBadRequest.serializer, json);
+  }
+
+  static Serializer<GalleryBadRequest> get serializer =>
+      _$galleryBadRequestSerializer;
+}

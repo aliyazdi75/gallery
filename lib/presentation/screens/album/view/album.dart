@@ -91,7 +91,7 @@ class AlbumPage extends StatelessWidget {
                 if (state.status == GalleryStatus.loading)
                   const LinearProgressIndicator(
                       backgroundColor: Colors.transparent),
-                if (state.status == GalleryStatus.success)
+                if (state.galleriesViewed.isNotEmpty)
                   MediaWidget(medias: state.galleriesViewed.last.medias),
               ],
             ),

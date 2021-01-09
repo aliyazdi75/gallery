@@ -6,6 +6,7 @@ import 'package:ceit_alumni/data/models/response/index.dart';
 import 'package:ceit_alumni/presentation/layout/adaptive.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 
 import 'exception.dart';
 import 'header.dart';
@@ -145,6 +146,8 @@ class HttpHelper implements HttpClientBase {
       );
     } on SocketException catch (e) {
       throw SocketException(e.url, e.key, e.value);
+    } on ClientException catch (e) {
+      throw http.ClientException(e.message, e.uri);
     }
   }
 

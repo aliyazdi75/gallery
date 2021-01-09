@@ -25,6 +25,8 @@ void main() {
     //   exit(1);
     // }
   };
+  //todo: should fix this
+  // UrlStrategy.configure();
   runApp(CeitAlumni());
 }
 

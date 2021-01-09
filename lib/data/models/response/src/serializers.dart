@@ -25,6 +25,7 @@ part 'serializers.g.dart';
   HttpExceptionModel,
   RegisterBadRequest,
   LoginBadRequest,
+  GalleryBadRequest,
 ])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();

@@ -12,6 +12,8 @@ Serializer<RegisterBadRequest> _$registerBadRequestSerializer =
     new _$RegisterBadRequestSerializer();
 Serializer<LoginBadRequest> _$loginBadRequestSerializer =
     new _$LoginBadRequestSerializer();
+Serializer<GalleryBadRequest> _$galleryBadRequestSerializer =
+    new _$GalleryBadRequestSerializer();
 
 class _$HttpExceptionModelSerializer
     implements StructuredSerializer<HttpExceptionModel> {
@@ -201,6 +203,65 @@ class _$LoginBadRequestSerializer
           break;
         case 'password':
           result.password.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(String)]))
+              as BuiltList<Object>);
+          break;
+        case 'non_field_errors':
+          result.nonFieldErrors.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(String)]))
+              as BuiltList<Object>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GalleryBadRequestSerializer
+    implements StructuredSerializer<GalleryBadRequest> {
+  @override
+  final Iterable<Type> types = const [GalleryBadRequest, _$GalleryBadRequest];
+  @override
+  final String wireName = 'GalleryBadRequest';
+
+  @override
+  Iterable<Object> serialize(Serializers serializers, GalleryBadRequest object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object>[];
+    if (object.path != null) {
+      result
+        ..add('path')
+        ..add(serializers.serialize(object.path,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    if (object.nonFieldErrors != null) {
+      result
+        ..add('non_field_errors')
+        ..add(serializers.serialize(object.nonFieldErrors,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(String)])));
+    }
+    return result;
+  }
+
+  @override
+  GalleryBadRequest deserialize(
+      Serializers serializers, Iterable<Object> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GalleryBadRequestBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'path':
+          result.path.replace(serializers.deserialize(value,
                   specifiedType:
                       const FullType(BuiltList, const [const FullType(String)]))
               as BuiltList<Object>);
@@ -562,6 +623,111 @@ class LoginBadRequestBuilder
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'LoginBadRequest', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GalleryBadRequest extends GalleryBadRequest {
+  @override
+  final BuiltList<String> path;
+  @override
+  final BuiltList<String> nonFieldErrors;
+
+  factory _$GalleryBadRequest(
+          [void Function(GalleryBadRequestBuilder) updates]) =>
+      (new GalleryBadRequestBuilder()..update(updates)).build();
+
+  _$GalleryBadRequest._({this.path, this.nonFieldErrors}) : super._();
+
+  @override
+  GalleryBadRequest rebuild(void Function(GalleryBadRequestBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GalleryBadRequestBuilder toBuilder() =>
+      new GalleryBadRequestBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GalleryBadRequest &&
+        path == other.path &&
+        nonFieldErrors == other.nonFieldErrors;
+  }
+
+  @override
+  int get hashCode {
+    return $jf($jc($jc(0, path.hashCode), nonFieldErrors.hashCode));
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper('GalleryBadRequest')
+          ..add('path', path)
+          ..add('nonFieldErrors', nonFieldErrors))
+        .toString();
+  }
+}
+
+class GalleryBadRequestBuilder
+    implements Builder<GalleryBadRequest, GalleryBadRequestBuilder> {
+  _$GalleryBadRequest _$v;
+
+  ListBuilder<String> _path;
+  ListBuilder<String> get path => _$this._path ??= new ListBuilder<String>();
+  set path(ListBuilder<String> path) => _$this._path = path;
+
+  ListBuilder<String> _nonFieldErrors;
+  ListBuilder<String> get nonFieldErrors =>
+      _$this._nonFieldErrors ??= new ListBuilder<String>();
+  set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
+      _$this._nonFieldErrors = nonFieldErrors;
+
+  GalleryBadRequestBuilder();
+
+  GalleryBadRequestBuilder get _$this {
+    if (_$v != null) {
+      _path = _$v.path?.toBuilder();
+      _nonFieldErrors = _$v.nonFieldErrors?.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GalleryBadRequest other) {
+    if (other == null) {
+      throw new ArgumentError.notNull('other');
+    }
+    _$v = other as _$GalleryBadRequest;
+  }
+
+  @override
+  void update(void Function(GalleryBadRequestBuilder) updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  _$GalleryBadRequest build() {
+    _$GalleryBadRequest _$result;
+    try {
+      _$result = _$v ??
+          new _$GalleryBadRequest._(
+              path: _path?.build(), nonFieldErrors: _nonFieldErrors?.build());
+    } catch (_) {
+      String _$failedField;
+      try {
+        _$failedField = 'path';
+        _path?.build();
+        _$failedField = 'nonFieldErrors';
+        _nonFieldErrors?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            'GalleryBadRequest', _$failedField, e.toString());
       }
       rethrow;
     }

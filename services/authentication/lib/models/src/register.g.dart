@@ -191,31 +191,45 @@ class RegisterBuilder implements Builder<Register, RegisterBuilder> {
   _$Register _$v;
 
   String _token;
+
   String get token => _$this._token;
+
   set token(String token) => _$this._token = token;
 
   int _id;
+
   int get id => _$this._id;
+
   set id(int id) => _$this._id = id;
 
   String _username;
+
   String get username => _$this._username;
+
   set username(String username) => _$this._username = username;
 
   String _password;
+
   String get password => _$this._password;
+
   set password(String password) => _$this._password = password;
 
   String _email;
+
   String get email => _$this._email;
+
   set email(String email) => _$this._email = email;
 
   String _firstName;
+
   String get firstName => _$this._firstName;
+
   set firstName(String firstName) => _$this._firstName = firstName;
 
   String _lastName;
+
   String get lastName => _$this._lastName;
+
   set lastName(String lastName) => _$this._lastName = lastName;
 
   RegisterBuilder();

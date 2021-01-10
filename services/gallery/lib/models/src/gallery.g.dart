@@ -169,15 +169,21 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
   _$Gallery _$v;
 
   String _path;
+
   String get path => _$this._path;
+
   set path(String path) => _$this._path = path;
 
   ListBuilder<Album> _albums;
+
   ListBuilder<Album> get albums => _$this._albums ??= new ListBuilder<Album>();
+
   set albums(ListBuilder<Album> albums) => _$this._albums = albums;
 
   ListBuilder<Media> _medias;
+
   ListBuilder<Media> get medias => _$this._medias ??= new ListBuilder<Media>();
+
   set medias(ListBuilder<Media> medias) => _$this._medias = medias;
 
   GalleryBuilder();
@@ -269,7 +275,9 @@ class GalleryQueryBuilder
   _$GalleryQuery _$v;
 
   String _path;
+
   String get path => _$this._path;
+
   set path(String path) => _$this._path = path;
 
   GalleryQueryBuilder();

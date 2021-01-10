@@ -119,15 +119,21 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
   _$Album _$v;
 
   String _name;
+
   String get name => _$this._name;
+
   set name(String name) => _$this._name = name;
 
   String _path;
+
   String get path => _$this._path;
+
   set path(String path) => _$this._path = path;
 
   String _thumbnail;
+
   String get thumbnail => _$this._thumbnail;
+
   set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
 
   AlbumBuilder();

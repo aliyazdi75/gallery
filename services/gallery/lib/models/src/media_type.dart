@@ -13,6 +13,7 @@ class MediaType extends EnumClass {
   const MediaType._(String name) : super(name);
 
   static BuiltSet<MediaType> get values => _$mediaTypeValues;
+
   static MediaType valueOf(String name) => _$mediaTypeValueOf(name);
 
   static MediaType deserialize(String string) {

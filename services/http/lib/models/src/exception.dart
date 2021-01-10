@@ -90,6 +90,7 @@ abstract class GalleryBadRequest
   BuiltList<String> get nonFieldErrors;
 
   GalleryBadRequest._();
+
   factory GalleryBadRequest([void Function(GalleryBadRequestBuilder) updates]) =
       _$GalleryBadRequest;
 

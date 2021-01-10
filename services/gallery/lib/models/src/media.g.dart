@@ -167,27 +167,39 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
   _$Media _$v;
 
   String _name;
+
   String get name => _$this._name;
+
   set name(String name) => _$this._name = name;
 
   MediaType _type;
+
   MediaType get type => _$this._type;
+
   set type(MediaType type) => _$this._type = type;
 
   String _thumbnail;
+
   String get thumbnail => _$this._thumbnail;
+
   set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
 
   String _url;
+
   String get url => _$this._url;
+
   set url(String url) => _$this._url = url;
 
   int _height;
+
   int get height => _$this._height;
+
   set height(int height) => _$this._height = height;
 
   int _width;
+
   int get width => _$this._width;
+
   set width(int width) => _$this._width = width;
 
   MediaBuilder();

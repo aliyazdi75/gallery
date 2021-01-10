@@ -64,15 +64,15 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     }
   }
 
-  // void _saveAccount(Login authenticated) {
-  //   accountRepository.account = Account(
-  //     (b) => b
-  //       ..token = authenticated.token
-  //       ..id = authenticated.id
-  //       ..username = authenticated.username
-  //       ..email = authenticated.email
-  //       ..firstName = authenticated.firstName
-  //       ..lastName = authenticated.lastName,
-  //   );
-  // }
+// void _saveAccount(Login authenticated) {
+//   accountRepository.account = Account(
+//     (b) => b
+//       ..token = authenticated.token
+//       ..id = authenticated.id
+//       ..username = authenticated.username
+//       ..email = authenticated.email
+//       ..firstName = authenticated.firstName
+//       ..lastName = authenticated.lastName,
+//   );
+// }
 }

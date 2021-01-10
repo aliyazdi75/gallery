@@ -334,11 +334,15 @@ class HttpExceptionModelBuilder
   _$HttpExceptionModel _$v;
 
   String _key;
+
   String get key => _$this._key;
+
   set key(String key) => _$this._key = key;
 
   String _value;
+
   String get value => _$this._value;
+
   set value(String value) => _$this._value = value;
 
   HttpExceptionModelBuilder();
@@ -433,22 +437,30 @@ class RegisterBadRequestBuilder
   _$RegisterBadRequest _$v;
 
   ListBuilder<String> _username;
+
   ListBuilder<String> get username =>
       _$this._username ??= new ListBuilder<String>();
+
   set username(ListBuilder<String> username) => _$this._username = username;
 
   ListBuilder<String> _password;
+
   ListBuilder<String> get password =>
       _$this._password ??= new ListBuilder<String>();
+
   set password(ListBuilder<String> password) => _$this._password = password;
 
   ListBuilder<String> _email;
+
   ListBuilder<String> get email => _$this._email ??= new ListBuilder<String>();
+
   set email(ListBuilder<String> email) => _$this._email = email;
 
   ListBuilder<String> _nonFieldErrors;
+
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
+
   set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
@@ -562,18 +574,24 @@ class LoginBadRequestBuilder
   _$LoginBadRequest _$v;
 
   ListBuilder<String> _username;
+
   ListBuilder<String> get username =>
       _$this._username ??= new ListBuilder<String>();
+
   set username(ListBuilder<String> username) => _$this._username = username;
 
   ListBuilder<String> _password;
+
   ListBuilder<String> get password =>
       _$this._password ??= new ListBuilder<String>();
+
   set password(ListBuilder<String> password) => _$this._password = password;
 
   ListBuilder<String> _nonFieldErrors;
+
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
+
   set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
@@ -678,12 +696,16 @@ class GalleryBadRequestBuilder
   _$GalleryBadRequest _$v;
 
   ListBuilder<String> _path;
+
   ListBuilder<String> get path => _$this._path ??= new ListBuilder<String>();
+
   set path(ListBuilder<String> path) => _$this._path = path;
 
   ListBuilder<String> _nonFieldErrors;
+
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
+
   set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 

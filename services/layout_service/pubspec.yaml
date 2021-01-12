@@ -1,0 +1,19 @@
+name: layout_service
+description: Layout service.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.12.0-0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  constants_service:
+    path: ../constants_service
+  options_service:
+    path: ../options_service
+
+dev_dependencies:
+  dev_dependency_service:
+    path: ../dependencies_service/dev_dependency_service

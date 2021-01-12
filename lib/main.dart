@@ -7,11 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/presentation/routers/index.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
 import 'package:gallery_service/gallery_service.dart';
 import 'package:layout_service/layout_service.dart';
 import 'package:options_service/options_service.dart';
-import 'package:routers_service/routers_service.dart';
 import 'package:themes_service/themes_service.dart';
 
 void main() {

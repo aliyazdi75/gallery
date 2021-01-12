@@ -1,5 +1,7 @@
 name: gallery
-description: A responsive Flutter gallery application for any platform.
+description: >
+  A responsive Flutter gallery application for
+  any platform using micro-service architecture.
 homepage: https://aliyazdi75.github.io/gallery
 repository: https://github.com/aliyazdi75/gallery
 issue_tracker: https://github.com/aliyazdi75/gallery/issues
@@ -21,33 +23,32 @@ dependencies:
   cupertino_icons: any
   scrollable_positioned_list: ^0.1.8
   photo_view: ^0.10.3
+  animations: ^1.1.2
 
   bloc_dependency_service:
-    path: services/dependencies/bloc
+    path: services/dependencies_service/bloc_dependency_service
   model_dependency_service:
-    path: services/dependencies/model
-  vodeo_dependency_service:
-    path: services/dependencies/video
+    path: services/dependencies_service/model_dependency_service
+  video_dependency_service:
+    path: services/dependencies_service/video_dependency_service
   constants_service:
-    path: services/constants
+    path: services/constants_service
   layout_service:
-    path: services/layout
+    path: services/layout_service
   options_service:
-    path: services/options
+    path: services/options_service
   themes_service:
-    path: services/themes
-  routers_service:
-    path: services/routers
+    path: services/themes_service
   account_service:
-    path: services/account
+    path: services/account_service
   authentication_service:
-    path: services/authentication
+    path: services/authentication_service
   login_service:
-    path: services/login
+    path: services/login_service
   gallery_service:
-    path: services/gallery
+    path: services/gallery_service
   video_service:
-    path: services/video
+    path: services/video_service
 
 dev_dependencies:
   flutter_test:
@@ -57,13 +58,14 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   build_runner: any
+#  built_value_generator: ^8.0.0-nullsafety.0
   built_value_generator: any
-  pedantic: any
+  pedantic: ^1.10.0-nullsafety.3
   flutter_launcher_icons: any
 
 dependency_overrides:
-  built_value: '>=7.0.0 <7.2.0'
-  built_collection: ^4.3.2
+  built_collection: 5.0.0-nullsafety.0
+  built_value: 8.0.0-nullsafety.0
   analyzer: 0.41.1
   _fe_analyzer_shared: 14.0.0
 

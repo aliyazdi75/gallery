@@ -11,7 +11,7 @@ packages:
   account_service:
     dependency: "direct main"
     description:
-      path: "services/account"
+      path: "services/account_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -23,7 +23,7 @@ packages:
     source: hosted
     version: "0.41.1"
   animations:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: animations
       url: "https://pub.dartlang.org"
@@ -53,7 +53,7 @@ packages:
   authentication_service:
     dependency: "direct main"
     description:
-      path: "services/authentication"
+      path: "services/authentication_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -67,7 +67,7 @@ packages:
   bloc_dependency_service:
     dependency: "direct main"
     description:
-      path: "services/dependencies/bloc"
+      path: "services/dependencies_service/bloc_dependency_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -126,14 +126,14 @@ packages:
       name: built_collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2"
+    version: "5.0.0-nullsafety.0"
   built_value:
     dependency: "direct overridden"
     description:
       name: built_value
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "7.1.0"
+    version: "8.0.0-nullsafety.0"
   built_value_generator:
     dependency: "direct dev"
     description:
@@ -193,7 +193,7 @@ packages:
   constants_service:
     dependency: "direct main"
     description:
-      path: "services/constants"
+      path: "services/constants_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -266,7 +266,7 @@ packages:
       name: fixnum
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.11"
+    version: "1.0.0-nullsafety.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -321,7 +321,7 @@ packages:
   gallery_service:
     dependency: "direct main"
     description:
-      path: "services/gallery"
+      path: "services/gallery_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -370,7 +370,7 @@ packages:
   http_service:
     dependency: transitive
     description:
-      path: "services/http"
+      path: "services/http_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -424,7 +424,7 @@ packages:
   layout_service:
     dependency: "direct main"
     description:
-      path: "services/layout"
+      path: "services/layout_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -438,7 +438,7 @@ packages:
   login_service:
     dependency: "direct main"
     description:
-      path: "services/login"
+      path: "services/login_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -466,7 +466,7 @@ packages:
   model_dependency_service:
     dependency: "direct main"
     description:
-      path: "services/dependencies/model"
+      path: "services/dependencies_service/model_dependency_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -494,7 +494,7 @@ packages:
   options_service:
     dependency: "direct main"
     description:
-      path: "services/options"
+      path: "services/options_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -624,13 +624,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.5"
-  routers_service:
-    dependency: "direct main"
-    description:
-      path: "services/routers"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   scrollable_positioned_list:
     dependency: "direct main"
     description:
@@ -744,7 +737,7 @@ packages:
   themes_service:
     dependency: "direct main"
     description:
-      path: "services/themes"
+      path: "services/themes_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -769,6 +762,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.5"
+  video_dependency_service:
+    dependency: "direct main"
+    description:
+      path: "services/dependencies_service/video_dependency_service"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   video_player:
     dependency: transitive
     description:
@@ -793,7 +793,7 @@ packages:
   video_service:
     dependency: "direct main"
     description:
-      path: "services/video"
+      path: "services/video_service"
       relative: true
     source: path
     version: "1.0.0+1"
@@ -804,13 +804,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "5.5.0"
-  vodeo_dependency_service:
-    dependency: "direct main"
-    description:
-      path: "services/dependencies/video"
-      relative: true
-    source: path
-    version: "1.0.0+1"
   watcher:
     dependency: transitive
     description:

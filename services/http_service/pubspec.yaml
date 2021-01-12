@@ -1,0 +1,22 @@
+name: http_service
+description: Http service.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.10.0-0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  constants_service:
+    path: ../constants_service
+  model_dependency_service:
+    path: ../dependencies_service/model_dependency_service
+  layout_service:
+    path: ../layout_service
+  http: any
+
+dev_dependencies:
+  dev_dependency_service:
+    path: ../dependencies_service/dev_dependency_service

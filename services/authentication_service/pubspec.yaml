@@ -1,0 +1,21 @@
+name: authentication_service
+description: Authentication service.
+publish_to: none
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.10.0 <3.0.0'
+
+dependencies:
+  bloc_dependency_service:
+    path: ../dependencies_service/bloc_dependency_service
+  model_dependency_service:
+    path: ../dependencies_service/model_dependency_service
+  http_service:
+    path: ../http_service
+  account_service:
+    path: ../account_service
+
+dev_dependencies:
+  dev_dependency_service:
+    path: ../dependencies_service/dev_dependency_service

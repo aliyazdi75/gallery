@@ -1,6 +1,7 @@
 # Gallery
 
-A responsive Flutter gallery application for any platform using micro-service architecture.
+A responsive Flutter gallery application for any platform using the
+micro-service architecture.
 
 ## Commands
 

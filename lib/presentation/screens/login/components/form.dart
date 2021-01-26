@@ -101,7 +101,7 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status == LoginStatus.loading
             ? const CircularProgressIndicator()
-            : RaisedButton(
+            : ElevatedButton(
                 child: Text(GalleryLocalizations.of(context).login),
                 onPressed: () {
                   if (formKey.currentState.validate()) {

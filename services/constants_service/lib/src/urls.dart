@@ -1,1 +1,1 @@
-const serverUrl = '94.ceit.aut.ac.ir';
+const serverUrl = '';

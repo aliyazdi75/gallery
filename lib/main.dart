@@ -24,11 +24,11 @@ void main() {
   };
   //todo: should fix this
   // UrlStrategy.configure();
-  runApp(GalleryAlumni());
+  runApp(GalleryApp());
 }
 
-class GalleryAlumni extends StatelessWidget {
-  GalleryAlumni({
+class GalleryApp extends StatelessWidget {
+  GalleryApp({
     Key key,
     this.initialRoute,
     this.isTestMode = false,

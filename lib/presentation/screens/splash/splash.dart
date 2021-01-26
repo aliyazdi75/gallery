@@ -30,7 +30,7 @@ class SplashPage extends StatelessWidget {
       },
       child: Scaffold(
         body: Center(
-          child: FlatButton(
+          child: TextButton(
             onPressed: () {
               Navigator.of(context).pushNamed(LoginPage.loginRoute);
             },

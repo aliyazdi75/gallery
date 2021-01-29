@@ -7,7 +7,6 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'album.dart';
 import 'gallery.dart';
 import 'media.dart';
-import 'media_type.dart';
 
 part 'serializers.g.dart';
 

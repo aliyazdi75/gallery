@@ -24,28 +24,33 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-    if (object.token != null) {
+    Object value;
+    value = object.token;
+    if (value != null) {
       result
         ..add('token')
-        ..add(serializers.serialize(object.token,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.firstName != null) {
+    value = object.firstName;
+    if (value != null) {
       result
         ..add('first_name')
-        ..add(serializers.serialize(object.firstName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.lastName != null) {
+    value = object.lastName;
+    if (value != null) {
       result
         ..add('last_name')
-        ..add(serializers.serialize(object.lastName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.email != null) {
+    value = object.email;
+    if (value != null) {
       result
         ..add('email')
-        ..add(serializers.serialize(object.email,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -60,7 +65,7 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,
@@ -118,12 +123,8 @@ class _$Account extends Account {
       this.lastName,
       this.email})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Account', 'id');
-    }
-    if (username == null) {
-      throw new BuiltValueNullFieldError('Account', 'username');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, 'Account', 'id');
+    BuiltValueNullFieldError.checkNotNull(username, 'Account', 'username');
   }
 
   @override
@@ -174,51 +175,40 @@ class AccountBuilder implements Builder<Account, AccountBuilder> {
   _$Account _$v;
 
   String _token;
-
   String get token => _$this._token;
-
   set token(String token) => _$this._token = token;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   String _username;
-
   String get username => _$this._username;
-
   set username(String username) => _$this._username = username;
 
   String _firstName;
-
   String get firstName => _$this._firstName;
-
   set firstName(String firstName) => _$this._firstName = firstName;
 
   String _lastName;
-
   String get lastName => _$this._lastName;
-
   set lastName(String lastName) => _$this._lastName = lastName;
 
   String _email;
-
   String get email => _$this._email;
-
   set email(String email) => _$this._email = email;
 
   AccountBuilder();
 
   AccountBuilder get _$this {
-    if (_$v != null) {
-      _token = _$v.token;
-      _id = _$v.id;
-      _username = _$v.username;
-      _firstName = _$v.firstName;
-      _lastName = _$v.lastName;
-      _email = _$v.email;
+    final $v = _$v;
+    if ($v != null) {
+      _token = $v.token;
+      _id = $v.id;
+      _username = $v.username;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
+      _email = $v.email;
       _$v = null;
     }
     return this;
@@ -226,9 +216,7 @@ class AccountBuilder implements Builder<Account, AccountBuilder> {
 
   @override
   void replace(Account other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Account;
   }
 
@@ -242,8 +230,9 @@ class AccountBuilder implements Builder<Account, AccountBuilder> {
     final _$result = _$v ??
         new _$Account._(
             token: token,
-            id: id,
-            username: username,
+            id: BuiltValueNullFieldError.checkNotNull(id, 'Account', 'id'),
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, 'Account', 'username'),
             firstName: firstName,
             lastName: lastName,
             email: email);

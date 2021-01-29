@@ -6,7 +6,28 @@ part of 'media.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const MediaType _$image = const MediaType._('image');
+const MediaType _$video = const MediaType._('video');
+
+MediaType _$mediaTypeValueOf(String name) {
+  switch (name) {
+    case 'image':
+      return _$image;
+    case 'video':
+      return _$video;
+    default:
+      throw new ArgumentError(name);
+  }
+}
+
+final BuiltSet<MediaType> _$mediaTypeValues =
+    new BuiltSet<MediaType>(const <MediaType>[
+  _$image,
+  _$video,
+]);
+
 Serializer<Media> _$mediaSerializer = new _$MediaSerializer();
+Serializer<MediaType> _$mediaTypeSerializer = new _$MediaTypeSerializer();
 
 class _$MediaSerializer implements StructuredSerializer<Media> {
   @override
@@ -46,7 +67,7 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -79,6 +100,23 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
   }
 }
 
+class _$MediaTypeSerializer implements PrimitiveSerializer<MediaType> {
+  @override
+  final Iterable<Type> types = const <Type>[MediaType];
+  @override
+  final String wireName = 'MediaType';
+
+  @override
+  Object serialize(Serializers serializers, MediaType object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.name;
+
+  @override
+  MediaType deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) =>
+      MediaType.valueOf(serialized as String);
+}
+
 class _$Media extends Media {
   @override
   final String name;
@@ -99,24 +137,12 @@ class _$Media extends Media {
   _$Media._(
       {this.name, this.type, this.thumbnail, this.url, this.height, this.width})
       : super._() {
-    if (name == null) {
-      throw new BuiltValueNullFieldError('Media', 'name');
-    }
-    if (type == null) {
-      throw new BuiltValueNullFieldError('Media', 'type');
-    }
-    if (thumbnail == null) {
-      throw new BuiltValueNullFieldError('Media', 'thumbnail');
-    }
-    if (url == null) {
-      throw new BuiltValueNullFieldError('Media', 'url');
-    }
-    if (height == null) {
-      throw new BuiltValueNullFieldError('Media', 'height');
-    }
-    if (width == null) {
-      throw new BuiltValueNullFieldError('Media', 'width');
-    }
+    BuiltValueNullFieldError.checkNotNull(name, 'Media', 'name');
+    BuiltValueNullFieldError.checkNotNull(type, 'Media', 'type');
+    BuiltValueNullFieldError.checkNotNull(thumbnail, 'Media', 'thumbnail');
+    BuiltValueNullFieldError.checkNotNull(url, 'Media', 'url');
+    BuiltValueNullFieldError.checkNotNull(height, 'Media', 'height');
+    BuiltValueNullFieldError.checkNotNull(width, 'Media', 'width');
   }
 
   @override
@@ -167,51 +193,40 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
   _$Media _$v;
 
   String _name;
-
   String get name => _$this._name;
-
   set name(String name) => _$this._name = name;
 
   MediaType _type;
-
   MediaType get type => _$this._type;
-
   set type(MediaType type) => _$this._type = type;
 
   String _thumbnail;
-
   String get thumbnail => _$this._thumbnail;
-
   set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
 
   String _url;
-
   String get url => _$this._url;
-
   set url(String url) => _$this._url = url;
 
   int _height;
-
   int get height => _$this._height;
-
   set height(int height) => _$this._height = height;
 
   int _width;
-
   int get width => _$this._width;
-
   set width(int width) => _$this._width = width;
 
   MediaBuilder();
 
   MediaBuilder get _$this {
-    if (_$v != null) {
-      _name = _$v.name;
-      _type = _$v.type;
-      _thumbnail = _$v.thumbnail;
-      _url = _$v.url;
-      _height = _$v.height;
-      _width = _$v.width;
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _type = $v.type;
+      _thumbnail = $v.thumbnail;
+      _url = $v.url;
+      _height = $v.height;
+      _width = $v.width;
       _$v = null;
     }
     return this;
@@ -219,9 +234,7 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
 
   @override
   void replace(Media other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Media;
   }
 
@@ -234,12 +247,15 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
   _$Media build() {
     final _$result = _$v ??
         new _$Media._(
-            name: name,
-            type: type,
-            thumbnail: thumbnail,
-            url: url,
-            height: height,
-            width: width);
+            name: BuiltValueNullFieldError.checkNotNull(name, 'Media', 'name'),
+            type: BuiltValueNullFieldError.checkNotNull(type, 'Media', 'type'),
+            thumbnail: BuiltValueNullFieldError.checkNotNull(
+                thumbnail, 'Media', 'thumbnail'),
+            url: BuiltValueNullFieldError.checkNotNull(url, 'Media', 'url'),
+            height: BuiltValueNullFieldError.checkNotNull(
+                height, 'Media', 'height'),
+            width:
+                BuiltValueNullFieldError.checkNotNull(width, 'Media', 'width'));
     replace(_$result);
     return _$result;
   }

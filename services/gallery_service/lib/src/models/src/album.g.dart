@@ -39,7 +39,7 @@ class _$AlbumSerializer implements StructuredSerializer<Album> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -72,15 +72,9 @@ class _$Album extends Album {
       (new AlbumBuilder()..update(updates)).build();
 
   _$Album._({this.name, this.path, this.thumbnail}) : super._() {
-    if (name == null) {
-      throw new BuiltValueNullFieldError('Album', 'name');
-    }
-    if (path == null) {
-      throw new BuiltValueNullFieldError('Album', 'path');
-    }
-    if (thumbnail == null) {
-      throw new BuiltValueNullFieldError('Album', 'thumbnail');
-    }
+    BuiltValueNullFieldError.checkNotNull(name, 'Album', 'name');
+    BuiltValueNullFieldError.checkNotNull(path, 'Album', 'path');
+    BuiltValueNullFieldError.checkNotNull(thumbnail, 'Album', 'thumbnail');
   }
 
   @override
@@ -119,30 +113,25 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
   _$Album _$v;
 
   String _name;
-
   String get name => _$this._name;
-
   set name(String name) => _$this._name = name;
 
   String _path;
-
   String get path => _$this._path;
-
   set path(String path) => _$this._path = path;
 
   String _thumbnail;
-
   String get thumbnail => _$this._thumbnail;
-
   set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
 
   AlbumBuilder();
 
   AlbumBuilder get _$this {
-    if (_$v != null) {
-      _name = _$v.name;
-      _path = _$v.path;
-      _thumbnail = _$v.thumbnail;
+    final $v = _$v;
+    if ($v != null) {
+      _name = $v.name;
+      _path = $v.path;
+      _thumbnail = $v.thumbnail;
       _$v = null;
     }
     return this;
@@ -150,9 +139,7 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
 
   @override
   void replace(Album other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Album;
   }
 
@@ -163,8 +150,12 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
 
   @override
   _$Album build() {
-    final _$result =
-        _$v ?? new _$Album._(name: name, path: path, thumbnail: thumbnail);
+    final _$result = _$v ??
+        new _$Album._(
+            name: BuiltValueNullFieldError.checkNotNull(name, 'Album', 'name'),
+            path: BuiltValueNullFieldError.checkNotNull(path, 'Album', 'path'),
+            thumbnail: BuiltValueNullFieldError.checkNotNull(
+                thumbnail, 'Album', 'thumbnail'));
     replace(_$result);
     return _$result;
   }

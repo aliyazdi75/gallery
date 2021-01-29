@@ -46,7 +46,7 @@ class _$HttpExceptionModelSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'key':
           result.key = serializers.deserialize(value,
@@ -74,31 +74,36 @@ class _$RegisterBadRequestSerializer
   Iterable<Object> serialize(Serializers serializers, RegisterBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    if (object.username != null) {
+    Object value;
+    value = object.username;
+    if (value != null) {
       result
         ..add('username')
-        ..add(serializers.serialize(object.username,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.password != null) {
+    value = object.password;
+    if (value != null) {
       result
         ..add('password')
-        ..add(serializers.serialize(object.password,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.email != null) {
+    value = object.email;
+    if (value != null) {
       result
         ..add('email')
-        ..add(serializers.serialize(object.email,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.nonFieldErrors != null) {
+    value = object.nonFieldErrors;
+    if (value != null) {
       result
         ..add('non_field_errors')
-        ..add(serializers.serialize(object.nonFieldErrors,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
@@ -115,7 +120,7 @@ class _$RegisterBadRequestSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'username':
           result.username.replace(serializers.deserialize(value,
@@ -159,24 +164,28 @@ class _$LoginBadRequestSerializer
   Iterable<Object> serialize(Serializers serializers, LoginBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    if (object.username != null) {
+    Object value;
+    value = object.username;
+    if (value != null) {
       result
         ..add('username')
-        ..add(serializers.serialize(object.username,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.password != null) {
+    value = object.password;
+    if (value != null) {
       result
         ..add('password')
-        ..add(serializers.serialize(object.password,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.nonFieldErrors != null) {
+    value = object.nonFieldErrors;
+    if (value != null) {
       result
         ..add('non_field_errors')
-        ..add(serializers.serialize(object.nonFieldErrors,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
@@ -193,7 +202,7 @@ class _$LoginBadRequestSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'username':
           result.username.replace(serializers.deserialize(value,
@@ -231,17 +240,20 @@ class _$GalleryBadRequestSerializer
   Iterable<Object> serialize(Serializers serializers, GalleryBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    if (object.path != null) {
+    Object value;
+    value = object.path;
+    if (value != null) {
       result
         ..add('path')
-        ..add(serializers.serialize(object.path,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
-    if (object.nonFieldErrors != null) {
+    value = object.nonFieldErrors;
+    if (value != null) {
       result
         ..add('non_field_errors')
-        ..add(serializers.serialize(object.nonFieldErrors,
+        ..add(serializers.serialize(value,
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
@@ -258,7 +270,7 @@ class _$GalleryBadRequestSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'path':
           result.path.replace(serializers.deserialize(value,
@@ -290,12 +302,8 @@ class _$HttpExceptionModel extends HttpExceptionModel {
       (new HttpExceptionModelBuilder()..update(updates)).build();
 
   _$HttpExceptionModel._({this.key, this.value}) : super._() {
-    if (key == null) {
-      throw new BuiltValueNullFieldError('HttpExceptionModel', 'key');
-    }
-    if (value == null) {
-      throw new BuiltValueNullFieldError('HttpExceptionModel', 'value');
-    }
+    BuiltValueNullFieldError.checkNotNull(key, 'HttpExceptionModel', 'key');
+    BuiltValueNullFieldError.checkNotNull(value, 'HttpExceptionModel', 'value');
   }
 
   @override
@@ -334,23 +342,20 @@ class HttpExceptionModelBuilder
   _$HttpExceptionModel _$v;
 
   String _key;
-
   String get key => _$this._key;
-
   set key(String key) => _$this._key = key;
 
   String _value;
-
   String get value => _$this._value;
-
   set value(String value) => _$this._value = value;
 
   HttpExceptionModelBuilder();
 
   HttpExceptionModelBuilder get _$this {
-    if (_$v != null) {
-      _key = _$v.key;
-      _value = _$v.value;
+    final $v = _$v;
+    if ($v != null) {
+      _key = $v.key;
+      _value = $v.value;
       _$v = null;
     }
     return this;
@@ -358,9 +363,7 @@ class HttpExceptionModelBuilder
 
   @override
   void replace(HttpExceptionModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$HttpExceptionModel;
   }
 
@@ -371,7 +374,12 @@ class HttpExceptionModelBuilder
 
   @override
   _$HttpExceptionModel build() {
-    final _$result = _$v ?? new _$HttpExceptionModel._(key: key, value: value);
+    final _$result = _$v ??
+        new _$HttpExceptionModel._(
+            key: BuiltValueNullFieldError.checkNotNull(
+                key, 'HttpExceptionModel', 'key'),
+            value: BuiltValueNullFieldError.checkNotNull(
+                value, 'HttpExceptionModel', 'value'));
     replace(_$result);
     return _$result;
   }
@@ -437,41 +445,34 @@ class RegisterBadRequestBuilder
   _$RegisterBadRequest _$v;
 
   ListBuilder<String> _username;
-
   ListBuilder<String> get username =>
       _$this._username ??= new ListBuilder<String>();
-
   set username(ListBuilder<String> username) => _$this._username = username;
 
   ListBuilder<String> _password;
-
   ListBuilder<String> get password =>
       _$this._password ??= new ListBuilder<String>();
-
   set password(ListBuilder<String> password) => _$this._password = password;
 
   ListBuilder<String> _email;
-
   ListBuilder<String> get email => _$this._email ??= new ListBuilder<String>();
-
   set email(ListBuilder<String> email) => _$this._email = email;
 
   ListBuilder<String> _nonFieldErrors;
-
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
-
   set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
   RegisterBadRequestBuilder();
 
   RegisterBadRequestBuilder get _$this {
-    if (_$v != null) {
-      _username = _$v.username?.toBuilder();
-      _password = _$v.password?.toBuilder();
-      _email = _$v.email?.toBuilder();
-      _nonFieldErrors = _$v.nonFieldErrors?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _username = $v.username?.toBuilder();
+      _password = $v.password?.toBuilder();
+      _email = $v.email?.toBuilder();
+      _nonFieldErrors = $v.nonFieldErrors?.toBuilder();
       _$v = null;
     }
     return this;
@@ -479,9 +480,7 @@ class RegisterBadRequestBuilder
 
   @override
   void replace(RegisterBadRequest other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$RegisterBadRequest;
   }
 
@@ -574,34 +573,29 @@ class LoginBadRequestBuilder
   _$LoginBadRequest _$v;
 
   ListBuilder<String> _username;
-
   ListBuilder<String> get username =>
       _$this._username ??= new ListBuilder<String>();
-
   set username(ListBuilder<String> username) => _$this._username = username;
 
   ListBuilder<String> _password;
-
   ListBuilder<String> get password =>
       _$this._password ??= new ListBuilder<String>();
-
   set password(ListBuilder<String> password) => _$this._password = password;
 
   ListBuilder<String> _nonFieldErrors;
-
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
-
   set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
   LoginBadRequestBuilder();
 
   LoginBadRequestBuilder get _$this {
-    if (_$v != null) {
-      _username = _$v.username?.toBuilder();
-      _password = _$v.password?.toBuilder();
-      _nonFieldErrors = _$v.nonFieldErrors?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _username = $v.username?.toBuilder();
+      _password = $v.password?.toBuilder();
+      _nonFieldErrors = $v.nonFieldErrors?.toBuilder();
       _$v = null;
     }
     return this;
@@ -609,9 +603,7 @@ class LoginBadRequestBuilder
 
   @override
   void replace(LoginBadRequest other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LoginBadRequest;
   }
 
@@ -696,25 +688,22 @@ class GalleryBadRequestBuilder
   _$GalleryBadRequest _$v;
 
   ListBuilder<String> _path;
-
   ListBuilder<String> get path => _$this._path ??= new ListBuilder<String>();
-
   set path(ListBuilder<String> path) => _$this._path = path;
 
   ListBuilder<String> _nonFieldErrors;
-
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
-
   set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
   GalleryBadRequestBuilder();
 
   GalleryBadRequestBuilder get _$this {
-    if (_$v != null) {
-      _path = _$v.path?.toBuilder();
-      _nonFieldErrors = _$v.nonFieldErrors?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _path = $v.path?.toBuilder();
+      _nonFieldErrors = $v.nonFieldErrors?.toBuilder();
       _$v = null;
     }
     return this;
@@ -722,9 +711,7 @@ class GalleryBadRequestBuilder
 
   @override
   void replace(GalleryBadRequest other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GalleryBadRequest;
   }
 

@@ -33,16 +33,19 @@ class _$RegisterSerializer implements StructuredSerializer<Register> {
       serializers.serialize(object.email,
           specifiedType: const FullType(String)),
     ];
-    if (object.firstName != null) {
+    Object value;
+    value = object.firstName;
+    if (value != null) {
       result
         ..add('first_name')
-        ..add(serializers.serialize(object.firstName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.lastName != null) {
+    value = object.lastName;
+    if (value != null) {
       result
         ..add('last_name')
-        ..add(serializers.serialize(object.lastName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -57,7 +60,7 @@ class _$RegisterSerializer implements StructuredSerializer<Register> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,
@@ -122,21 +125,11 @@ class _$Register extends Register {
       this.firstName,
       this.lastName})
       : super._() {
-    if (token == null) {
-      throw new BuiltValueNullFieldError('Register', 'token');
-    }
-    if (id == null) {
-      throw new BuiltValueNullFieldError('Register', 'id');
-    }
-    if (username == null) {
-      throw new BuiltValueNullFieldError('Register', 'username');
-    }
-    if (password == null) {
-      throw new BuiltValueNullFieldError('Register', 'password');
-    }
-    if (email == null) {
-      throw new BuiltValueNullFieldError('Register', 'email');
-    }
+    BuiltValueNullFieldError.checkNotNull(token, 'Register', 'token');
+    BuiltValueNullFieldError.checkNotNull(id, 'Register', 'id');
+    BuiltValueNullFieldError.checkNotNull(username, 'Register', 'username');
+    BuiltValueNullFieldError.checkNotNull(password, 'Register', 'password');
+    BuiltValueNullFieldError.checkNotNull(email, 'Register', 'email');
   }
 
   @override
@@ -191,58 +184,45 @@ class RegisterBuilder implements Builder<Register, RegisterBuilder> {
   _$Register _$v;
 
   String _token;
-
   String get token => _$this._token;
-
   set token(String token) => _$this._token = token;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   String _username;
-
   String get username => _$this._username;
-
   set username(String username) => _$this._username = username;
 
   String _password;
-
   String get password => _$this._password;
-
   set password(String password) => _$this._password = password;
 
   String _email;
-
   String get email => _$this._email;
-
   set email(String email) => _$this._email = email;
 
   String _firstName;
-
   String get firstName => _$this._firstName;
-
   set firstName(String firstName) => _$this._firstName = firstName;
 
   String _lastName;
-
   String get lastName => _$this._lastName;
-
   set lastName(String lastName) => _$this._lastName = lastName;
 
   RegisterBuilder();
 
   RegisterBuilder get _$this {
-    if (_$v != null) {
-      _token = _$v.token;
-      _id = _$v.id;
-      _username = _$v.username;
-      _password = _$v.password;
-      _email = _$v.email;
-      _firstName = _$v.firstName;
-      _lastName = _$v.lastName;
+    final $v = _$v;
+    if ($v != null) {
+      _token = $v.token;
+      _id = $v.id;
+      _username = $v.username;
+      _password = $v.password;
+      _email = $v.email;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
       _$v = null;
     }
     return this;
@@ -250,9 +230,7 @@ class RegisterBuilder implements Builder<Register, RegisterBuilder> {
 
   @override
   void replace(Register other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Register;
   }
 
@@ -265,11 +243,15 @@ class RegisterBuilder implements Builder<Register, RegisterBuilder> {
   _$Register build() {
     final _$result = _$v ??
         new _$Register._(
-            token: token,
-            id: id,
-            username: username,
-            password: password,
-            email: email,
+            token: BuiltValueNullFieldError.checkNotNull(
+                token, 'Register', 'token'),
+            id: BuiltValueNullFieldError.checkNotNull(id, 'Register', 'id'),
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, 'Register', 'username'),
+            password: BuiltValueNullFieldError.checkNotNull(
+                password, 'Register', 'password'),
+            email: BuiltValueNullFieldError.checkNotNull(
+                email, 'Register', 'email'),
             firstName: firstName,
             lastName: lastName);
     replace(_$result);

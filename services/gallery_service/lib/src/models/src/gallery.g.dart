@@ -44,7 +44,7 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'path':
           result.path = serializers.deserialize(value,
@@ -79,10 +79,12 @@ class _$GalleryQuerySerializer implements StructuredSerializer<GalleryQuery> {
   Iterable<Object> serialize(Serializers serializers, GalleryQuery object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    if (object.path != null) {
+    Object value;
+    value = object.path;
+    if (value != null) {
       result
         ..add('path')
-        ..add(serializers.serialize(object.path,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -97,7 +99,7 @@ class _$GalleryQuerySerializer implements StructuredSerializer<GalleryQuery> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'path':
           result.path = serializers.deserialize(value,
@@ -122,15 +124,9 @@ class _$Gallery extends Gallery {
       (new GalleryBuilder()..update(updates)).build();
 
   _$Gallery._({this.path, this.albums, this.medias}) : super._() {
-    if (path == null) {
-      throw new BuiltValueNullFieldError('Gallery', 'path');
-    }
-    if (albums == null) {
-      throw new BuiltValueNullFieldError('Gallery', 'albums');
-    }
-    if (medias == null) {
-      throw new BuiltValueNullFieldError('Gallery', 'medias');
-    }
+    BuiltValueNullFieldError.checkNotNull(path, 'Gallery', 'path');
+    BuiltValueNullFieldError.checkNotNull(albums, 'Gallery', 'albums');
+    BuiltValueNullFieldError.checkNotNull(medias, 'Gallery', 'medias');
   }
 
   @override
@@ -169,30 +165,25 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
   _$Gallery _$v;
 
   String _path;
-
   String get path => _$this._path;
-
   set path(String path) => _$this._path = path;
 
   ListBuilder<Album> _albums;
-
   ListBuilder<Album> get albums => _$this._albums ??= new ListBuilder<Album>();
-
   set albums(ListBuilder<Album> albums) => _$this._albums = albums;
 
   ListBuilder<Media> _medias;
-
   ListBuilder<Media> get medias => _$this._medias ??= new ListBuilder<Media>();
-
   set medias(ListBuilder<Media> medias) => _$this._medias = medias;
 
   GalleryBuilder();
 
   GalleryBuilder get _$this {
-    if (_$v != null) {
-      _path = _$v.path;
-      _albums = _$v.albums?.toBuilder();
-      _medias = _$v.medias?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _path = $v.path;
+      _albums = $v.albums.toBuilder();
+      _medias = $v.medias.toBuilder();
       _$v = null;
     }
     return this;
@@ -200,9 +191,7 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
 
   @override
   void replace(Gallery other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Gallery;
   }
 
@@ -217,7 +206,10 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
     try {
       _$result = _$v ??
           new _$Gallery._(
-              path: path, albums: albums.build(), medias: medias.build());
+              path: BuiltValueNullFieldError.checkNotNull(
+                  path, 'Gallery', 'path'),
+              albums: albums.build(),
+              medias: medias.build());
     } catch (_) {
       String _$failedField;
       try {
@@ -275,16 +267,15 @@ class GalleryQueryBuilder
   _$GalleryQuery _$v;
 
   String _path;
-
   String get path => _$this._path;
-
   set path(String path) => _$this._path = path;
 
   GalleryQueryBuilder();
 
   GalleryQueryBuilder get _$this {
-    if (_$v != null) {
-      _path = _$v.path;
+    final $v = _$v;
+    if ($v != null) {
+      _path = $v.path;
       _$v = null;
     }
     return this;
@@ -292,9 +283,7 @@ class GalleryQueryBuilder
 
   @override
   void replace(GalleryQuery other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GalleryQuery;
   }
 

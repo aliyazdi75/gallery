@@ -23,34 +23,39 @@ class _$LoginSerializer implements StructuredSerializer<Login> {
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-    if (object.token != null) {
+    Object value;
+    value = object.token;
+    if (value != null) {
       result
         ..add('token')
-        ..add(serializers.serialize(object.token,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.id != null) {
+    value = object.id;
+    if (value != null) {
       result
         ..add('id')
-        ..add(serializers.serialize(object.id,
-            specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.email != null) {
+    value = object.email;
+    if (value != null) {
       result
         ..add('email')
-        ..add(serializers.serialize(object.email,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.firstName != null) {
+    value = object.firstName;
+    if (value != null) {
       result
         ..add('first_name')
-        ..add(serializers.serialize(object.firstName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.lastName != null) {
+    value = object.lastName;
+    if (value != null) {
       result
         ..add('last_name')
-        ..add(serializers.serialize(object.lastName,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
     return result;
@@ -65,7 +70,7 @@ class _$LoginSerializer implements StructuredSerializer<Login> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,
@@ -128,7 +133,7 @@ class _$LoginBodySerializer implements StructuredSerializer<LoginBody> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'username':
           result.username = serializers.deserialize(value,
@@ -170,9 +175,7 @@ class _$Login extends Login {
       this.firstName,
       this.lastName})
       : super._() {
-    if (username == null) {
-      throw new BuiltValueNullFieldError('Login', 'username');
-    }
+    BuiltValueNullFieldError.checkNotNull(username, 'Login', 'username');
   }
 
   @override
@@ -223,51 +226,40 @@ class LoginBuilder implements Builder<Login, LoginBuilder> {
   _$Login _$v;
 
   String _token;
-
   String get token => _$this._token;
-
   set token(String token) => _$this._token = token;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   String _username;
-
   String get username => _$this._username;
-
   set username(String username) => _$this._username = username;
 
   String _email;
-
   String get email => _$this._email;
-
   set email(String email) => _$this._email = email;
 
   String _firstName;
-
   String get firstName => _$this._firstName;
-
   set firstName(String firstName) => _$this._firstName = firstName;
 
   String _lastName;
-
   String get lastName => _$this._lastName;
-
   set lastName(String lastName) => _$this._lastName = lastName;
 
   LoginBuilder();
 
   LoginBuilder get _$this {
-    if (_$v != null) {
-      _token = _$v.token;
-      _id = _$v.id;
-      _username = _$v.username;
-      _email = _$v.email;
-      _firstName = _$v.firstName;
-      _lastName = _$v.lastName;
+    final $v = _$v;
+    if ($v != null) {
+      _token = $v.token;
+      _id = $v.id;
+      _username = $v.username;
+      _email = $v.email;
+      _firstName = $v.firstName;
+      _lastName = $v.lastName;
       _$v = null;
     }
     return this;
@@ -275,9 +267,7 @@ class LoginBuilder implements Builder<Login, LoginBuilder> {
 
   @override
   void replace(Login other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Login;
   }
 
@@ -292,7 +282,8 @@ class LoginBuilder implements Builder<Login, LoginBuilder> {
         new _$Login._(
             token: token,
             id: id,
-            username: username,
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, 'Login', 'username'),
             email: email,
             firstName: firstName,
             lastName: lastName);
@@ -311,12 +302,8 @@ class _$LoginBody extends LoginBody {
       (new LoginBodyBuilder()..update(updates)).build();
 
   _$LoginBody._({this.username, this.password}) : super._() {
-    if (username == null) {
-      throw new BuiltValueNullFieldError('LoginBody', 'username');
-    }
-    if (password == null) {
-      throw new BuiltValueNullFieldError('LoginBody', 'password');
-    }
+    BuiltValueNullFieldError.checkNotNull(username, 'LoginBody', 'username');
+    BuiltValueNullFieldError.checkNotNull(password, 'LoginBody', 'password');
   }
 
   @override
@@ -352,23 +339,20 @@ class LoginBodyBuilder implements Builder<LoginBody, LoginBodyBuilder> {
   _$LoginBody _$v;
 
   String _username;
-
   String get username => _$this._username;
-
   set username(String username) => _$this._username = username;
 
   String _password;
-
   String get password => _$this._password;
-
   set password(String password) => _$this._password = password;
 
   LoginBodyBuilder();
 
   LoginBodyBuilder get _$this {
-    if (_$v != null) {
-      _username = _$v.username;
-      _password = _$v.password;
+    final $v = _$v;
+    if ($v != null) {
+      _username = $v.username;
+      _password = $v.password;
       _$v = null;
     }
     return this;
@@ -376,9 +360,7 @@ class LoginBodyBuilder implements Builder<LoginBody, LoginBodyBuilder> {
 
   @override
   void replace(LoginBody other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LoginBody;
   }
 
@@ -389,8 +371,12 @@ class LoginBodyBuilder implements Builder<LoginBody, LoginBodyBuilder> {
 
   @override
   _$LoginBody build() {
-    final _$result =
-        _$v ?? new _$LoginBody._(username: username, password: password);
+    final _$result = _$v ??
+        new _$LoginBody._(
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, 'LoginBody', 'username'),
+            password: BuiltValueNullFieldError.checkNotNull(
+                password, 'LoginBody', 'password'));
     replace(_$result);
     return _$result;
   }

@@ -1,32 +1,32 @@
 part of 'bloc.dart';
 
-enum GalleryStatus { initial, loading, success, failure }
+enum GalleryStatus { initial, loading, successPush, successPop, failure }
 
 class GalleryState extends Equatable {
   const GalleryState({
     this.status,
-    this.galleriesViewed,
+    this.galleries,
   });
 
   final GalleryStatus status;
-  final BuiltList<Gallery> galleriesViewed;
+  final List<Gallery> galleries;
 
   GalleryState.initial()
       : this(
           status: GalleryStatus.initial,
-          galleriesViewed: BuiltList.of([]),
+          galleries: <Gallery>[],
         );
 
   GalleryState copyWith({
     GalleryStatus status,
-    BuiltList<Gallery> galleriesViewed,
+    List<Gallery> galleries,
   }) {
     return GalleryState(
       status: status ?? this.status,
-      galleriesViewed: galleriesViewed ?? this.galleriesViewed,
+      galleries: galleries ?? this.galleries,
     );
   }
 
   @override
-  List<Object> get props => [status, galleriesViewed];
+  List<Object> get props => [status, galleries];
 }

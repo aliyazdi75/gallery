@@ -4,11 +4,11 @@ import 'package:constants_service/constants_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-import 'package:gallery/presentation/routers/index.dart';
+import 'package:gallery/core/url_strategy/index.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
+import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 import 'package:layout_service/layout_service.dart';
 import 'package:options_service/options_service.dart';
@@ -22,24 +22,32 @@ void main() {
     //   exit(1);
     // }
   };
-  //todo: should fix this
-  // UrlStrategy.configure();
-  runApp(GalleryApp());
+  //todo: should fix this for build mode
+  UrlStrategy.configure();
+  runApp(GalleryApp(routersState: GalleryRoutersState()));
 }
 
 class GalleryApp extends StatelessWidget {
   GalleryApp({
     Key key,
     this.initialRoute,
+    this.routersState,
     this.isTestMode = false,
-  }) : super(key: key);
+  }) : super(key: key) {
+    routerDelegate = GalleryRouterDelegate(routersState);
+    routeInformationParser = GalleryRouteInformationParser(routersState);
+  }
 
   final bool isTestMode;
   final String initialRoute;
+  final GalleryRoutersState routersState;
 
   final authenticationRepository = AuthenticationRepository();
   final accountRepository = AccountRepository();
   final galleryRepository = GalleryRepository();
+
+  GalleryRouterDelegate routerDelegate;
+  GalleryRouteInformationParser routeInformationParser;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +56,6 @@ class GalleryApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         textScaleFactor: systemTextScaleFactorOption,
         // locale: Locale('fa'),
-        // locale: null,
         platform: defaultTargetPlatform,
         isTestMode: isTestMode,
       ),
@@ -70,14 +77,12 @@ class GalleryApp extends StatelessWidget {
                 ),
                 BlocProvider<GalleryBloc>(
                   create: (context) => GalleryBloc(
-                    galleryRepository:
-                        RepositoryProvider.of<GalleryRepository>(context),
+                    galleryRepository: galleryRepository,
                   ),
-                  child: const AlbumPage(),
                 ),
               ],
               child: AdaptiveDesign(
-                material: MaterialApp(
+                material: MaterialApp.router(
                   title: galleryTitle,
                   onGenerateTitle: (context) =>
                       GalleryLocalizations.of(context).galleryTitle,
@@ -89,25 +94,16 @@ class GalleryApp extends StatelessWidget {
                       .copyWith(platform: GalleryOptions.of(context).platform),
                   localizationsDelegates:
                       GalleryLocalizations.localizationsDelegates,
-                  initialRoute: initialRoute,
                   supportedLocales: GalleryLocalizations.supportedLocales,
                   locale: GalleryOptions.of(context).locale,
                   localeResolutionCallback: (locale, supportedLocales) {
                     deviceLocale = locale;
                     return locale;
                   },
-                  onGenerateRoute: RouteConfiguration.onGenerateMaterialRoute,
-                  builder: (context, child) {
-                    return ApplyTextOptions(
-                      child: AnnotatedRegion<SystemUiOverlayStyle>(
-                        value: GalleryOptions.of(context)
-                            .resolvedSystemUiOverlayStyle(context),
-                        child: child,
-                      ),
-                    );
-                  },
+                  routerDelegate: routerDelegate,
+                  routeInformationParser: routeInformationParser,
                 ),
-                cupertino: CupertinoApp(
+                cupertino: CupertinoApp.router(
                   title: galleryTitle,
                   onGenerateTitle: (context) =>
                       GalleryLocalizations.of(context).galleryTitle,
@@ -124,16 +120,8 @@ class GalleryApp extends StatelessWidget {
                     deviceLocale = locale;
                     return locale;
                   },
-                  onGenerateRoute: RouteConfiguration.onGenerateCupertinoRoute,
-                  builder: (context, child) {
-                    return ApplyTextOptions(
-                      child: AnnotatedRegion<SystemUiOverlayStyle>(
-                        value: GalleryOptions.of(context)
-                            .resolvedSystemUiOverlayStyle(context),
-                        child: child,
-                      ),
-                    );
-                  },
+                  routerDelegate: routerDelegate,
+                  routeInformationParser: routeInformationParser,
                 ),
               ),
             ),
@@ -145,13 +133,18 @@ class GalleryApp extends StatelessWidget {
 }
 
 class RootPage extends StatelessWidget {
-  const RootPage({
+  RootPage({
     Key key,
+    @required this.albumPath,
+    @required this.onRouteChanged,
   }) : super(key: key);
+
+  final String albumPath;
+  final HandleRouteChangedFunction onRouteChanged;
 
   @override
   Widget build(BuildContext context) {
-    return const AlbumPage();
+    return AlbumPage(albumPath: albumPath, onRouteChanged: onRouteChanged);
     // return const SplashPage();
   }
 }

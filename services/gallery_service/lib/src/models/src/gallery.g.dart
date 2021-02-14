@@ -22,6 +22,9 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
     final result = <Object>[
       'path',
       serializers.serialize(object.path, specifiedType: const FullType(String)),
+      'current',
+      serializers.serialize(object.current,
+          specifiedType: const FullType(String)),
       'albums',
       serializers.serialize(object.albums,
           specifiedType:
@@ -31,7 +34,14 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
           specifiedType:
               const FullType(BuiltList, const [const FullType(Media)])),
     ];
-
+    Object value;
+    value = object.parent;
+    if (value != null) {
+      result
+        ..add('parent')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -48,6 +58,14 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
       switch (key) {
         case 'path':
           result.path = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'current':
+          result.current = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'parent':
+          result.parent = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'albums':
@@ -116,6 +134,10 @@ class _$Gallery extends Gallery {
   @override
   final String path;
   @override
+  final String current;
+  @override
+  final String parent;
+  @override
   final BuiltList<Album> albums;
   @override
   final BuiltList<Media> medias;
@@ -123,8 +145,10 @@ class _$Gallery extends Gallery {
   factory _$Gallery([void Function(GalleryBuilder) updates]) =>
       (new GalleryBuilder()..update(updates)).build();
 
-  _$Gallery._({this.path, this.albums, this.medias}) : super._() {
+  _$Gallery._({this.path, this.current, this.parent, this.albums, this.medias})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(path, 'Gallery', 'path');
+    BuiltValueNullFieldError.checkNotNull(current, 'Gallery', 'current');
     BuiltValueNullFieldError.checkNotNull(albums, 'Gallery', 'albums');
     BuiltValueNullFieldError.checkNotNull(medias, 'Gallery', 'medias');
   }
@@ -141,20 +165,26 @@ class _$Gallery extends Gallery {
     if (identical(other, this)) return true;
     return other is Gallery &&
         path == other.path &&
+        current == other.current &&
+        parent == other.parent &&
         albums == other.albums &&
         medias == other.medias;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, path.hashCode), albums.hashCode), medias.hashCode));
+    return $jf($jc(
+        $jc($jc($jc($jc(0, path.hashCode), current.hashCode), parent.hashCode),
+            albums.hashCode),
+        medias.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Gallery')
           ..add('path', path)
+          ..add('current', current)
+          ..add('parent', parent)
           ..add('albums', albums)
           ..add('medias', medias))
         .toString();
@@ -167,6 +197,14 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
   String _path;
   String get path => _$this._path;
   set path(String path) => _$this._path = path;
+
+  String _current;
+  String get current => _$this._current;
+  set current(String current) => _$this._current = current;
+
+  String _parent;
+  String get parent => _$this._parent;
+  set parent(String parent) => _$this._parent = parent;
 
   ListBuilder<Album> _albums;
   ListBuilder<Album> get albums => _$this._albums ??= new ListBuilder<Album>();
@@ -182,6 +220,8 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
     final $v = _$v;
     if ($v != null) {
       _path = $v.path;
+      _current = $v.current;
+      _parent = $v.parent;
       _albums = $v.albums.toBuilder();
       _medias = $v.medias.toBuilder();
       _$v = null;
@@ -208,6 +248,9 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
           new _$Gallery._(
               path: BuiltValueNullFieldError.checkNotNull(
                   path, 'Gallery', 'path'),
+              current: BuiltValueNullFieldError.checkNotNull(
+                  current, 'Gallery', 'current'),
+              parent: parent,
               albums: albums.build(),
               medias: medias.build());
     } catch (_) {

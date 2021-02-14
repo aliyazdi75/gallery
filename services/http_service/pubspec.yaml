@@ -22,3 +22,6 @@ dev_dependencies:
   test: ^1.16.0-nullsafety.13
   built_value_generator: any
   build_runner: any
+
+dependency_overrides:
+  http: ^0.13.0

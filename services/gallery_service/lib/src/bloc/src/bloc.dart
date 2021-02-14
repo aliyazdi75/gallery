@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:built_collection/built_collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:gallery_service/src/models/src/gallery.dart';
@@ -25,9 +24,8 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     if (event is GalleryPushRequested) {
       yield* _mapGalleryPushRequestedToState(event);
     } else if (event is GalleryPopRequested) {
-      final galleriesViewed = state.galleriesViewed.toBuilder();
-      galleriesViewed.removeLast();
-      yield state.copyWith(galleriesViewed: galleriesViewed.build());
+      assert(state.galleries.isNotEmpty);
+      yield* _mapGalleryPpoRequestedToState();
     }
   }
 
@@ -36,11 +34,9 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     yield state.copyWith(status: GalleryStatus.loading);
     try {
       final gallery = await galleryRepository.getGallery(path: event.path);
-      final galleriesViewed = state.galleriesViewed.toBuilder();
-      galleriesViewed.add(gallery);
       yield state.copyWith(
-        status: GalleryStatus.success,
-        galleriesViewed: galleriesViewed.build(),
+        status: GalleryStatus.successPush,
+        galleries: List.of(state.galleries)..add(gallery),
       );
     } on BadRequestException catch (_) {
       //todo: create this bad request model
@@ -50,6 +46,31 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
       yield state.copyWith(status: GalleryStatus.failure);
     } on Exception catch (_) {
       yield state.copyWith(status: GalleryStatus.failure);
+    }
+  }
+
+  Stream<GalleryState> _mapGalleryPpoRequestedToState() async* {
+    assert(state.galleries.isNotEmpty);
+    if (state.galleries.length > 1) {
+      yield state.copyWith(galleries: List.of(state.galleries)..removeLast());
+    } else {
+      yield state.copyWith(status: GalleryStatus.loading);
+      try {
+        final gallery = await galleryRepository.getGallery(
+            path: state.galleries.last.parent);
+        yield state.copyWith(
+          status: GalleryStatus.successPop,
+          galleries: [gallery],
+        );
+      } on BadRequestException catch (_) {
+        //todo: create this bad request model
+        yield state.copyWith(status: GalleryStatus.failure);
+      } on SocketException catch (_) {
+        print('kir to netet');
+        yield state.copyWith(status: GalleryStatus.failure);
+      } on Exception catch (_) {
+        yield state.copyWith(status: GalleryStatus.failure);
+      }
     }
   }
 }

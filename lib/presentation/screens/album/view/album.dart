@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 
 import 'media/view/media.dart';
 
 class AlbumPage extends StatelessWidget {
-  const AlbumPage();
+  AlbumPage({
+    @required this.albumPath,
+    @required this.onRouteChanged,
+  })  : assert(albumPath != null),
+        assert(onRouteChanged != null);
 
-  static const String albumRoute = '/album';
+  final String albumPath;
+  final HandleRouteChangedFunction onRouteChanged;
 
   @override
   Widget build(BuildContext context) {
-    final backButton = FloatingActionButton.extended(
-      onPressed: () {
-        BlocProvider.of<GalleryBloc>(context).add(const GalleryPopRequested());
-        Navigator.of(context).pop();
-      },
-      icon: const BackButtonIcon(),
-      label: Text(
-        MaterialLocalizations.of(context).backButtonTooltip,
-      ),
-    );
     return BlocListener<GalleryBloc, GalleryState>(
       listener: (context, state) async {
         switch (state.status) {
-          case GalleryStatus.success:
-            if (state.galleriesViewed.length > 1) {
-              await Navigator.of(context).pushNamed(
-                  AlbumPage.albumRoute + '/' + state.galleriesViewed.last.path);
-            }
+          case GalleryStatus.successPush:
+            onRouteChanged(state.galleries.last.current);
+            break;
+          case GalleryStatus.successPop:
+            onRouteChanged(
+              state.galleries.last.current,
+              isPop: true,
+              isRoot: state.galleries.last.parent == null ? true : false,
+            );
             break;
           case GalleryStatus.failure:
             ScaffoldMessenger.of(context)
@@ -50,49 +50,67 @@ class AlbumPage extends StatelessWidget {
         builder: (context, state) {
           if (state.status == GalleryStatus.initial) {
             BlocProvider.of<GalleryBloc>(context)
-                .add(const GalleryPushRequested(''));
+                .add(GalleryPushRequested(albumPath));
           }
-          return Scaffold(
-            floatingActionButtonLocation:
-                FloatingActionButtonLocation.centerFloat,
-            floatingActionButton: state.galleriesViewed.isEmpty
-                ? null
-                : state.galleriesViewed.last.albums.isEmpty
-                    ? state.galleriesViewed.length == 1
-                        ? null
-                        : backButton
-                    : Wrap(
-                        alignment: WrapAlignment.center,
-                        runAlignment: WrapAlignment.center,
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        spacing: 5.0,
-                        runSpacing: 5.0,
-                        children: [
-                          if (state.galleriesViewed.length > 1) backButton,
-                          for (Album album in state.galleriesViewed.last.albums)
-                            FloatingActionButton.extended(
-                              heroTag: state.galleriesViewed.last.albums
-                                  .indexOf(album),
-                              onPressed: () {
-                                context
-                                    .read<GalleryBloc>()
-                                    .add(GalleryPushRequested(album.path));
-                              },
-                              icon: const Icon(Icons.photo_album),
-                              label: Text(
-                                album.name,
-                              ),
+          final onWillPop = () {
+            BlocProvider.of<GalleryBloc>(context)
+                .add(const GalleryPopRequested());
+            if (state.galleries.length > 1) {
+              Navigator.of(context).pop();
+            }
+          };
+          return WillPopScope(
+            onWillPop: () => onWillPop(),
+            child: Scaffold(
+              appBar: AppBar(
+                title: Text(
+                  state.galleries.isEmpty
+                      ? 'Loading...'
+                      : state.galleries.last.path,
+                ),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              floatingActionButton: state.galleries.isEmpty
+                  ? null
+                  : Wrap(
+                      alignment: WrapAlignment.center,
+                      runAlignment: WrapAlignment.center,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: 5.0,
+                      runSpacing: 5.0,
+                      children: [
+                        if (state.galleries.last.parent != null)
+                          FloatingActionButton.extended(
+                            onPressed: () => onWillPop(),
+                            icon: const BackButtonIcon(),
+                            label: Text(
+                              MaterialLocalizations.of(context)
+                                  .backButtonTooltip,
                             ),
-                        ],
-                      ),
-            body: Stack(
-              children: [
-                if (state.status == GalleryStatus.loading)
-                  const LinearProgressIndicator(
-                      backgroundColor: Colors.transparent),
-                if (state.galleriesViewed.isNotEmpty)
-                  MediaWidget(medias: state.galleriesViewed.last.medias),
-              ],
+                          ),
+                        for (Album album in state.galleries.last.albums)
+                          FloatingActionButton.extended(
+                            heroTag: state.galleries.last.albums.indexOf(album),
+                            onPressed: () {
+                              context
+                                  .read<GalleryBloc>()
+                                  .add(GalleryPushRequested(album.path));
+                            },
+                            icon: const Icon(Icons.photo_album),
+                            label: Text(album.name),
+                          ),
+                      ],
+                    ),
+              body: Stack(
+                children: [
+                  if (state.status == GalleryStatus.loading)
+                    const LinearProgressIndicator(
+                        backgroundColor: Colors.transparent),
+                  if (state.galleries.isNotEmpty)
+                    MediaWidget(medias: state.galleries.last.medias),
+                ],
+              ),
             ),
           );
         },

@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-import 'package:gallery/presentation/screens/login/login.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage();
@@ -31,9 +30,7 @@ class SplashPage extends StatelessWidget {
       child: Scaffold(
         body: Center(
           child: TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(LoginPage.loginRoute);
-            },
+            onPressed: () {},
             child: Text(GalleryLocalizations.of(context).login),
           ),
         ),

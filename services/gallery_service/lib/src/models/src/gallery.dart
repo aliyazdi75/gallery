@@ -11,6 +11,11 @@ part 'gallery.g.dart';
 abstract class Gallery implements Built<Gallery, GalleryBuilder> {
   String get path;
 
+  String get current;
+
+  @nullable
+  String get parent;
+
   BuiltList<Album> get albums;
 
   @BuiltValueField(wireName: 'images')

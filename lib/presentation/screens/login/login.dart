@@ -10,8 +10,6 @@ import 'components/form.dart';
 class LoginPage extends StatelessWidget {
   const LoginPage();
 
-  static const String loginRoute = '/login';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

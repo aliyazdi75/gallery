@@ -1,38 +1,69 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gallery/presentation/screens/album/view/media/cubit/media_cubit.dart';
 import 'package:gallery_service/gallery_service.dart';
 
-class ImageWidget extends StatefulWidget {
-  ImageWidget({
+const kIconSizeSelected = 0.4;
+const kIconSizeUnselected = 0.25;
+
+class MediaPreviewWidget extends StatefulWidget {
+  MediaPreviewWidget({
     @required this.index,
+    @required this.gridView,
+    @required this.isVideoType,
     @required this.isSelected,
     @required this.media,
     @required this.containerHeight,
     @required this.selectionAnimationDuration,
     @required this.selectionAnimationCurve,
     @required this.onTap,
-    this.stackedWidget,
   });
 
   final int index;
+  final bool gridView;
+  final bool isVideoType;
   final bool isSelected;
   final Media media;
   final double containerHeight;
   final Duration selectionAnimationDuration;
   final Curve selectionAnimationCurve;
   final VoidCallback onTap;
-  final List<Widget> stackedWidget;
 
   @override
-  _ImageWidgetState createState() => _ImageWidgetState();
+  _MediaPreviewWidgetState createState() => _MediaPreviewWidgetState();
 }
 
-class _ImageWidgetState extends State<ImageWidget> {
+class _MediaPreviewWidgetState extends State<MediaPreviewWidget> {
   bool _onHover = false;
 
   @override
   Widget build(BuildContext context) {
+    final playIconSize = widget.isSelected
+        ? widget.containerHeight * kIconSizeSelected
+        : widget.containerHeight * kIconSizeUnselected;
+    final stackedWidget = [
+      Positioned.fill(
+        child: Opacity(
+          opacity: 0.3,
+          child: Container(
+            color: Colors.black,
+          ),
+        ),
+      ),
+      TweenAnimationBuilder<double>(
+        tween: Tween<double>(
+          begin: playIconSize,
+          end: playIconSize,
+        ),
+        duration: widget.selectionAnimationDuration,
+        curve: widget.selectionAnimationCurve,
+        builder: (context, size, child) {
+          return Icon(
+            Icons.play_circle_outline,
+            color: Colors.white,
+            size: size,
+          );
+        },
+      ),
+    ];
     return Center(
       child: Card(
         elevation: 10.0,
@@ -42,7 +73,7 @@ class _ImageWidgetState extends State<ImageWidget> {
         ),
         child: InkWell(
           onTap: () {
-            if (widget.isSelected) {
+            if (widget.isSelected || widget.gridView) {
               // Navigator.of(context).pushNamed(
               //   AlbumPage.albumRoute +
               //       MediaFullscreen.fullscreenRoute +
@@ -51,7 +82,6 @@ class _ImageWidgetState extends State<ImageWidget> {
               //   // arguments: MediaFullscreenArguments(media: widget.media),
               // );
             } else {
-              BlocProvider.of<MediaCubit>(context).jump(widget.index);
               widget.onTap();
             }
           },
@@ -81,19 +111,28 @@ class _ImageWidgetState extends State<ImageWidget> {
                       );
                     },
                   ),
+                  if (widget.isVideoType)
+                    for (Widget widget in stackedWidget) widget,
                   Positioned.fill(
                     child: AnimatedOpacity(
-                      opacity: widget.isSelected ? 0.0 : 1.0,
+                      opacity: widget.gridView
+                          ? 1.0
+                          : widget.isSelected
+                              ? 0.0
+                              : 1.0,
                       duration: widget.selectionAnimationDuration,
                       curve: widget.selectionAnimationCurve,
                       child: AnimatedOpacity(
-                        opacity: _onHover || widget.isSelected ? 0.0 : 1.0,
+                        opacity:
+                            _onHover || (widget.isSelected && !widget.gridView)
+                                ? 0.0
+                                : 1.0,
                         duration: const Duration(milliseconds: 250),
                         child: MouseRegion(
                           onEnter: _onMouseEnter,
                           onExit: _onMouseExit,
                           child: Opacity(
-                            opacity: 0.6,
+                            opacity: 0.4,
                             child: Container(
                               color: Colors.black,
                             ),
@@ -102,8 +141,6 @@ class _ImageWidgetState extends State<ImageWidget> {
                       ),
                     ),
                   ),
-                  if (widget.stackedWidget != null)
-                    for (Widget widget in widget.stackedWidget) widget
                 ],
               ),
             ),

@@ -4,6 +4,7 @@ import 'package:constants_service/constants_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/core/url_strategy/index.dart';
@@ -30,24 +31,22 @@ void main() {
 class GalleryApp extends StatelessWidget {
   GalleryApp({
     Key key,
+    this.isTestMode = false,
     this.initialRoute,
     this.routersState,
-    this.isTestMode = false,
-  }) : super(key: key) {
-    routerDelegate = GalleryRouterDelegate(routersState);
-    routeInformationParser = GalleryRouteInformationParser(routersState);
-  }
+  })  : routeInformationParser = GalleryRouteInformationParser(routersState),
+        routerDelegate = GalleryRouterDelegate(routersState),
+        super(key: key);
 
   final bool isTestMode;
   final String initialRoute;
   final GalleryRoutersState routersState;
+  final GalleryRouteInformationParser routeInformationParser;
+  final GalleryRouterDelegate routerDelegate;
 
   final authenticationRepository = AuthenticationRepository();
   final accountRepository = AccountRepository();
   final galleryRepository = GalleryRepository();
-
-  GalleryRouterDelegate routerDelegate;
-  GalleryRouteInformationParser routeInformationParser;
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +101,15 @@ class GalleryApp extends StatelessWidget {
                   },
                   routerDelegate: routerDelegate,
                   routeInformationParser: routeInformationParser,
+                  builder: (context, child) {
+                    return ApplyTextOptions(
+                      child: AnnotatedRegion<SystemUiOverlayStyle>(
+                        value: GalleryOptions.of(context)
+                            .resolvedSystemUiOverlayStyle(context),
+                        child: child,
+                      ),
+                    );
+                  },
                 ),
                 cupertino: CupertinoApp.router(
                   title: galleryTitle,
@@ -122,6 +130,15 @@ class GalleryApp extends StatelessWidget {
                   },
                   routerDelegate: routerDelegate,
                   routeInformationParser: routeInformationParser,
+                  builder: (context, child) {
+                    return ApplyTextOptions(
+                      child: AnnotatedRegion<SystemUiOverlayStyle>(
+                        value: GalleryOptions.of(context)
+                            .resolvedSystemUiOverlayStyle(context),
+                        child: child,
+                      ),
+                    );
+                  },
                 ),
               ),
             ),

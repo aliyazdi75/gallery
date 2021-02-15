@@ -15,7 +15,6 @@ class GalleryAppShell extends StatefulWidget {
 }
 
 class _GalleryAppShellState extends State<GalleryAppShell> {
-  GalleryRoutersState _routersState;
   InnerRouterDelegate _routerDelegate;
   ChildBackButtonDispatcher _backButtonDispatcher;
 

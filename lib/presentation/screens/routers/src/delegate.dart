@@ -126,9 +126,6 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
   //todo: the problem is that the build method called before app states
   @override
   Widget build(BuildContext context) {
-    routersState.albumsPath.forEach((element) {
-      debugPrint('InnerRouterDelegate albumsPath: $element');
-    });
     return Navigator(
       key: navigatorKey,
       pages: [

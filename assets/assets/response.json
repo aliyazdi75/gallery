@@ -1,5 +1,7 @@
 {
   "path": "/",
+  "current": "L3Nydi9nc3RvcmFnZS9nYWxsZXJ5Lw==",
+  "parent": null,
   "albums": [
     {
       "name": "album1",
@@ -16,6 +18,7 @@
     {
       "name": "image1.jpg",
       "type": "image",
+      "path": "L2FsYnVtMg=1",
       "thumbnail": "https://i.pinimg.com/736x/5c/e1/23/5ce1236ff637c491bcb736e14d32019f.jpg",
       "url": "https://i.pinimg.com/736x/5c/e1/23/5ce1236ff637c491bcb736e14d32019f.jpg",
       "height": 1000,
@@ -24,6 +27,7 @@
     {
       "name": "image2.jpg",
       "type": "image",
+      "path": "L2FsYnVtMg=2",
       "thumbnail": "https://i.pinimg.com/originals/7c/bf/2e/7cbf2e12e9226bbb89d48d04948227df.jpg",
       "url": "https://i.pinimg.com/originals/7c/bf/2e/7cbf2e12e9226bbb89d48d04948227df.jpg",
       "height": 1000,
@@ -32,6 +36,7 @@
     {
       "name": "video1.mp4",
       "type": "video",
+      "path": "L2FsYnVtMg=3",
       "thumbnail": "https://ath2.unileverservices.com/wp-content/uploads/sites/4/2020/02/IG-annvmariv-1024x1016.jpg",
       "url": "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4",
       "height": 700,
@@ -40,6 +45,7 @@
     {
       "name": "image3.jpg",
       "type": "image",
+      "path": "L2FsYnVtMg=4",
       "thumbnail": "https://cdn.cdnparenting.com/articles/2020/02/23012833/463272494.jpg",
       "url": "https://cdn.cdnparenting.com/articles/2020/02/23012833/463272494.jpg",
       "height": 900,
@@ -48,6 +54,7 @@
     {
       "name": "image4.jpg",
       "type": "image",
+      "path": "L2FsYnVtMg=5",
       "thumbnail": "https://www.planusa.org/stuff/contentmgr/files/0/01a19b9a3c00c5f3a8c417c264dd35db/hero/because-i-am-a-girl-v2.jpg",
       "url": "https://www.planusa.org/stuff/contentmgr/files/0/01a19b9a3c00c5f3a8c417c264dd35db/hero/because-i-am-a-girl-v2.jpg",
       "height": 650,
@@ -56,6 +63,7 @@
     {
       "name": "image5.jpg",
       "type": "image",
+      "path": "L2FsYnVtMg=6",
       "thumbnail": "https://images.ctfassets.net/9wtva4vhlgxb/6sCy8dr72KJIibMQfO25CN/0b5d49fa38951c728033f3375ef2e02e/Unique-baby-girl-names_1536x680.jpeg",
       "url": "https://images.ctfassets.net/9wtva4vhlgxb/6sCy8dr72KJIibMQfO25CN/0b5d49fa38951c728033f3375ef2e02e/Unique-baby-girl-names_1536x680.jpeg",
       "height": 600,
@@ -64,6 +72,205 @@
     {
       "name": "image6.jpg",
       "type": "image",
+      "path": "L2FsYnVtMg=7",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=8",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=9",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=10",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=11",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=12",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=13",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=14",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=15",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=16",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=17",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=18",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=19",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
+      "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
+      "height": 700,
+      "width": 1200
+    },
+    {
+      "name": "image6.jpg",
+      "type": "image",
+      "path": "L2FsYnVtMg=20",
       "thumbnail": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
       "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/E-girl.png",
       "height": 700,

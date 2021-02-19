@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
-import 'package:gallery/core/url_strategy/index.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
 import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
@@ -24,7 +23,7 @@ void main() {
     // }
   };
   //todo: should fix this for build mode
-  UrlStrategy.configure();
+  // UrlStrategy.configure();
   runApp(GalleryApp(routersState: GalleryRoutersState()));
 }
 

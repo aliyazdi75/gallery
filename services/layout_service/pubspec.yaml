@@ -15,5 +15,5 @@ dependencies:
     path: ../options_service
 
 dev_dependencies:
-  pedantic: ^1.10.0-nullsafety.3
-  test: ^1.16.0-nullsafety.13
+  pedantic: ^1.10.0
+  test: ^1.16.3

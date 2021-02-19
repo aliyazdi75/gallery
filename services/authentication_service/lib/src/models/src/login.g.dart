@@ -23,7 +23,7 @@ class _$LoginSerializer implements StructuredSerializer<Login> {
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-    Object value;
+    Object? value;
     value = object.token;
     if (value != null) {
       result
@@ -152,25 +152,25 @@ class _$LoginBodySerializer implements StructuredSerializer<LoginBody> {
 
 class _$Login extends Login {
   @override
-  final String token;
+  final String? token;
   @override
-  final int id;
+  final int? id;
   @override
   final String username;
   @override
-  final String email;
+  final String? email;
   @override
-  final String firstName;
+  final String? firstName;
   @override
-  final String lastName;
+  final String? lastName;
 
-  factory _$Login([void Function(LoginBuilder) updates]) =>
+  factory _$Login([void Function(LoginBuilder)? updates]) =>
       (new LoginBuilder()..update(updates)).build();
 
   _$Login._(
       {this.token,
       this.id,
-      this.username,
+      required this.username,
       this.email,
       this.firstName,
       this.lastName})
@@ -223,31 +223,31 @@ class _$Login extends Login {
 }
 
 class LoginBuilder implements Builder<Login, LoginBuilder> {
-  _$Login _$v;
+  _$Login? _$v;
 
-  String _token;
-  String get token => _$this._token;
-  set token(String token) => _$this._token = token;
+  String? _token;
+  String? get token => _$this._token;
+  set token(String? token) => _$this._token = token;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  String _username;
-  String get username => _$this._username;
-  set username(String username) => _$this._username = username;
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
-  String _email;
-  String get email => _$this._email;
-  set email(String email) => _$this._email = email;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
-  String _firstName;
-  String get firstName => _$this._firstName;
-  set firstName(String firstName) => _$this._firstName = firstName;
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
 
-  String _lastName;
-  String get lastName => _$this._lastName;
-  set lastName(String lastName) => _$this._lastName = lastName;
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
 
   LoginBuilder();
 
@@ -272,7 +272,7 @@ class LoginBuilder implements Builder<Login, LoginBuilder> {
   }
 
   @override
-  void update(void Function(LoginBuilder) updates) {
+  void update(void Function(LoginBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -298,10 +298,10 @@ class _$LoginBody extends LoginBody {
   @override
   final String password;
 
-  factory _$LoginBody([void Function(LoginBodyBuilder) updates]) =>
+  factory _$LoginBody([void Function(LoginBodyBuilder)? updates]) =>
       (new LoginBodyBuilder()..update(updates)).build();
 
-  _$LoginBody._({this.username, this.password}) : super._() {
+  _$LoginBody._({required this.username, required this.password}) : super._() {
     BuiltValueNullFieldError.checkNotNull(username, 'LoginBody', 'username');
     BuiltValueNullFieldError.checkNotNull(password, 'LoginBody', 'password');
   }
@@ -336,15 +336,15 @@ class _$LoginBody extends LoginBody {
 }
 
 class LoginBodyBuilder implements Builder<LoginBody, LoginBodyBuilder> {
-  _$LoginBody _$v;
+  _$LoginBody? _$v;
 
-  String _username;
-  String get username => _$this._username;
-  set username(String username) => _$this._username = username;
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
-  String _password;
-  String get password => _$this._password;
-  set password(String password) => _$this._password = password;
+  String? _password;
+  String? get password => _$this._password;
+  set password(String? password) => _$this._password = password;
 
   LoginBodyBuilder();
 
@@ -365,7 +365,7 @@ class LoginBodyBuilder implements Builder<LoginBody, LoginBodyBuilder> {
   }
 
   @override
-  void update(void Function(LoginBodyBuilder) updates) {
+  void update(void Function(LoginBodyBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

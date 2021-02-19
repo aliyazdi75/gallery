@@ -13,8 +13,7 @@ abstract class Gallery implements Built<Gallery, GalleryBuilder> {
 
   String get current;
 
-  @nullable
-  String get parent;
+  String? get parent;
 
   BuiltList<Album> get albums;
 
@@ -34,8 +33,7 @@ abstract class Gallery implements Built<Gallery, GalleryBuilder> {
 
 abstract class GalleryQuery
     implements Built<GalleryQuery, GalleryQueryBuilder> {
-  @nullable
-  String get path;
+  String? get path;
 
   GalleryQuery._();
 

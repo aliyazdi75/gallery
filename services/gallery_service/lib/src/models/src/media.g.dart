@@ -41,6 +41,8 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
     final result = <Object>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
+      'path',
+      serializers.serialize(object.path, specifiedType: const FullType(String)),
       'type',
       serializers.serialize(object.type,
           specifiedType: const FullType(MediaType)),
@@ -71,6 +73,10 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'path':
+          result.path = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
         case 'type':
@@ -121,6 +127,8 @@ class _$Media extends Media {
   @override
   final String name;
   @override
+  final String path;
+  @override
   final MediaType type;
   @override
   final String thumbnail;
@@ -131,13 +139,20 @@ class _$Media extends Media {
   @override
   final int width;
 
-  factory _$Media([void Function(MediaBuilder) updates]) =>
+  factory _$Media([void Function(MediaBuilder)? updates]) =>
       (new MediaBuilder()..update(updates)).build();
 
   _$Media._(
-      {this.name, this.type, this.thumbnail, this.url, this.height, this.width})
+      {required this.name,
+      required this.path,
+      required this.type,
+      required this.thumbnail,
+      required this.url,
+      required this.height,
+      required this.width})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'Media', 'name');
+    BuiltValueNullFieldError.checkNotNull(path, 'Media', 'path');
     BuiltValueNullFieldError.checkNotNull(type, 'Media', 'type');
     BuiltValueNullFieldError.checkNotNull(thumbnail, 'Media', 'thumbnail');
     BuiltValueNullFieldError.checkNotNull(url, 'Media', 'url');
@@ -157,6 +172,7 @@ class _$Media extends Media {
     if (identical(other, this)) return true;
     return other is Media &&
         name == other.name &&
+        path == other.path &&
         type == other.type &&
         thumbnail == other.thumbnail &&
         url == other.url &&
@@ -169,7 +185,9 @@ class _$Media extends Media {
     return $jf($jc(
         $jc(
             $jc(
-                $jc($jc($jc(0, name.hashCode), type.hashCode),
+                $jc(
+                    $jc($jc($jc(0, name.hashCode), path.hashCode),
+                        type.hashCode),
                     thumbnail.hashCode),
                 url.hashCode),
             height.hashCode),
@@ -180,6 +198,7 @@ class _$Media extends Media {
   String toString() {
     return (newBuiltValueToStringHelper('Media')
           ..add('name', name)
+          ..add('path', path)
           ..add('type', type)
           ..add('thumbnail', thumbnail)
           ..add('url', url)
@@ -190,31 +209,35 @@ class _$Media extends Media {
 }
 
 class MediaBuilder implements Builder<Media, MediaBuilder> {
-  _$Media _$v;
+  _$Media? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  MediaType _type;
-  MediaType get type => _$this._type;
-  set type(MediaType type) => _$this._type = type;
+  String? _path;
+  String? get path => _$this._path;
+  set path(String? path) => _$this._path = path;
 
-  String _thumbnail;
-  String get thumbnail => _$this._thumbnail;
-  set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
+  MediaType? _type;
+  MediaType? get type => _$this._type;
+  set type(MediaType? type) => _$this._type = type;
 
-  String _url;
-  String get url => _$this._url;
-  set url(String url) => _$this._url = url;
+  String? _thumbnail;
+  String? get thumbnail => _$this._thumbnail;
+  set thumbnail(String? thumbnail) => _$this._thumbnail = thumbnail;
 
-  int _height;
-  int get height => _$this._height;
-  set height(int height) => _$this._height = height;
+  String? _url;
+  String? get url => _$this._url;
+  set url(String? url) => _$this._url = url;
 
-  int _width;
-  int get width => _$this._width;
-  set width(int width) => _$this._width = width;
+  int? _height;
+  int? get height => _$this._height;
+  set height(int? height) => _$this._height = height;
+
+  int? _width;
+  int? get width => _$this._width;
+  set width(int? width) => _$this._width = width;
 
   MediaBuilder();
 
@@ -222,6 +245,7 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
     final $v = _$v;
     if ($v != null) {
       _name = $v.name;
+      _path = $v.path;
       _type = $v.type;
       _thumbnail = $v.thumbnail;
       _url = $v.url;
@@ -239,7 +263,7 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
   }
 
   @override
-  void update(void Function(MediaBuilder) updates) {
+  void update(void Function(MediaBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -248,6 +272,7 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
     final _$result = _$v ??
         new _$Media._(
             name: BuiltValueNullFieldError.checkNotNull(name, 'Media', 'name'),
+            path: BuiltValueNullFieldError.checkNotNull(path, 'Media', 'path'),
             type: BuiltValueNullFieldError.checkNotNull(type, 'Media', 'type'),
             thumbnail: BuiltValueNullFieldError.checkNotNull(
                 thumbnail, 'Media', 'thumbnail'),

@@ -16,13 +16,11 @@ abstract class Register implements Built<Register, RegisterBuilder> {
 
   String get email;
 
-  @nullable
   @BuiltValueField(wireName: 'first_name')
-  String get firstName;
+  String? get firstName;
 
-  @nullable
   @BuiltValueField(wireName: 'last_name')
-  String get lastName;
+  String? get lastName;
 
   Register._();
 

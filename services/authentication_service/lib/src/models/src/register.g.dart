@@ -33,7 +33,7 @@ class _$RegisterSerializer implements StructuredSerializer<Register> {
       serializers.serialize(object.email,
           specifiedType: const FullType(String)),
     ];
-    Object value;
+    Object? value;
     value = object.firstName;
     if (value != null) {
       result
@@ -109,19 +109,19 @@ class _$Register extends Register {
   @override
   final String email;
   @override
-  final String firstName;
+  final String? firstName;
   @override
-  final String lastName;
+  final String? lastName;
 
-  factory _$Register([void Function(RegisterBuilder) updates]) =>
+  factory _$Register([void Function(RegisterBuilder)? updates]) =>
       (new RegisterBuilder()..update(updates)).build();
 
   _$Register._(
-      {this.token,
-      this.id,
-      this.username,
-      this.password,
-      this.email,
+      {required this.token,
+      required this.id,
+      required this.username,
+      required this.password,
+      required this.email,
       this.firstName,
       this.lastName})
       : super._() {
@@ -181,35 +181,35 @@ class _$Register extends Register {
 }
 
 class RegisterBuilder implements Builder<Register, RegisterBuilder> {
-  _$Register _$v;
+  _$Register? _$v;
 
-  String _token;
-  String get token => _$this._token;
-  set token(String token) => _$this._token = token;
+  String? _token;
+  String? get token => _$this._token;
+  set token(String? token) => _$this._token = token;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  String _username;
-  String get username => _$this._username;
-  set username(String username) => _$this._username = username;
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
-  String _password;
-  String get password => _$this._password;
-  set password(String password) => _$this._password = password;
+  String? _password;
+  String? get password => _$this._password;
+  set password(String? password) => _$this._password = password;
 
-  String _email;
-  String get email => _$this._email;
-  set email(String email) => _$this._email = email;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
-  String _firstName;
-  String get firstName => _$this._firstName;
-  set firstName(String firstName) => _$this._firstName = firstName;
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
 
-  String _lastName;
-  String get lastName => _$this._lastName;
-  set lastName(String lastName) => _$this._lastName = lastName;
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
 
   RegisterBuilder();
 
@@ -235,7 +235,7 @@ class RegisterBuilder implements Builder<Register, RegisterBuilder> {
   }
 
   @override
-  void update(void Function(RegisterBuilder) updates) {
+  void update(void Function(RegisterBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

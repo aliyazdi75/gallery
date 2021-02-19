@@ -9,6 +9,8 @@ part 'media.g.dart';
 abstract class Media implements Built<Media, MediaBuilder> {
   String get name;
 
+  String get path;
+
   MediaType get type;
 
   String get thumbnail;

@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'state.dart';
 
 class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
   NoAnimationMaterialPageRoute({
-    @required WidgetBuilder builder,
-    RouteSettings settings,
+    required WidgetBuilder builder,
+    RouteSettings? settings,
   }) : super(builder: builder, settings: settings);
 
   @override
@@ -47,11 +46,11 @@ class AlbumPagePath extends GalleryRoutePath {
 
 class MediaFullscreenPath extends GalleryRoutePath {
   final String albumPath;
-  final String fileName;
+  final String mediaPath;
 
   static const String fullscreenRoute = 'view';
 
-  MediaFullscreenPath(this.albumPath, this.fileName);
+  MediaFullscreenPath(this.albumPath, this.mediaPath);
 }
 
 class GalleryRouteInformationParser
@@ -63,7 +62,7 @@ class GalleryRouteInformationParser
   @override
   Future<GalleryRoutePath> parseRouteInformation(
       RouteInformation routeInformation) async {
-    final uri = Uri.parse(routeInformation.location);
+    final uri = Uri.parse(routeInformation.location!);
 
     // '/'
     if (uri.pathSegments.isEmpty) {
@@ -80,17 +79,19 @@ class GalleryRouteInformationParser
       // '/'
       case AlbumPagePath.albumRoute:
         if (uri.pathSegments.length > 1) {
-          // '/album/${}/view/${}/'
+          routersState.galleryPath = AlbumPagePath.albumRoute;
+          routersState.pushAlbumPath(uri.pathSegments[1]);
+          // '/album/${}/view/${}'
           if (uri.pathSegments.length > 3 &&
               uri.pathSegments[2] == MediaFullscreenPath.fullscreenRoute) {
+            routersState.fullscreenRouteState =
+                FullscreenRouteState(uri.pathSegments[3]);
             return MediaFullscreenPath(
               uri.pathSegments[1],
               uri.pathSegments[3],
             );
           }
           // '/album/${}/'
-          routersState.galleryPath = AlbumPagePath.albumRoute;
-          routersState.pushAlbumPath(uri.pathSegments[1]);
           return AlbumPagePath(uri.pathSegments[1]);
         }
     }
@@ -100,10 +101,8 @@ class GalleryRouteInformationParser
     return UnknownPagePath();
   }
 
-  //todo: handle route name like http://localhost:34835/gallery/album/gallery/
-  //todo: handle route web chrome back
   @override
-  RouteInformation restoreRouteInformation(GalleryRoutePath configuration) {
+  RouteInformation? restoreRouteInformation(GalleryRoutePath configuration) {
     if (configuration is UnknownPagePath) {
       return const RouteInformation(
         location: '/404',
@@ -134,7 +133,7 @@ class GalleryRouteInformationParser
             '/' +
             MediaFullscreenPath.fullscreenRoute +
             '/' +
-            configuration.fileName,
+            configuration.mediaPath,
       );
     }
     return null;

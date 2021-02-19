@@ -34,7 +34,7 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
           specifiedType:
               const FullType(BuiltList, const [const FullType(Media)])),
     ];
-    Object value;
+    Object? value;
     value = object.parent;
     if (value != null) {
       result
@@ -97,7 +97,7 @@ class _$GalleryQuerySerializer implements StructuredSerializer<GalleryQuery> {
   Iterable<Object> serialize(Serializers serializers, GalleryQuery object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    Object value;
+    Object? value;
     value = object.path;
     if (value != null) {
       result
@@ -136,16 +136,21 @@ class _$Gallery extends Gallery {
   @override
   final String current;
   @override
-  final String parent;
+  final String? parent;
   @override
   final BuiltList<Album> albums;
   @override
   final BuiltList<Media> medias;
 
-  factory _$Gallery([void Function(GalleryBuilder) updates]) =>
+  factory _$Gallery([void Function(GalleryBuilder)? updates]) =>
       (new GalleryBuilder()..update(updates)).build();
 
-  _$Gallery._({this.path, this.current, this.parent, this.albums, this.medias})
+  _$Gallery._(
+      {required this.path,
+      required this.current,
+      this.parent,
+      required this.albums,
+      required this.medias})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(path, 'Gallery', 'path');
     BuiltValueNullFieldError.checkNotNull(current, 'Gallery', 'current');
@@ -192,27 +197,27 @@ class _$Gallery extends Gallery {
 }
 
 class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
-  _$Gallery _$v;
+  _$Gallery? _$v;
 
-  String _path;
-  String get path => _$this._path;
-  set path(String path) => _$this._path = path;
+  String? _path;
+  String? get path => _$this._path;
+  set path(String? path) => _$this._path = path;
 
-  String _current;
-  String get current => _$this._current;
-  set current(String current) => _$this._current = current;
+  String? _current;
+  String? get current => _$this._current;
+  set current(String? current) => _$this._current = current;
 
-  String _parent;
-  String get parent => _$this._parent;
-  set parent(String parent) => _$this._parent = parent;
+  String? _parent;
+  String? get parent => _$this._parent;
+  set parent(String? parent) => _$this._parent = parent;
 
-  ListBuilder<Album> _albums;
+  ListBuilder<Album>? _albums;
   ListBuilder<Album> get albums => _$this._albums ??= new ListBuilder<Album>();
-  set albums(ListBuilder<Album> albums) => _$this._albums = albums;
+  set albums(ListBuilder<Album>? albums) => _$this._albums = albums;
 
-  ListBuilder<Media> _medias;
+  ListBuilder<Media>? _medias;
   ListBuilder<Media> get medias => _$this._medias ??= new ListBuilder<Media>();
-  set medias(ListBuilder<Media> medias) => _$this._medias = medias;
+  set medias(ListBuilder<Media>? medias) => _$this._medias = medias;
 
   GalleryBuilder();
 
@@ -236,7 +241,7 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
   }
 
   @override
-  void update(void Function(GalleryBuilder) updates) {
+  void update(void Function(GalleryBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -254,7 +259,7 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
               albums: albums.build(),
               medias: medias.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'albums';
         albums.build();
@@ -273,9 +278,9 @@ class GalleryBuilder implements Builder<Gallery, GalleryBuilder> {
 
 class _$GalleryQuery extends GalleryQuery {
   @override
-  final String path;
+  final String? path;
 
-  factory _$GalleryQuery([void Function(GalleryQueryBuilder) updates]) =>
+  factory _$GalleryQuery([void Function(GalleryQueryBuilder)? updates]) =>
       (new GalleryQueryBuilder()..update(updates)).build();
 
   _$GalleryQuery._({this.path}) : super._();
@@ -307,11 +312,11 @@ class _$GalleryQuery extends GalleryQuery {
 
 class GalleryQueryBuilder
     implements Builder<GalleryQuery, GalleryQueryBuilder> {
-  _$GalleryQuery _$v;
+  _$GalleryQuery? _$v;
 
-  String _path;
-  String get path => _$this._path;
-  set path(String path) => _$this._path = path;
+  String? _path;
+  String? get path => _$this._path;
+  set path(String? path) => _$this._path = path;
 
   GalleryQueryBuilder();
 
@@ -331,7 +336,7 @@ class GalleryQueryBuilder
   }
 
   @override
-  void update(void Function(GalleryQueryBuilder) updates) {
+  void update(void Function(GalleryQueryBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

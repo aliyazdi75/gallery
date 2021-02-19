@@ -4,10 +4,10 @@ const horizontalDesktopPadding = 81.0;
 
 class PageButton extends StatelessWidget {
   const PageButton({
-    Key key,
-    @required this.isEnd,
-    @required this.show,
-    @required this.onTap,
+    Key? key,
+    required this.isEnd,
+    required this.show,
+    required this.onTap,
   }) : super(key: key);
 
   final bool isEnd;

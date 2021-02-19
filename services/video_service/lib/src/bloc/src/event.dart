@@ -5,7 +5,7 @@ abstract class VideoEvent extends Equatable {
   const VideoEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class VideoInitialized extends VideoEvent {
@@ -14,7 +14,7 @@ class VideoInitialized extends VideoEvent {
   final String videoUrl;
 
   @override
-  List<Object> get props => [videoUrl];
+  List<Object?> get props => [videoUrl];
 }
 
 class VideoUpdated extends VideoEvent {

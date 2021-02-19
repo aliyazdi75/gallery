@@ -2,20 +2,15 @@ import 'dart:async';
 
 import 'package:authentication_service/src/models/index.dart';
 import 'package:authentication_service/src/providers/api/index.dart';
-import 'package:meta/meta.dart';
 
 class AuthenticationRepository {
   Future<Register> register({
-    @required String username,
-    @required String password,
-    @required String email,
-    String firstName,
-    String lastName,
+    required String username,
+    required String password,
+    required String email,
+    String? firstName,
+    String? lastName,
   }) async {
-    assert(username != null);
-    assert(password != null);
-    assert(email != null);
-
     final register = Register(
       (b) => b
         ..username = username
@@ -30,12 +25,9 @@ class AuthenticationRepository {
   }
 
   Future<Login> login({
-    @required String username,
-    @required String password,
+    required String username,
+    required String password,
   }) async {
-    assert(username != null);
-    assert(password != null);
-
     final loginBody = LoginBody(
       (b) => b
         ..username = username

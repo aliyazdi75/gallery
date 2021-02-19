@@ -30,16 +30,16 @@ void main() {
 
 class GalleryApp extends StatelessWidget {
   GalleryApp({
-    Key key,
+    Key? key,
+    required this.routersState,
     this.isTestMode = false,
     this.initialRoute,
-    this.routersState,
   })  : routeInformationParser = GalleryRouteInformationParser(routersState),
         routerDelegate = GalleryRouterDelegate(routersState),
         super(key: key);
 
   final bool isTestMode;
-  final String initialRoute;
+  final String? initialRoute;
   final GalleryRoutersState routersState;
   final GalleryRouteInformationParser routeInformationParser;
   final GalleryRouterDelegate routerDelegate;
@@ -84,7 +84,7 @@ class GalleryApp extends StatelessWidget {
                 material: MaterialApp.router(
                   title: galleryTitle,
                   onGenerateTitle: (context) =>
-                      GalleryLocalizations.of(context).galleryTitle,
+                      GalleryLocalizations.of(context)!.galleryTitle,
                   debugShowCheckedModeBanner: false,
                   themeMode: GalleryOptions.of(context).themeMode,
                   theme: GalleryThemeData.lightThemeData(context)
@@ -106,7 +106,7 @@ class GalleryApp extends StatelessWidget {
                       child: AnnotatedRegion<SystemUiOverlayStyle>(
                         value: GalleryOptions.of(context)
                             .resolvedSystemUiOverlayStyle(context),
-                        child: child,
+                        child: child!,
                       ),
                     );
                   },
@@ -114,7 +114,7 @@ class GalleryApp extends StatelessWidget {
                 cupertino: CupertinoApp.router(
                   title: galleryTitle,
                   onGenerateTitle: (context) =>
-                      GalleryLocalizations.of(context).galleryTitle,
+                      GalleryLocalizations.of(context)!.galleryTitle,
                   debugShowCheckedModeBanner: false,
                   theme: MaterialBasedCupertinoThemeData(
                     materialTheme:
@@ -135,7 +135,7 @@ class GalleryApp extends StatelessWidget {
                       child: AnnotatedRegion<SystemUiOverlayStyle>(
                         value: GalleryOptions.of(context)
                             .resolvedSystemUiOverlayStyle(context),
-                        child: child,
+                        child: child!,
                       ),
                     );
                   },
@@ -151,9 +151,9 @@ class GalleryApp extends StatelessWidget {
 
 class RootPage extends StatelessWidget {
   RootPage({
-    Key key,
-    @required this.albumPath,
-    @required this.onRouteChanged,
+    Key? key,
+    required this.albumPath,
+    required this.onRouteChanged,
   }) : super(key: key);
 
   final String albumPath;

@@ -4,7 +4,7 @@ publish_to: none
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.10.0-0 <3.0.0'
+  sdk: '>=2.12.0-0 <3.0.0'
 
 dependencies:
   flutter:
@@ -15,13 +15,13 @@ dependencies:
     path: ../dependencies_service/model_dependency_service
   layout_service:
     path: ../layout_service
-  http: any
+  http: ^0.13.0
 
 dev_dependencies:
-  pedantic: ^1.10.0-nullsafety.3
-  test: ^1.16.0-nullsafety.13
-  built_value_generator: any
-  build_runner: any
+  pedantic: ^1.10.0
+  test: ^1.16.3
+  built_value_generator: ^8.0.0
+  build_runner: ^1.11.5
 
 dependency_overrides:
-  http: ^0.13.0
+  analyzer: ^1.0.0

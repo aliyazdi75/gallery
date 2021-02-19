@@ -3,6 +3,7 @@ import 'package:gallery/main.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
 import 'package:gallery/presentation/screens/fullscreen/fullscreen.dart';
 import 'package:gallery/presentation/screens/login/login.dart';
+import 'package:gallery_service/gallery_service.dart';
 
 import 'routes.dart';
 import 'shell.dart';
@@ -27,7 +28,7 @@ class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
   }
 
   @override
-  GalleryRoutePath get currentConfiguration {
+  GalleryRoutePath? get currentConfiguration {
     if (routersState.show404) {
       return UnknownPagePath();
     }
@@ -37,11 +38,17 @@ class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
     if (routersState.galleryPath == LoginPagePath.loginRoute) {
       return LoginPagePath();
     }
-    if (routersState.fileName == null) {
-      return AlbumPagePath(routersState.albumsPath.last);
+    if (routersState.galleryPath == AlbumPagePath.albumRoute) {
+      if (routersState.fullscreenRouteState != null) {
+        return MediaFullscreenPath(
+          routersState.albumsPath.last,
+          routersState.fullscreenRouteState!.path,
+        );
+      } else if (routersState.albumsPath.isNotEmpty) {
+        return AlbumPagePath(routersState.albumsPath.last);
+      }
     }
-    return MediaFullscreenPath(
-        routersState.albumsPath.last, routersState.fileName);
+    return RootPagePath();
   }
 
   @override
@@ -58,29 +65,8 @@ class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
     );
   }
 
-  @override
-  Future<void> setInitialRoutePath(GalleryRoutePath path) {
-    if (path is UnknownPagePath) {
-      routersState.show404 = true;
-    } else if (path is RootPagePath) {
-      routersState.galleryPath = RootPagePath.rootRoute;
-    } else if (path is LoginPagePath) {
-      //todo: handle login routing
-      routersState.galleryPath = LoginPagePath.loginRoute;
-    } else if (path is AlbumPagePath) {
-      routersState.galleryPath = AlbumPagePath.albumRoute;
-      routersState.pushAlbumPath(path.albumPath);
-    } else if (path is MediaFullscreenPath) {
-      routersState.galleryPath = AlbumPagePath.albumRoute;
-      routersState.fileName = path.fileName;
-      routersState.pushAlbumPath(path.albumPath);
-    }
-    return super.setInitialRoutePath(path);
-  }
-
   //todo: add state to check weather the user is authenticated and if not route to login page
   //todo: add 404 exception to redirect to UnknownPagePath
-
   @override
   Future<void> setNewRoutePath(GalleryRoutePath path) async {
     if (path is UnknownPagePath) {
@@ -94,15 +80,14 @@ class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
       routersState.galleryPath = AlbumPagePath.albumRoute;
       routersState.pushAlbumPath(path.albumPath);
     } else if (path is MediaFullscreenPath) {
-      routersState.galleryPath = AlbumPagePath.albumRoute;
-      routersState.fileName = path.fileName;
+      routersState.fullscreenRouteState = FullscreenRouteState(path.mediaPath);
       routersState.pushAlbumPath(path.albumPath);
     }
   }
 }
 
 typedef HandleRouteChangedFunction = void Function(String routeName,
-    {bool isFileView, bool isPop, bool isRoot});
+    {bool isPop, bool isRoot, Media? media});
 
 class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<GalleryRoutePath> {
@@ -114,6 +99,7 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
   GalleryRoutersState _routersState;
 
   GalleryRoutersState get routersState => _routersState;
+  final heroController = HeroController();
 
   set routersState(GalleryRoutersState value) {
     if (value == _routersState) {
@@ -128,6 +114,7 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
+      observers: [heroController],
       pages: [
         if (routersState.show404)
           //todo: create 404 page
@@ -157,12 +144,14 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
                 onRouteChanged: _handleRouteChanged,
               ),
             ),
-          if (routersState.fileName != null)
+          if (routersState.fullscreenRouteState != null)
             FadeAnimationPage(
-              key: ValueKey(routersState.fileName),
+              key: ValueKey(routersState.fullscreenRouteState!.path),
               child: MediaFullscreen(
                 albumPath: routersState.albumsPath.last,
-                fileName: routersState.fileName,
+                mediaPath: routersState.fullscreenRouteState!.path,
+                media: routersState.fullscreenRouteState!.media,
+                onRouteChanged: _handleRouteChanged,
               ),
             ),
         ]
@@ -174,8 +163,8 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
 
         if (routersState.show404) {
           routersState.show404 = false;
-        } else if (routersState.fileName != null) {
-          routersState.fileName = null;
+        } else if (routersState.fullscreenRouteState != null) {
+          routersState.fullscreenRouteState = null;
         } else if (routersState.albumsPath.isNotEmpty) {
           routersState.popAlbumPath();
         }
@@ -194,20 +183,21 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
 
   void _handleRouteChanged(
     String routeName, {
-    bool isFileView = false,
     bool isPop = false,
     bool isRoot = false,
+    Media? media,
   }) {
     if (isPop) {
       routersState.galleryPath =
-          isRoot ? AlbumPagePath.albumRoute : AlbumPagePath.albumRoute;
+          isRoot ? RootPagePath.rootRoute : AlbumPagePath.albumRoute;
       routersState.replaceAlbumPath(routeName);
     } else {
-      if (isFileView) {
-        routersState.fileName = routeName;
-      } else {
+      if (media == null) {
         routersState.galleryPath = AlbumPagePath.albumRoute;
         routersState.pushAlbumPath(routeName);
+      } else {
+        routersState.fullscreenRouteState =
+            FullscreenRouteState(media.path, media: media);
       }
     }
   }
@@ -216,7 +206,7 @@ class InnerRouterDelegate extends RouterDelegate<GalleryRoutePath>
 class FadeAnimationPage extends Page<dynamic> {
   final Widget child;
 
-  FadeAnimationPage({LocalKey key, this.child}) : super(key: key);
+  FadeAnimationPage({LocalKey? key, required this.child}) : super(key: key);
 
   @override
   Route createRoute(BuildContext context) {

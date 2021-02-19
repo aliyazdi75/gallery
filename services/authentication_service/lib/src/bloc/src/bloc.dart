@@ -12,11 +12,9 @@ part 'state.dart';
 class AuthenticationBloc
     extends Bloc<AuthenticationEvent, AuthenticationState> {
   AuthenticationBloc({
-    @required this.authenticationRepository,
-    @required this.accountRepository,
-  })  : assert(authenticationRepository != null),
-        assert(accountRepository != null),
-        super(const AuthenticationState.unknown());
+    required this.authenticationRepository,
+    required this.accountRepository,
+  }) : super(const AuthenticationState.unknown());
 
   final AuthenticationRepository authenticationRepository;
   final AccountRepository accountRepository;
@@ -46,7 +44,7 @@ class AuthenticationBloc
     }
   }
 
-  Account _getAccount() {
+  Account? _getAccount() {
     try {
       return accountRepository.account;
     } on Exception catch (e) {

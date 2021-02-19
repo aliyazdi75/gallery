@@ -26,7 +26,7 @@ class _$PaginationSerializer
         isUnderspecified ? FullType.object : specifiedType.parameters[0];
 
     final result = <Object>[];
-    Object value;
+    Object? value;
     value = object.count;
     if (value != null) {
       result
@@ -103,15 +103,15 @@ class _$PaginationSerializer
 
 class _$Pagination<T> extends Pagination<T> {
   @override
-  final int count;
+  final int? count;
   @override
-  final String next;
+  final String? next;
   @override
-  final String previous;
+  final String? previous;
   @override
-  final BuiltList<T> results;
+  final BuiltList<T>? results;
 
-  factory _$Pagination([void Function(PaginationBuilder<T>) updates]) =>
+  factory _$Pagination([void Function(PaginationBuilder<T>)? updates]) =>
       (new PaginationBuilder<T>()..update(updates)).build();
 
   _$Pagination._({this.count, this.next, this.previous, this.results})
@@ -158,23 +158,23 @@ class _$Pagination<T> extends Pagination<T> {
 
 class PaginationBuilder<T>
     implements Builder<Pagination<T>, PaginationBuilder<T>> {
-  _$Pagination<T> _$v;
+  _$Pagination<T>? _$v;
 
-  int _count;
-  int get count => _$this._count;
-  set count(int count) => _$this._count = count;
+  int? _count;
+  int? get count => _$this._count;
+  set count(int? count) => _$this._count = count;
 
-  String _next;
-  String get next => _$this._next;
-  set next(String next) => _$this._next = next;
+  String? _next;
+  String? get next => _$this._next;
+  set next(String? next) => _$this._next = next;
 
-  String _previous;
-  String get previous => _$this._previous;
-  set previous(String previous) => _$this._previous = previous;
+  String? _previous;
+  String? get previous => _$this._previous;
+  set previous(String? previous) => _$this._previous = previous;
 
-  ListBuilder<T> _results;
+  ListBuilder<T>? _results;
   ListBuilder<T> get results => _$this._results ??= new ListBuilder<T>();
-  set results(ListBuilder<T> results) => _$this._results = results;
+  set results(ListBuilder<T>? results) => _$this._results = results;
 
   PaginationBuilder();
 
@@ -197,7 +197,7 @@ class PaginationBuilder<T>
   }
 
   @override
-  void update(void Function(PaginationBuilder<T>) updates) {
+  void update(void Function(PaginationBuilder<T>)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -212,7 +212,7 @@ class PaginationBuilder<T>
               previous: previous,
               results: _results?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'results';
         _results?.build();

@@ -109,7 +109,7 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
   void _timerShowingController() {
     _timer?.cancel();
     _timer = Timer.periodic(const Duration(seconds: 3), (t) async {
-      if (state.isPlaying!) {
+      if (state.isPlaying) {
         _timer?.cancel();
         add(const AutoOffControllerRequested());
       }

@@ -6,14 +6,14 @@ const fabHeight = 56.0;
 
 class SettingsWidget extends StatefulWidget {
   SettingsWidget({
-    Key key,
-    this.showJumpButton,
-    this.gridView,
-    this.onGridViewIconTap,
-    this.onJumpIconTap,
+    Key? key,
+    required this.scrollController,
+    required this.gridView,
+    required this.onGridViewIconTap,
+    required this.onJumpIconTap,
   }) : super(key: key);
 
-  final bool showJumpButton;
+  final ScrollController scrollController;
   final bool gridView;
   final Function onGridViewIconTap;
   final Function onJumpIconTap;
@@ -26,22 +26,46 @@ class _SettingsWidgetState extends State<SettingsWidget>
     with TickerProviderStateMixin {
   final startPosition = 0.0;
   final endPosition = fabHeight + 10.0;
+  bool _showJumpButton = false;
 
-  AnimationController _gridViewAnimationController;
+  late final AnimationController gridViewAnimationController;
+  late final AnimationController jumpButtonAnimationController;
+  late final Animation<double> jumpButtonAnimation;
 
   @override
   void initState() {
     super.initState();
-    _gridViewAnimationController = AnimationController(
+    gridViewAnimationController = AnimationController(
       vsync: this,
       duration: animationDuration,
     );
+    jumpButtonAnimationController = AnimationController(
+      vsync: this,
+      duration: animationDuration,
+    )..addListener(() => setState(() {}));
+    jumpButtonAnimation = Tween<double>(
+      begin: startPosition,
+      end: endPosition,
+    ).animate(CurvedAnimation(
+      parent: jumpButtonAnimationController,
+      curve: Curves.easeInOutBack,
+    ));
+    widget.scrollController.addListener(() {
+      if (widget.scrollController.offset >= 200 && !_showJumpButton) {
+        jumpButtonAnimationController.forward();
+        _showJumpButton = true;
+      }
+      if (widget.scrollController.offset < 200 && _showJumpButton) {
+        jumpButtonAnimationController.reverse();
+        _showJumpButton = false;
+      }
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
-    _gridViewAnimationController.dispose();
+    gridViewAnimationController.dispose();
   }
 
   @override
@@ -52,30 +76,19 @@ class _SettingsWidgetState extends State<SettingsWidget>
     return SingleChildScrollView(
       child: Stack(
         children: <Widget>[
-          TweenAnimationBuilder<double>(
-            tween: Tween<double>(
-              begin: widget.showJumpButton && widget.gridView
-                  ? startPosition
-                  : endPosition,
-              end: widget.showJumpButton && widget.gridView
-                  ? endPosition
-                  : startPosition,
+          Transform(
+            transform: Matrix4.translationValues(
+              0.0,
+              jumpButtonAnimation.value,
+              0.0,
             ),
-            duration: animationDuration,
-            curve: animationCurve,
-            builder: (context, size, child) => Transform(
-              transform: Matrix4.translationValues(
-                0.0,
-                size,
-                0.0,
-              ),
-              child: FloatingActionButton(
-                onPressed: () => widget.onJumpIconTap(),
-                child: const Icon(Icons.arrow_upward),
-              ),
+            child: FloatingActionButton(
+              heroTag: 'Up',
+              onPressed: () => widget.onJumpIconTap(),
+              child: const Icon(Icons.arrow_upward),
             ),
           ),
-          TweenAnimationBuilder<Color>(
+          TweenAnimationBuilder<Color?>(
             tween: ColorTween(
               begin: widget.gridView ? baseIconColor : girdViewIconColor,
               end: widget.gridView ? girdViewIconColor : baseIconColor,
@@ -83,18 +96,19 @@ class _SettingsWidgetState extends State<SettingsWidget>
             duration: animationDuration,
             curve: animationCurve,
             builder: (context, color, child) => FloatingActionButton(
+              heroTag: 'Grip',
               backgroundColor: color,
               onPressed: () {
                 if (widget.gridView) {
-                  _gridViewAnimationController.forward();
+                  gridViewAnimationController.forward();
                 } else {
-                  _gridViewAnimationController.reverse();
+                  gridViewAnimationController.reverse();
                 }
                 widget.onGridViewIconTap();
               },
               child: AnimatedIcon(
                 icon: AnimatedIcons.view_list,
-                progress: _gridViewAnimationController,
+                progress: gridViewAnimationController,
                 color: Colors.white,
               ),
             ),

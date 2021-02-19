@@ -28,18 +28,14 @@ abstract class HttpExceptionModel
 
 abstract class RegisterBadRequest
     implements Built<RegisterBadRequest, RegisterBadRequestBuilder> {
-  @nullable
-  BuiltList<String> get username;
+  BuiltList<String>? get username;
 
-  @nullable
-  BuiltList<String> get password;
+  BuiltList<String>? get password;
 
-  @nullable
-  BuiltList<String> get email;
+  BuiltList<String>? get email;
 
-  @nullable
   @BuiltValueField(wireName: 'non_field_errors')
-  BuiltList<String> get nonFieldErrors;
+  BuiltList<String>? get nonFieldErrors;
 
   RegisterBadRequest._();
 
@@ -57,15 +53,12 @@ abstract class RegisterBadRequest
 
 abstract class LoginBadRequest
     implements Built<LoginBadRequest, LoginBadRequestBuilder> {
-  @nullable
-  BuiltList<String> get username;
+  BuiltList<String>? get username;
 
-  @nullable
-  BuiltList<String> get password;
+  BuiltList<String>? get password;
 
-  @nullable
   @BuiltValueField(wireName: 'non_field_errors')
-  BuiltList<String> get nonFieldErrors;
+  BuiltList<String>? get nonFieldErrors;
 
   LoginBadRequest._();
 
@@ -82,12 +75,10 @@ abstract class LoginBadRequest
 
 abstract class GalleryBadRequest
     implements Built<GalleryBadRequest, GalleryBadRequestBuilder> {
-  @nullable
-  BuiltList<String> get path;
+  BuiltList<String>? get path;
 
-  @nullable
   @BuiltValueField(wireName: 'non_field_errors')
-  BuiltList<String> get nonFieldErrors;
+  BuiltList<String>? get nonFieldErrors;
 
   GalleryBadRequest._();
 

@@ -16,7 +16,7 @@ class VideoProgressSlider extends StatelessWidget {
         final duration = state.duration?.inMilliseconds;
         final position = state.position?.inMilliseconds;
         var maxBuffering = 0;
-        for (var range in state.buffered) {
+        for (var range in state.buffered!) {
           final end = range.end.inMilliseconds;
           if (end > maxBuffering) {
             maxBuffering = end;
@@ -43,11 +43,9 @@ class VideoProgressSlider extends StatelessWidget {
                     overlayShape: SliderComponentShape.noOverlay,
                     thumbShape: SliderComponentShape.noThumb,
                     trackHeight: sliderHeight,
-                    trackShape: const RectangularSliderTrackShape(
-                        disabledThumbGapWidth: 0.0),
                   ),
                   child: Slider.adaptive(
-                    divisions: duration.toInt(),
+                    divisions: duration!.toInt(),
                     max: duration.toDouble(),
                     min: 0.0,
                     onChanged: null,
@@ -66,8 +64,6 @@ class VideoProgressSlider extends StatelessWidget {
                         overlayShape: SliderComponentShape.noOverlay,
                         thumbColor: Colors.white,
                         trackHeight: sliderHeight,
-                        trackShape: const RectangularSliderTrackShape(
-                            disabledThumbGapWidth: 0.0),
                         thumbShape: RoundSliderThumbShape(
                           enabledThumbRadius: size,
                         ),
@@ -78,20 +74,20 @@ class VideoProgressSlider extends StatelessWidget {
                         max: duration.toDouble(),
                         min: 0.0,
                         onChanged: (value) {
-                          state.videoPlayerController.seekTo(
+                          state.videoPlayerController!.seekTo(
                             Duration(
                               milliseconds: value.toInt(),
                             ),
                           );
                         },
                         onChangeEnd: (value) {
-                          state.videoPlayerController.seekTo(
+                          state.videoPlayerController!.seekTo(
                             Duration(
                               milliseconds: value.toInt(),
                             ),
                           );
                         },
-                        value: position.toDouble(),
+                        value: position!.toDouble(),
                       ),
                     );
                   },

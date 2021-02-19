@@ -12,11 +12,9 @@ part 'state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   LoginBloc({
-    @required this.authenticationRepository,
-    @required this.accountRepository,
-  })  : assert(authenticationRepository != null),
-        assert(accountRepository != null),
-        super(const LoginState());
+    required this.authenticationRepository,
+    required this.accountRepository,
+  }) : super(const LoginState());
 
   final AuthenticationRepository authenticationRepository;
   final AccountRepository accountRepository;

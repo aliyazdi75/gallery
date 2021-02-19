@@ -22,7 +22,7 @@ class LoginForm extends StatelessWidget {
             ..showSnackBar(
               SnackBar(
                 content: Text(
-                  GalleryLocalizations.of(context).authenticationFailure,
+                  GalleryLocalizations.of(context)!.authenticationFailure,
                 ),
               ),
             );
@@ -57,11 +57,11 @@ class _UsernameInput extends StatelessWidget {
         return TextFormField(
           onChanged: (username) => BlocProvider.of<LoginBloc>(context)
               .add(LoginUsernameChanged(username)),
-          validator: (username) => username.isEmpty
-              ? GalleryLocalizations.of(context).usernameNotEmpty
+          validator: (username) => username!.isEmpty
+              ? GalleryLocalizations.of(context)!.usernameNotEmpty
               : null,
           decoration: InputDecoration(
-              labelText: GalleryLocalizations.of(context).username),
+              labelText: GalleryLocalizations.of(context)!.username),
         );
       },
     );
@@ -78,11 +78,11 @@ class _PasswordInput extends StatelessWidget {
           onChanged: (password) => BlocProvider.of<LoginBloc>(context)
               .add(LoginPasswordChanged(password)),
           obscureText: true,
-          validator: (password) => password.isEmpty
-              ? GalleryLocalizations.of(context).passwordNotEmpty
+          validator: (password) => password!.isEmpty
+              ? GalleryLocalizations.of(context)!.passwordNotEmpty
               : null,
           decoration: InputDecoration(
-              labelText: GalleryLocalizations.of(context).password),
+              labelText: GalleryLocalizations.of(context)!.password),
         );
       },
     );
@@ -102,9 +102,9 @@ class _LoginButton extends StatelessWidget {
         return state.status == LoginStatus.loading
             ? const CircularProgressIndicator()
             : ElevatedButton(
-                child: Text(GalleryLocalizations.of(context).login),
+                child: Text(GalleryLocalizations.of(context)!.login),
                 onPressed: () {
-                  if (formKey.currentState.validate()) {
+                  if (formKey.currentState!.validate()) {
                     BlocProvider.of<LoginBloc>(context)
                         .add(const LoginSubmitted());
                   }

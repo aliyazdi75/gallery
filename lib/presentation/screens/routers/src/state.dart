@@ -1,32 +1,40 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
+import 'package:gallery_service/gallery_service.dart';
 
 import 'routes.dart';
 
+class FullscreenRouteState {
+  FullscreenRouteState(this.path, {this.media});
+
+  final String path;
+  final Media? media;
+}
+
 class GalleryRoutersState extends ChangeNotifier with EquatableMixin {
-  static GalleryRoutersState _instance;
+  static GalleryRoutersState? _instance;
 
   factory GalleryRoutersState() {
     _instance ??= GalleryRoutersState._();
-    return _instance;
+    return _instance!;
   }
 
   GalleryRoutersState._() : _galleryPath = RootPagePath.rootRoute;
 
   List<String> _albumsPath = <String>[];
-  String _galleryPath;
-  String _fileName;
+  String? _galleryPath;
+  FullscreenRouteState? _fullscreenRouteState;
   bool _show404 = false;
 
-  String get galleryPath => _galleryPath;
+  String? get galleryPath => _galleryPath;
 
   List<String> get albumsPath => _albumsPath;
 
-  String get fileName => _fileName;
+  FullscreenRouteState? get fullscreenRouteState => _fullscreenRouteState;
 
   bool get show404 => _show404;
 
-  set galleryPath(String galleryPath) {
+  set galleryPath(String? galleryPath) {
     _galleryPath = galleryPath;
     notifyListeners();
   }
@@ -53,8 +61,8 @@ class GalleryRoutersState extends ChangeNotifier with EquatableMixin {
     }
   }
 
-  set fileName(String fileName) {
-    _fileName = fileName;
+  set fullscreenRouteState(FullscreenRouteState? fullscreenRouteState) {
+    _fullscreenRouteState = fullscreenRouteState;
     notifyListeners();
   }
 
@@ -64,7 +72,7 @@ class GalleryRoutersState extends ChangeNotifier with EquatableMixin {
   }
 
   @override
-  List<Object> get props {
-    return [_albumsPath, _galleryPath, _fileName, _show404];
+  List<Object?> get props {
+    return [_albumsPath, _galleryPath, _fullscreenRouteState, _show404];
   }
 }

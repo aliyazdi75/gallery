@@ -8,15 +8,15 @@ import 'state.dart';
 class GalleryAppShell extends StatefulWidget {
   final GalleryRoutersState routersState;
 
-  GalleryAppShell({@required this.routersState});
+  GalleryAppShell({required this.routersState});
 
   @override
   _GalleryAppShellState createState() => _GalleryAppShellState();
 }
 
 class _GalleryAppShellState extends State<GalleryAppShell> {
-  InnerRouterDelegate _routerDelegate;
-  ChildBackButtonDispatcher _backButtonDispatcher;
+  late InnerRouterDelegate _routerDelegate;
+  late ChildBackButtonDispatcher _backButtonDispatcher;
 
   @override
   void initState() {
@@ -41,7 +41,7 @@ class _GalleryAppShellState extends State<GalleryAppShell> {
     super.didChangeDependencies();
     // Defer back button dispatching to the child router
     _backButtonDispatcher = Router.of(context)
-        .backButtonDispatcher
+        .backButtonDispatcher!
         .createChildBackButtonDispatcher();
   }
 

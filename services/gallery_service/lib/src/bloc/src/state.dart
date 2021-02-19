@@ -4,22 +4,16 @@ enum GalleryStatus { initial, loading, successPush, successPop, failure }
 
 class GalleryState extends Equatable {
   const GalleryState({
-    this.status,
-    this.galleries,
+    this.status = GalleryStatus.initial,
+    this.galleries = const <Gallery>[],
   });
 
   final GalleryStatus status;
   final List<Gallery> galleries;
 
-  GalleryState.initial()
-      : this(
-          status: GalleryStatus.initial,
-          galleries: <Gallery>[],
-        );
-
   GalleryState copyWith({
-    GalleryStatus status,
-    List<Gallery> galleries,
+    GalleryStatus? status,
+    List<Gallery>? galleries,
   }) {
     return GalleryState(
       status: status ?? this.status,
@@ -28,5 +22,5 @@ class GalleryState extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, galleries];
+  List<Object?> get props => [status, galleries];
 }

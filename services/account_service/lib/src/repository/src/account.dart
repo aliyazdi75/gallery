@@ -1,7 +1,7 @@
 import 'package:account_service/src/models/index.dart';
 
 class AccountRepository {
-  Account _account;
+  late Account _account;
 
   Account get account {
     if (_account == null) {

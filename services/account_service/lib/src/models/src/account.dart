@@ -6,23 +6,19 @@ import 'serializers.dart';
 part 'account.g.dart';
 
 abstract class Account implements Built<Account, AccountBuilder> {
-  @nullable
-  String get token;
+  String? get token;
 
   int get id;
 
   String get username;
 
-  @nullable
   @BuiltValueField(wireName: 'first_name')
-  String get firstName;
+  String? get firstName;
 
-  @nullable
   @BuiltValueField(wireName: 'last_name')
-  String get lastName;
+  String? get lastName;
 
-  @nullable
-  String get email;
+  String? get email;
 
   Account._();
 

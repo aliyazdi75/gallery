@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 
 const kIconSizeSelected = 0.4;
@@ -6,15 +7,16 @@ const kIconSizeUnselected = 0.25;
 
 class MediaPreviewWidget extends StatefulWidget {
   MediaPreviewWidget({
-    @required this.index,
-    @required this.gridView,
-    @required this.isVideoType,
-    @required this.isSelected,
-    @required this.media,
-    @required this.containerHeight,
-    @required this.selectionAnimationDuration,
-    @required this.selectionAnimationCurve,
-    @required this.onTap,
+    required this.index,
+    required this.gridView,
+    required this.isVideoType,
+    required this.isSelected,
+    required this.media,
+    required this.containerHeight,
+    required this.selectionAnimationDuration,
+    required this.selectionAnimationCurve,
+    required this.onTap,
+    required this.onRouteChanged,
   });
 
   final int index;
@@ -26,6 +28,7 @@ class MediaPreviewWidget extends StatefulWidget {
   final Duration selectionAnimationDuration;
   final Curve selectionAnimationCurve;
   final VoidCallback onTap;
+  final HandleRouteChangedFunction onRouteChanged;
 
   @override
   _MediaPreviewWidgetState createState() => _MediaPreviewWidgetState();
@@ -74,19 +77,13 @@ class _MediaPreviewWidgetState extends State<MediaPreviewWidget> {
         child: InkWell(
           onTap: () {
             if (widget.isSelected || widget.gridView) {
-              // Navigator.of(context).pushNamed(
-              //   AlbumPage.albumRoute +
-              //       MediaFullscreen.fullscreenRoute +
-              //       '/' +
-              //       widget.media.name,
-              //   // arguments: MediaFullscreenArguments(media: widget.media),
-              // );
+              widget.onRouteChanged(widget.media.path, media: widget.media);
             } else {
               widget.onTap();
             }
           },
           child: Hero(
-            tag: widget.media.thumbnail,
+            tag: widget.media.path,
             child: AnimatedContainer(
               duration: widget.selectionAnimationDuration,
               curve: widget.selectionAnimationCurve,
@@ -106,7 +103,7 @@ class _MediaPreviewWidgetState extends State<MediaPreviewWidget> {
                       return AnimatedOpacity(
                         child: child,
                         opacity: frame == null ? 0 : 1,
-                        duration: const Duration(seconds: 2),
+                        duration: const Duration(seconds: 1),
                         curve: Curves.easeOut,
                       );
                     },

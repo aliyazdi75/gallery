@@ -6,30 +6,30 @@ class VideoState extends Equatable {
   VideoState({
     this.status = VideoStatus.initial,
     this.videoPlayerController,
-    this.aspectRatio,
+    this.aspectRatio = 4 / 3,
     this.isShowingController = false,
     this.isCompleted = false,
-    this.isPlaying,
+    this.isPlaying = false,
     this.isBuffering,
     this.duration,
     this.position,
-    this.durationText,
-    this.positionText,
+    this.durationText = '',
+    this.positionText = '',
     this.volume,
     this.buffered,
   });
 
   final VideoStatus status;
   final VideoPlayerController? videoPlayerController;
-  final double? aspectRatio;
+  final double aspectRatio;
   final bool isShowingController;
   final bool isCompleted;
-  final bool? isPlaying;
+  final bool isPlaying;
   final bool? isBuffering;
   final Duration? duration;
   final Duration? position;
-  final String? durationText;
-  final String? positionText;
+  final String durationText;
+  final String positionText;
   final double? volume;
   final List<DurationRange>? buffered;
 

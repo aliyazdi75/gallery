@@ -8,10 +8,10 @@ import 'video_progress_slider.dart';
 
 class VideoControlsOverlay extends StatefulWidget {
   const VideoControlsOverlay({
-    Key key,
-    @required this.videoState,
-    @required this.isFullscreen,
-    @required this.handleFullscreenButton,
+    Key? key,
+    required this.videoState,
+    required this.isFullscreen,
+    required this.handleFullscreenButton,
   }) : super(key: key);
 
   final VideoState videoState;
@@ -42,7 +42,7 @@ class _VideoControlsOverlayState extends State<VideoControlsOverlay>
     const horizontalPadding = 8.0;
     const verticalPadding = 8.0;
     final textTheme =
-        Theme.of(context).textTheme.subtitle2.copyWith(color: Colors.white);
+        Theme.of(context).textTheme.subtitle2!.copyWith(color: Colors.white);
     final backIcon = Container(
       alignment: Alignment.topLeft,
       child: const BackButton(color: Colors.white),
@@ -69,10 +69,10 @@ class _VideoControlsOverlayState extends State<VideoControlsOverlay>
             onTap: () {
               if (widget.videoState.isPlaying) {
                 animationController.forward();
-                widget.videoState.videoPlayerController.pause();
+                widget.videoState.videoPlayerController!.pause();
               } else {
                 animationController.reverse();
-                widget.videoState.videoPlayerController.play();
+                widget.videoState.videoPlayerController!.play();
               }
             },
             child: Center(
@@ -97,12 +97,12 @@ class _VideoControlsOverlayState extends State<VideoControlsOverlay>
                   if (isLargeDisplay(context)) {
                     if (widget.videoState.isPlaying) {
                       animationController.forward();
-                      widget.videoState.videoPlayerController.pause();
+                      widget.videoState.videoPlayerController!.pause();
                       BlocProvider.of<VideoBloc>(context)
                           .add(const PersistShowingControllerRequested());
                     } else {
                       animationController.reverse();
-                      widget.videoState.videoPlayerController.play();
+                      widget.videoState.videoPlayerController!.play();
                       BlocProvider.of<VideoBloc>(context)
                           .add(const ToggleControllerRequested());
                     }

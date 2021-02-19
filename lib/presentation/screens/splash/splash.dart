@@ -31,7 +31,7 @@ class SplashPage extends StatelessWidget {
         body: Center(
           child: TextButton(
             onPressed: () {},
-            child: Text(GalleryLocalizations.of(context).login),
+            child: Text(GalleryLocalizations.of(context)!.login),
           ),
         ),
       ),

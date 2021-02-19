@@ -7,11 +7,7 @@ import 'package:gallery_service/gallery_service.dart';
 import 'media/view/media.dart';
 
 class AlbumPage extends StatelessWidget {
-  AlbumPage({
-    @required this.albumPath,
-    @required this.onRouteChanged,
-  })  : assert(albumPath != null),
-        assert(onRouteChanged != null);
+  AlbumPage({required this.albumPath, required this.onRouteChanged});
 
   final String albumPath;
   final HandleRouteChangedFunction onRouteChanged;
@@ -37,7 +33,7 @@ class AlbumPage extends StatelessWidget {
               ..showSnackBar(
                 SnackBar(
                   content: Text(
-                    GalleryLocalizations.of(context).galleryFailure,
+                    GalleryLocalizations.of(context)!.galleryFailure,
                   ),
                 ),
               );
@@ -60,7 +56,10 @@ class AlbumPage extends StatelessWidget {
             }
           };
           return WillPopScope(
-            onWillPop: () => onWillPop(),
+            onWillPop: () async {
+              onWillPop();
+              return false;
+            },
             child: Scaffold(
               appBar: AppBar(
                 title: Text(
@@ -82,6 +81,7 @@ class AlbumPage extends StatelessWidget {
                       children: [
                         if (state.galleries.last.parent != null)
                           FloatingActionButton.extended(
+                            heroTag: albumPath,
                             onPressed: () => onWillPop(),
                             icon: const BackButtonIcon(),
                             label: Text(
@@ -108,7 +108,10 @@ class AlbumPage extends StatelessWidget {
                     const LinearProgressIndicator(
                         backgroundColor: Colors.transparent),
                   if (state.galleries.isNotEmpty)
-                    MediaWidget(medias: state.galleries.last.medias),
+                    MediaWidget(
+                      medias: state.galleries.last.medias.toList(),
+                      onRouteChanged: onRouteChanged,
+                    ),
                 ],
               ),
             ),

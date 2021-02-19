@@ -12,10 +12,7 @@ part 'event.dart';
 part 'state.dart';
 
 class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
-  GalleryBloc({
-    @required this.galleryRepository,
-  })  : assert(galleryRepository != null),
-        super(GalleryState.initial());
+  GalleryBloc({required this.galleryRepository}) : super(const GalleryState());
 
   final GalleryRepository galleryRepository;
 
@@ -38,9 +35,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         status: GalleryStatus.successPush,
         galleries: List.of(state.galleries)..add(gallery),
       );
-    } on BadRequestException catch (_) {
-      //todo: create this bad request model
-      yield state.copyWith(status: GalleryStatus.failure);
+      //todo: add 404 checking to trigger 404
     } on SocketException catch (_) {
       print('kir to netet');
       yield state.copyWith(status: GalleryStatus.failure);
@@ -57,14 +52,11 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
       yield state.copyWith(status: GalleryStatus.loading);
       try {
         final gallery = await galleryRepository.getGallery(
-            path: state.galleries.last.parent);
+            path: state.galleries.last.parent ?? '');
         yield state.copyWith(
           status: GalleryStatus.successPop,
           galleries: [gallery],
         );
-      } on BadRequestException catch (_) {
-        //todo: create this bad request model
-        yield state.copyWith(status: GalleryStatus.failure);
       } on SocketException catch (_) {
         print('kir to netet');
         yield state.copyWith(status: GalleryStatus.failure);

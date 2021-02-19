@@ -6,24 +6,19 @@ import 'serializers.dart';
 part 'login.g.dart';
 
 abstract class Login implements Built<Login, LoginBuilder> {
-  @nullable
-  String get token;
+  String? get token;
 
-  @nullable
-  int get id;
+  int? get id;
 
   String get username;
 
-  @nullable
-  String get email;
+  String? get email;
 
-  @nullable
   @BuiltValueField(wireName: 'first_name')
-  String get firstName;
+  String? get firstName;
 
-  @nullable
   @BuiltValueField(wireName: 'last_name')
-  String get lastName;
+  String? get lastName;
 
   Login._();
 

@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gallery/core/request_fullscreen/index.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:fullscreen_service/fullscreen_service.dart';
+import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 
-class MediaFullscreenArguments {
-  const MediaFullscreenArguments({
-    @required this.media,
-  }) : assert(media != null);
-
-  final Media media;
-}
+import 'image/image_fullscreen.dart';
+import 'video/video_fullscreen.dart';
 
 class MediaFullscreen extends StatefulWidget {
   MediaFullscreen({
-    @required this.albumPath,
-    @required this.fileName,
-  })  : assert(albumPath != null),
-        assert(fileName != null);
+    required this.albumPath,
+    required this.mediaPath,
+    required this.onRouteChanged,
+    this.media,
+  });
 
   final String albumPath;
-  final String fileName;
+  final String mediaPath;
+  final Media? media;
+  final HandleRouteChangedFunction onRouteChanged;
 
   @override
   _MediaFullscreenState createState() => _MediaFullscreenState();
@@ -27,13 +28,13 @@ class MediaFullscreen extends StatefulWidget {
 
 class _MediaFullscreenState extends State<MediaFullscreen> {
   bool _isFullscreen = false;
-  RequestFullscreen _requestFullscreen;
+  late final RequestFullscreen requestFullscreen;
 
   @override
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    _requestFullscreen = RequestFullscreen(
+    requestFullscreen = RequestFullscreen(
       onExit: _onExit,
       onEnter: _onEnter,
     );
@@ -48,21 +49,91 @@ class _MediaFullscreenState extends State<MediaFullscreen> {
 
   @override
   Widget build(BuildContext context) {
-    // return widget.media.type == MediaType.image
-    //     ? ImageFullscreen(media: widget.media)
-    //     : VideoFullscreen(
-    //         media: widget.media,
-    //         isFullscreen: _isFullscreen,
-    //         handleFullscreenButton: _handleFullscreenButton,
-    //       );
-    return Container();
+    if (widget.media != null) {
+      return widget.media!.type == MediaType.image
+          ? ImageFullscreen(
+              albumPath: widget.albumPath,
+              media: widget.media!,
+            )
+          : VideoFullscreen(
+              media: widget.media!,
+              isFullscreen: _isFullscreen,
+              handleFullscreenButton: _handleFullscreenButton,
+            );
+    }
+    final fullscreenRepository = FullscreenRepository();
+    return RepositoryProvider<FullscreenRepository>.value(
+      value: fullscreenRepository,
+      child: BlocProvider<FullscreenBloc>(
+        create: (_) =>
+            FullscreenBloc(fullscreenRepository: fullscreenRepository),
+        child: BlocListener<FullscreenBloc, FullscreenState>(
+          listener: (context, state) async {
+            switch (state.status) {
+              case FullscreenStatus.success:
+                break;
+              case FullscreenStatus.failure:
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        GalleryLocalizations.of(context)!.galleryFailure,
+                      ),
+                    ),
+                  );
+                break;
+              default:
+                break;
+            }
+          },
+          child: BlocBuilder<FullscreenBloc, FullscreenState>(
+            builder: (context, state) {
+              if (state.status == FullscreenStatus.initial) {
+                BlocProvider.of<FullscreenBloc>(context)
+                    .add(FullscreenPushRequested(path: widget.mediaPath));
+              }
+              if (state.status == FullscreenStatus.success) {
+                return state.media!.type == MediaType.image
+                    ? ImageFullscreen(
+                        albumPath: widget.albumPath,
+                        media: state.media!,
+                      )
+                    : VideoFullscreen(
+                        media: state.media!,
+                        isFullscreen: _isFullscreen,
+                        handleFullscreenButton: _handleFullscreenButton,
+                      );
+              }
+              return Scaffold(
+                appBar: AppBar(
+                  backgroundColor: Colors.black,
+                  title: const Text(
+                    'Loading...',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+                backgroundColor: Colors.black,
+                body: Stack(
+                  children: const [
+                    LinearProgressIndicator(
+                        backgroundColor: Colors.transparent),
+                    Material(),
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
   }
 
   void _handleFullscreenButton() {
     if (_isFullscreen) {
-      _requestFullscreen.exitFullscreen();
+      requestFullscreen.exitFullscreen();
     } else {
-      _requestFullscreen.requestFullscreen();
+      requestFullscreen.requestFullscreen();
     }
   }
 

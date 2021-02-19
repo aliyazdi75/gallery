@@ -68,10 +68,11 @@ class _$Album extends Album {
   @override
   final String thumbnail;
 
-  factory _$Album([void Function(AlbumBuilder) updates]) =>
+  factory _$Album([void Function(AlbumBuilder)? updates]) =>
       (new AlbumBuilder()..update(updates)).build();
 
-  _$Album._({this.name, this.path, this.thumbnail}) : super._() {
+  _$Album._({required this.name, required this.path, required this.thumbnail})
+      : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'Album', 'name');
     BuiltValueNullFieldError.checkNotNull(path, 'Album', 'path');
     BuiltValueNullFieldError.checkNotNull(thumbnail, 'Album', 'thumbnail');
@@ -110,19 +111,19 @@ class _$Album extends Album {
 }
 
 class AlbumBuilder implements Builder<Album, AlbumBuilder> {
-  _$Album _$v;
+  _$Album? _$v;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  String _path;
-  String get path => _$this._path;
-  set path(String path) => _$this._path = path;
+  String? _path;
+  String? get path => _$this._path;
+  set path(String? path) => _$this._path = path;
 
-  String _thumbnail;
-  String get thumbnail => _$this._thumbnail;
-  set thumbnail(String thumbnail) => _$this._thumbnail = thumbnail;
+  String? _thumbnail;
+  String? get thumbnail => _$this._thumbnail;
+  set thumbnail(String? thumbnail) => _$this._thumbnail = thumbnail;
 
   AlbumBuilder();
 
@@ -144,7 +145,7 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
   }
 
   @override
-  void update(void Function(AlbumBuilder) updates) {
+  void update(void Function(AlbumBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

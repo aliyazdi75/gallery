@@ -74,7 +74,7 @@ class _$RegisterBadRequestSerializer
   Iterable<Object> serialize(Serializers serializers, RegisterBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    Object value;
+    Object? value;
     value = object.username;
     if (value != null) {
       result
@@ -164,7 +164,7 @@ class _$LoginBadRequestSerializer
   Iterable<Object> serialize(Serializers serializers, LoginBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    Object value;
+    Object? value;
     value = object.username;
     if (value != null) {
       result
@@ -240,7 +240,7 @@ class _$GalleryBadRequestSerializer
   Iterable<Object> serialize(Serializers serializers, GalleryBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    Object value;
+    Object? value;
     value = object.path;
     if (value != null) {
       result
@@ -298,10 +298,10 @@ class _$HttpExceptionModel extends HttpExceptionModel {
   final String value;
 
   factory _$HttpExceptionModel(
-          [void Function(HttpExceptionModelBuilder) updates]) =>
+          [void Function(HttpExceptionModelBuilder)? updates]) =>
       (new HttpExceptionModelBuilder()..update(updates)).build();
 
-  _$HttpExceptionModel._({this.key, this.value}) : super._() {
+  _$HttpExceptionModel._({required this.key, required this.value}) : super._() {
     BuiltValueNullFieldError.checkNotNull(key, 'HttpExceptionModel', 'key');
     BuiltValueNullFieldError.checkNotNull(value, 'HttpExceptionModel', 'value');
   }
@@ -339,15 +339,15 @@ class _$HttpExceptionModel extends HttpExceptionModel {
 
 class HttpExceptionModelBuilder
     implements Builder<HttpExceptionModel, HttpExceptionModelBuilder> {
-  _$HttpExceptionModel _$v;
+  _$HttpExceptionModel? _$v;
 
-  String _key;
-  String get key => _$this._key;
-  set key(String key) => _$this._key = key;
+  String? _key;
+  String? get key => _$this._key;
+  set key(String? key) => _$this._key = key;
 
-  String _value;
-  String get value => _$this._value;
-  set value(String value) => _$this._value = value;
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
 
   HttpExceptionModelBuilder();
 
@@ -368,7 +368,7 @@ class HttpExceptionModelBuilder
   }
 
   @override
-  void update(void Function(HttpExceptionModelBuilder) updates) {
+  void update(void Function(HttpExceptionModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -387,16 +387,16 @@ class HttpExceptionModelBuilder
 
 class _$RegisterBadRequest extends RegisterBadRequest {
   @override
-  final BuiltList<String> username;
+  final BuiltList<String>? username;
   @override
-  final BuiltList<String> password;
+  final BuiltList<String>? password;
   @override
-  final BuiltList<String> email;
+  final BuiltList<String>? email;
   @override
-  final BuiltList<String> nonFieldErrors;
+  final BuiltList<String>? nonFieldErrors;
 
   factory _$RegisterBadRequest(
-          [void Function(RegisterBadRequestBuilder) updates]) =>
+          [void Function(RegisterBadRequestBuilder)? updates]) =>
       (new RegisterBadRequestBuilder()..update(updates)).build();
 
   _$RegisterBadRequest._(
@@ -442,26 +442,26 @@ class _$RegisterBadRequest extends RegisterBadRequest {
 
 class RegisterBadRequestBuilder
     implements Builder<RegisterBadRequest, RegisterBadRequestBuilder> {
-  _$RegisterBadRequest _$v;
+  _$RegisterBadRequest? _$v;
 
-  ListBuilder<String> _username;
+  ListBuilder<String>? _username;
   ListBuilder<String> get username =>
       _$this._username ??= new ListBuilder<String>();
-  set username(ListBuilder<String> username) => _$this._username = username;
+  set username(ListBuilder<String>? username) => _$this._username = username;
 
-  ListBuilder<String> _password;
+  ListBuilder<String>? _password;
   ListBuilder<String> get password =>
       _$this._password ??= new ListBuilder<String>();
-  set password(ListBuilder<String> password) => _$this._password = password;
+  set password(ListBuilder<String>? password) => _$this._password = password;
 
-  ListBuilder<String> _email;
+  ListBuilder<String>? _email;
   ListBuilder<String> get email => _$this._email ??= new ListBuilder<String>();
-  set email(ListBuilder<String> email) => _$this._email = email;
+  set email(ListBuilder<String>? email) => _$this._email = email;
 
-  ListBuilder<String> _nonFieldErrors;
+  ListBuilder<String>? _nonFieldErrors;
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
-  set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
+  set nonFieldErrors(ListBuilder<String>? nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
   RegisterBadRequestBuilder();
@@ -485,7 +485,7 @@ class RegisterBadRequestBuilder
   }
 
   @override
-  void update(void Function(RegisterBadRequestBuilder) updates) {
+  void update(void Function(RegisterBadRequestBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -500,7 +500,7 @@ class RegisterBadRequestBuilder
               email: _email?.build(),
               nonFieldErrors: _nonFieldErrors?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'username';
         _username?.build();
@@ -523,13 +523,13 @@ class RegisterBadRequestBuilder
 
 class _$LoginBadRequest extends LoginBadRequest {
   @override
-  final BuiltList<String> username;
+  final BuiltList<String>? username;
   @override
-  final BuiltList<String> password;
+  final BuiltList<String>? password;
   @override
-  final BuiltList<String> nonFieldErrors;
+  final BuiltList<String>? nonFieldErrors;
 
-  factory _$LoginBadRequest([void Function(LoginBadRequestBuilder) updates]) =>
+  factory _$LoginBadRequest([void Function(LoginBadRequestBuilder)? updates]) =>
       (new LoginBadRequestBuilder()..update(updates)).build();
 
   _$LoginBadRequest._({this.username, this.password, this.nonFieldErrors})
@@ -570,22 +570,22 @@ class _$LoginBadRequest extends LoginBadRequest {
 
 class LoginBadRequestBuilder
     implements Builder<LoginBadRequest, LoginBadRequestBuilder> {
-  _$LoginBadRequest _$v;
+  _$LoginBadRequest? _$v;
 
-  ListBuilder<String> _username;
+  ListBuilder<String>? _username;
   ListBuilder<String> get username =>
       _$this._username ??= new ListBuilder<String>();
-  set username(ListBuilder<String> username) => _$this._username = username;
+  set username(ListBuilder<String>? username) => _$this._username = username;
 
-  ListBuilder<String> _password;
+  ListBuilder<String>? _password;
   ListBuilder<String> get password =>
       _$this._password ??= new ListBuilder<String>();
-  set password(ListBuilder<String> password) => _$this._password = password;
+  set password(ListBuilder<String>? password) => _$this._password = password;
 
-  ListBuilder<String> _nonFieldErrors;
+  ListBuilder<String>? _nonFieldErrors;
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
-  set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
+  set nonFieldErrors(ListBuilder<String>? nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
   LoginBadRequestBuilder();
@@ -608,7 +608,7 @@ class LoginBadRequestBuilder
   }
 
   @override
-  void update(void Function(LoginBadRequestBuilder) updates) {
+  void update(void Function(LoginBadRequestBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -622,7 +622,7 @@ class LoginBadRequestBuilder
               password: _password?.build(),
               nonFieldErrors: _nonFieldErrors?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'username';
         _username?.build();
@@ -643,12 +643,12 @@ class LoginBadRequestBuilder
 
 class _$GalleryBadRequest extends GalleryBadRequest {
   @override
-  final BuiltList<String> path;
+  final BuiltList<String>? path;
   @override
-  final BuiltList<String> nonFieldErrors;
+  final BuiltList<String>? nonFieldErrors;
 
   factory _$GalleryBadRequest(
-          [void Function(GalleryBadRequestBuilder) updates]) =>
+          [void Function(GalleryBadRequestBuilder)? updates]) =>
       (new GalleryBadRequestBuilder()..update(updates)).build();
 
   _$GalleryBadRequest._({this.path, this.nonFieldErrors}) : super._();
@@ -685,16 +685,16 @@ class _$GalleryBadRequest extends GalleryBadRequest {
 
 class GalleryBadRequestBuilder
     implements Builder<GalleryBadRequest, GalleryBadRequestBuilder> {
-  _$GalleryBadRequest _$v;
+  _$GalleryBadRequest? _$v;
 
-  ListBuilder<String> _path;
+  ListBuilder<String>? _path;
   ListBuilder<String> get path => _$this._path ??= new ListBuilder<String>();
-  set path(ListBuilder<String> path) => _$this._path = path;
+  set path(ListBuilder<String>? path) => _$this._path = path;
 
-  ListBuilder<String> _nonFieldErrors;
+  ListBuilder<String>? _nonFieldErrors;
   ListBuilder<String> get nonFieldErrors =>
       _$this._nonFieldErrors ??= new ListBuilder<String>();
-  set nonFieldErrors(ListBuilder<String> nonFieldErrors) =>
+  set nonFieldErrors(ListBuilder<String>? nonFieldErrors) =>
       _$this._nonFieldErrors = nonFieldErrors;
 
   GalleryBadRequestBuilder();
@@ -716,7 +716,7 @@ class GalleryBadRequestBuilder
   }
 
   @override
-  void update(void Function(GalleryBadRequestBuilder) updates) {
+  void update(void Function(GalleryBadRequestBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -728,7 +728,7 @@ class GalleryBadRequestBuilder
           new _$GalleryBadRequest._(
               path: _path?.build(), nonFieldErrors: _nonFieldErrors?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'path';
         _path?.build();

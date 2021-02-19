@@ -7,4 +7,4 @@ environment:
   sdk: '>=2.12.0-0 <3.0.0'
 
 dependencies:
-  video_player: ^2.0.0-nullsafety.4
+  video_player: ^2.0.0-nullsafety.10

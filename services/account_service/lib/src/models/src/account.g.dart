@@ -24,7 +24,7 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
     ];
-    Object value;
+    Object? value;
     value = object.token;
     if (value != null) {
       result
@@ -100,25 +100,25 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
 
 class _$Account extends Account {
   @override
-  final String token;
+  final String? token;
   @override
   final int id;
   @override
   final String username;
   @override
-  final String firstName;
+  final String? firstName;
   @override
-  final String lastName;
+  final String? lastName;
   @override
-  final String email;
+  final String? email;
 
-  factory _$Account([void Function(AccountBuilder) updates]) =>
+  factory _$Account([void Function(AccountBuilder)? updates]) =>
       (new AccountBuilder()..update(updates)).build();
 
   _$Account._(
       {this.token,
-      this.id,
-      this.username,
+      required this.id,
+      required this.username,
       this.firstName,
       this.lastName,
       this.email})
@@ -172,31 +172,31 @@ class _$Account extends Account {
 }
 
 class AccountBuilder implements Builder<Account, AccountBuilder> {
-  _$Account _$v;
+  _$Account? _$v;
 
-  String _token;
-  String get token => _$this._token;
-  set token(String token) => _$this._token = token;
+  String? _token;
+  String? get token => _$this._token;
+  set token(String? token) => _$this._token = token;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  String _username;
-  String get username => _$this._username;
-  set username(String username) => _$this._username = username;
+  String? _username;
+  String? get username => _$this._username;
+  set username(String? username) => _$this._username = username;
 
-  String _firstName;
-  String get firstName => _$this._firstName;
-  set firstName(String firstName) => _$this._firstName = firstName;
+  String? _firstName;
+  String? get firstName => _$this._firstName;
+  set firstName(String? firstName) => _$this._firstName = firstName;
 
-  String _lastName;
-  String get lastName => _$this._lastName;
-  set lastName(String lastName) => _$this._lastName = lastName;
+  String? _lastName;
+  String? get lastName => _$this._lastName;
+  set lastName(String? lastName) => _$this._lastName = lastName;
 
-  String _email;
-  String get email => _$this._email;
-  set email(String email) => _$this._email = email;
+  String? _email;
+  String? get email => _$this._email;
+  set email(String? email) => _$this._email = email;
 
   AccountBuilder();
 
@@ -221,7 +221,7 @@ class AccountBuilder implements Builder<Account, AccountBuilder> {
   }
 
   @override
-  void update(void Function(AccountBuilder) updates) {
+  void update(void Function(AccountBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

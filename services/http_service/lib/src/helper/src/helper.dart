@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:constants_service/constants_service.dart';
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_service/http_service.dart';
 import 'package:layout_service/layout_service.dart';
@@ -14,15 +13,15 @@ typedef HttpMethod = Future<http.Response> Function();
 
 abstract class HttpClientBase {
   Future<Map<String, dynamic>> httpGet({
-    Map<String, String> queryParams,
+    Map<String, String>? queryParams,
     HttpHeaderType headerType,
   });
 
   Future<Map<String, dynamic>> httpPost({
-    @required Object badRequestModel,
-    Map<String, String> queryParams,
+    required Object badRequestModel,
+    Map<String, String>? queryParams,
+    Map<String, dynamic>? body,
     HttpHeaderType headerType,
-    Map<String, dynamic> body,
   });
 }
 
@@ -34,7 +33,7 @@ class HttpHelper implements HttpClientBase {
 
   Future<Map<String, dynamic>> _responseData(
     http.Response response, {
-    Object badRequestModel,
+    Object? badRequestModel,
   }) async {
     try {
       switch (response.statusCode) {
@@ -50,56 +49,56 @@ class HttpHelper implements HttpClientBase {
         case HttpStatus.badRequest:
           if (badRequestModel == RegisterBadRequest) {
             throw BadRequestException(
-              response.request.url.path,
+              response.request!.url.path,
               RegisterBadRequest.fromJson(
                   json.decode(utf8.decode(response.bodyBytes))
                       as Map<String, dynamic>),
             );
           } else if (badRequestModel == LoginBadRequest) {
             throw BadRequestException(
-              response.request.url.path,
+              response.request!.url.path,
               LoginBadRequest.fromJson(
                   json.decode(utf8.decode(response.bodyBytes))
                       as Map<String, dynamic>),
             );
           }
           throw NotHandleException(
-            response.request.url.path,
+            response.request!.url.path,
             'BadRequest Model not implemented',
             response.statusCode.toString(),
           );
         // 401
         case HttpStatus.unauthorized:
           throw UnauthorisedException(
-            response.request.url.path,
+            response.request!.url.path,
             'The Request is Unauthorized',
             response.statusCode.toString(),
           );
         // 403
         case HttpStatus.forbidden:
           throw UnauthorisedException(
-            response.request.url.path,
+            response.request!.url.path,
             'Authorization Forbidden',
             response.statusCode.toString(),
           );
         // 404
         case HttpStatus.notFound:
           throw NotFoundException(
-            response.request.url.path,
+            response.request!.url.path,
             'This Uri Not Founded',
             response.statusCode.toString(),
           );
         // 500
         case HttpStatus.internalServerError:
           throw ServerException(
-            response.request.url.path,
+            response.request!.url.path,
             'Server Error Body',
             utf8.decode(response.bodyBytes),
           );
         // Others
         default:
           throw NotHandleException(
-            response.request.url.path,
+            response.request!.url.path,
             'This Status Code Not Handled',
             response.statusCode.toString(),
           );
@@ -111,7 +110,7 @@ class HttpHelper implements HttpClientBase {
 
   @override
   Future<Map<String, dynamic>> httpGet({
-    Map<String, String> queryParams,
+    Map<String, String>? queryParams,
     HttpHeaderType headerType = HttpHeaderType.anonymous,
   }) async {
     try {
@@ -152,10 +151,10 @@ class HttpHelper implements HttpClientBase {
 
   @override
   Future<Map<String, dynamic>> httpPost({
-    @required Object badRequestModel,
-    Map<String, String> queryParams,
-    HttpHeaderType headerType,
-    Map<String, dynamic> body,
+    required Object badRequestModel,
+    Map<String, String>? queryParams,
+    Map<String, dynamic>? body,
+    HttpHeaderType headerType = HttpHeaderType.anonymous,
   }) async {
     try {
       return _responseData(
@@ -183,7 +182,7 @@ class HttpHelper implements HttpClientBase {
                       '/gallery/api/$path',
                       queryParams,
                     ),
-          headers: HttpHeader.setHeader(headerType ?? HttpHeaderType.anonymous),
+          headers: HttpHeader.setHeader(headerType),
           body: json.encode(body),
         ),
         badRequestModel: badRequestModel,

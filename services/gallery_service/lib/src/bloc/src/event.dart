@@ -5,7 +5,7 @@ abstract class GalleryEvent extends Equatable {
   const GalleryEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class GalleryPushRequested extends GalleryEvent {
@@ -14,7 +14,7 @@ class GalleryPushRequested extends GalleryEvent {
   final String path;
 
   @override
-  List<Object> get props => [path];
+  List<Object?> get props => [path];
 }
 
 class GalleryPopRequested extends GalleryEvent {

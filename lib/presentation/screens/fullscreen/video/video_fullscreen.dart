@@ -12,9 +12,9 @@ import 'video_progress_slider.dart';
 
 class VideoFullscreen extends StatelessWidget {
   VideoFullscreen({
-    @required this.media,
-    @required this.isFullscreen,
-    @required this.handleFullscreenButton,
+    required this.media,
+    required this.isFullscreen,
+    required this.handleFullscreenButton,
   });
 
   final Media media;
@@ -35,7 +35,7 @@ class VideoFullscreen extends StatelessWidget {
                 ..showSnackBar(
                   SnackBar(
                     content: Text(
-                      GalleryLocalizations.of(context).galleryFailure,
+                      GalleryLocalizations.of(context)!.galleryFailure,
                     ),
                   ),
                 );
@@ -51,7 +51,7 @@ class VideoFullscreen extends StatelessWidget {
                   .add(VideoInitialized(media.url));
             }
             return Hero(
-              tag: media.thumbnail,
+              tag: media.path,
               child: Material(
                 color: Colors.black,
                 child: Center(
@@ -88,7 +88,7 @@ class VideoFullscreen extends StatelessWidget {
                           child: Stack(
                             alignment: Alignment.bottomCenter,
                             children: <Widget>[
-                              VideoPlayer(state.videoPlayerController),
+                              VideoPlayer(state.videoPlayerController!),
                               MouseRegion(
                                 onHover: (details) =>
                                     _onMouseHover(context, state),
@@ -101,19 +101,18 @@ class VideoFullscreen extends StatelessWidget {
                                         BlocProvider.of<VideoBloc>(context)
                                             .animationController
                                             .forward();
-                                        state.videoPlayerController.pause();
+                                        state.videoPlayerController!.pause();
                                         BlocProvider.of<VideoBloc>(context).add(
                                             const PersistShowingControllerRequested());
                                       } else {
                                         BlocProvider.of<VideoBloc>(context)
                                             .animationController
                                             .reverse();
-                                        state.videoPlayerController.play();
+                                        state.videoPlayerController!.play();
                                         BlocProvider.of<VideoBloc>(context).add(
                                             const ToggleControllerRequested());
                                       }
                                     } else {
-                                      print('ffffff');
                                       BlocProvider.of<VideoBloc>(context).add(
                                           const ToggleControllerRequested());
                                     }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
@@ -24,7 +25,7 @@ class AlbumPage extends StatelessWidget {
             onRouteChanged(
               state.galleries.last.current,
               isPop: true,
-              isRoot: state.galleries.last.parent == null ? true : false,
+              isRoot: state.galleries.last.parent == null,
             );
             break;
           case GalleryStatus.failure:
@@ -49,17 +50,17 @@ class AlbumPage extends StatelessWidget {
                 .add(GalleryPushRequested(albumPath));
           }
           final onWillPop = () {
+            if (state.galleries.last.parent == null) return true;
             BlocProvider.of<GalleryBloc>(context)
                 .add(const GalleryPopRequested());
+            debugPrint('onWillPop');
             if (state.galleries.length > 1) {
               Navigator.of(context).pop();
             }
+            return false;
           };
           return WillPopScope(
-            onWillPop: () async {
-              onWillPop();
-              return false;
-            },
+            onWillPop: () async => onWillPop(),
             child: Scaffold(
               appBar: AppBar(
                 title: Text(
@@ -91,7 +92,7 @@ class AlbumPage extends StatelessWidget {
                           ),
                         for (Album album in state.galleries.last.albums)
                           FloatingActionButton.extended(
-                            heroTag: state.galleries.last.albums.indexOf(album),
+                            heroTag: _DefaultHeroTag(),
                             onPressed: () {
                               context
                                   .read<GalleryBloc>()
@@ -103,15 +104,16 @@ class AlbumPage extends StatelessWidget {
                       ],
                     ),
               body: Stack(
+                fit: StackFit.passthrough,
                 children: [
-                  if (state.status == GalleryStatus.loading)
-                    const LinearProgressIndicator(
-                        backgroundColor: Colors.transparent),
                   if (state.galleries.isNotEmpty)
                     MediaWidget(
                       medias: state.galleries.last.medias.toList(),
                       onRouteChanged: onRouteChanged,
                     ),
+                  if (state.status == GalleryStatus.loading)
+                    const LinearProgressIndicator(
+                        backgroundColor: Colors.transparent),
                 ],
               ),
             ),
@@ -121,3 +123,5 @@ class AlbumPage extends StatelessWidget {
     );
   }
 }
+
+class _DefaultHeroTag {}

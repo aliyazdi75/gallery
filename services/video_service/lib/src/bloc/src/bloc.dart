@@ -48,7 +48,7 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
       VideoInitialized event) async* {
     try {
       await _initialVideo(event.videoUrl);
-    } on Exception catch (_) {
+    } on Exception {
       yield state.copyWith(status: VideoStatus.failure);
     }
   }
@@ -84,7 +84,7 @@ class VideoBloc extends Bloc<VideoEvent, VideoState> {
           videoPlayerController: _videoPlayerController,
         );
       }
-    } on Exception catch (_) {
+    } on Exception {
       yield state.copyWith(status: VideoStatus.failure);
     }
   }

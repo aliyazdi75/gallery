@@ -80,7 +80,12 @@ class GalleryRouteInformationParser
       case AlbumPagePath.albumRoute:
         if (uri.pathSegments.length > 1) {
           routersState.galleryPath = AlbumPagePath.albumRoute;
-          routersState.pushAlbumPath(uri.pathSegments[1]);
+          final albumPath = uri.pathSegments[1];
+          if (routersState.containsAlbumPath(albumPath)) {
+            routersState.popAlbumPath();
+          } else {
+            routersState.pushAlbumPath(uri.pathSegments[1]);
+          }
           // '/album/${}/view/${}'
           if (uri.pathSegments.length > 3 &&
               uri.pathSegments[2] == MediaFullscreenPath.fullscreenRoute) {

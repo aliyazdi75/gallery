@@ -39,6 +39,8 @@ class GalleryRoutersState extends ChangeNotifier with EquatableMixin {
     notifyListeners();
   }
 
+  bool containsAlbumPath(String albumPath) => _albumsPath.contains(albumPath);
+
   void pushAlbumPath(String albumPath) {
     if (!_albumsPath.contains(albumPath)) {
       _albumsPath = List.of(_albumsPath)..add(albumPath);

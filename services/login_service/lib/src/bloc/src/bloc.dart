@@ -54,10 +54,10 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       print(
           'kir to requestet ba ina ${error.username ?? error.password ?? error.nonFieldErrors}');
       yield state.copyWith(status: LoginStatus.failure);
-    } on SocketException catch (_) {
+    } on SocketException {
       print('kir to netet');
       yield state.copyWith(status: LoginStatus.failure);
-    } on Exception catch (_) {
+    } on Exception {
       yield state.copyWith(status: LoginStatus.failure);
     }
   }

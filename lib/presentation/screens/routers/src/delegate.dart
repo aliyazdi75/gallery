@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:gallery/main.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
 import 'package:gallery/presentation/screens/fullscreen/fullscreen.dart';
+import 'package:gallery/presentation/screens/gallery/gallery.dart';
 import 'package:gallery/presentation/screens/login/login.dart';
 import 'package:gallery_service/gallery_service.dart';
 
 import 'routes.dart';
-import 'shell.dart';
 import 'state.dart';
 
 class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
@@ -20,6 +20,7 @@ class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
   }
 
   final GalleryRoutersState routersState;
+  final heroController = HeroController();
 
   @override
   void dispose() {
@@ -56,8 +57,7 @@ class GalleryRouterDelegate extends RouterDelegate<GalleryRoutePath>
     return Navigator(
       key: navigatorKey,
       pages: [
-        MaterialPage<dynamic>(
-            child: GalleryAppShell(routersState: routersState)),
+        MaterialPage<dynamic>(child: GalleryShell(routersState: routersState)),
       ],
       onPopPage: (route, dynamic result) {
         return route.didPop(result);

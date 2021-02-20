@@ -9,7 +9,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
 import 'package:gallery/presentation/screens/routers/index.dart';
-import 'package:gallery_service/gallery_service.dart';
 import 'package:layout_service/layout_service.dart';
 import 'package:options_service/options_service.dart';
 import 'package:themes_service/themes_service.dart';
@@ -45,7 +44,6 @@ class GalleryApp extends StatelessWidget {
 
   final authenticationRepository = AuthenticationRepository();
   final accountRepository = AccountRepository();
-  final galleryRepository = GalleryRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -63,22 +61,12 @@ class GalleryApp extends StatelessWidget {
             providers: [
               RepositoryProvider.value(value: authenticationRepository),
               RepositoryProvider.value(value: accountRepository),
-              RepositoryProvider.value(value: galleryRepository),
             ],
-            child: MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (_) => AuthenticationBloc(
-                    authenticationRepository: authenticationRepository,
-                    accountRepository: accountRepository,
-                  ),
-                ),
-                BlocProvider<GalleryBloc>(
-                  create: (context) => GalleryBloc(
-                    galleryRepository: galleryRepository,
-                  ),
-                ),
-              ],
+            child: BlocProvider(
+              create: (_) => AuthenticationBloc(
+                authenticationRepository: authenticationRepository,
+                accountRepository: accountRepository,
+              ),
               child: AdaptiveDesign(
                 material: MaterialApp.router(
                   title: galleryTitle,

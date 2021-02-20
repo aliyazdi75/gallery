@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:options_service/options_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gallery/presentation/screens/routers/index.dart';
+import 'package:gallery_service/gallery_service.dart';
 
-import 'delegate.dart';
-import 'state.dart';
-
-class GalleryAppShell extends StatefulWidget {
+class GalleryShell extends StatefulWidget {
   final GalleryRoutersState routersState;
 
-  GalleryAppShell({required this.routersState});
+  GalleryShell({required this.routersState});
 
   @override
-  _GalleryAppShellState createState() => _GalleryAppShellState();
+  _GalleryShellState createState() => _GalleryShellState();
 }
 
-class _GalleryAppShellState extends State<GalleryAppShell> {
+class _GalleryShellState extends State<GalleryShell> {
   late InnerRouterDelegate _routerDelegate;
   late ChildBackButtonDispatcher _backButtonDispatcher;
+  final galleryRepository = GalleryRepository();
 
   @override
   void initState() {
@@ -31,7 +30,7 @@ class _GalleryAppShellState extends State<GalleryAppShell> {
   }
 
   @override
-  void didUpdateWidget(covariant GalleryAppShell oldWidget) {
+  void didUpdateWidget(covariant GalleryShell oldWidget) {
     super.didUpdateWidget(oldWidget);
     _routerDelegate.routersState = widget.routersState;
   }
@@ -49,11 +48,15 @@ class _GalleryAppShellState extends State<GalleryAppShell> {
   Widget build(BuildContext context) {
     // Claim priority, If there are parallel sub router, you will need
     // to pick which one should take priority;
+
     _backButtonDispatcher.takePriority();
 
-    return ApplyTextOptions(
-      child: AnnotatedRegion<SystemUiOverlayStyle>(
-        value: GalleryOptions.of(context).resolvedSystemUiOverlayStyle(context),
+    return RepositoryProvider.value(
+      value: galleryRepository,
+      child: BlocProvider<GalleryBloc>(
+        create: (context) => GalleryBloc(
+          galleryRepository: galleryRepository,
+        ),
         child: Router(
           routerDelegate: _routerDelegate,
           backButtonDispatcher: _backButtonDispatcher,

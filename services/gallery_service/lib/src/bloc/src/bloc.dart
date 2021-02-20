@@ -36,10 +36,10 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         galleries: List.of(state.galleries)..add(gallery),
       );
       //todo: add 404 checking to trigger 404
-    } on SocketException catch (_) {
+    } on SocketException {
       print('kir to netet');
       yield state.copyWith(status: GalleryStatus.failure);
-    } on Exception catch (_) {
+    } on Exception {
       yield state.copyWith(status: GalleryStatus.failure);
     }
   }
@@ -57,10 +57,10 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
           status: GalleryStatus.successPop,
           galleries: [gallery],
         );
-      } on SocketException catch (_) {
+      } on SocketException {
         print('kir to netet');
         yield state.copyWith(status: GalleryStatus.failure);
-      } on Exception catch (_) {
+      } on Exception {
         yield state.copyWith(status: GalleryStatus.failure);
       }
     }

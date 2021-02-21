@@ -7,6 +7,10 @@
   "@login": {
     "description": "Login Text"
   },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading Text"
+  },
   "username": "Username",
   "@username": {
     "description": "Username Text"

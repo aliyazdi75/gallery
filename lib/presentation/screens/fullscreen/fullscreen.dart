@@ -105,9 +105,9 @@ class _MediaFullscreenState extends State<MediaFullscreen> {
               return Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.black,
-                  title: const Text(
-                    'Loading...',
-                    style: TextStyle(color: Colors.white),
+                  title: Text(
+                    GalleryLocalizations.of(context)!.loading,
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
                 backgroundColor: Colors.black,

@@ -1,6 +1,7 @@
 {
   "galleryTitle": "فارغ التحصیلان سیت",
   "login": "ورود",
+  "loading": "انتظار...",
   "username": "نام کاربری",
   "usernameNotEmpty": "نام کاربری نباید خالی باشد",
   "password": "رمز عبور",

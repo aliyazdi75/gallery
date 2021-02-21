@@ -111,7 +111,7 @@ class AlbumPage extends StatelessWidget {
                   appBar: AppBar(
                     title: Text(
                       state.gallery == null
-                          ? 'Loading...'
+                          ? GalleryLocalizations.of(context)!.loading
                           : state.gallery!.path,
                     ),
                   ),

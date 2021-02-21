@@ -18,11 +18,38 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
 
   @override
   Stream<GalleryState> mapEventToState(GalleryEvent event) async* {
-    if (event is GalleryPushRequested) {
+    if (event is GetGalleryRequested) {
+      yield* _mapGetGalleryRequestedToState(event);
+    } else if (event is GalleryPushRequested) {
       yield* _mapGalleryPushRequestedToState(event);
     } else if (event is GalleryPopRequested) {
-      assert(state.galleries.isNotEmpty);
       yield* _mapGalleryPpoRequestedToState();
+    }
+  }
+
+  Stream<GalleryState> _mapGetGalleryRequestedToState(
+      GetGalleryRequested event) async* {
+    if (galleryRepository.gallery != null) {
+      yield state.copyWith(
+        status: GalleryStatus.success,
+        gallery: galleryRepository.gallery!,
+      );
+      return;
+    }
+
+    yield state.copyWith(status: GalleryStatus.loading);
+    try {
+      final gallery = await galleryRepository.getGallery(path: event.path);
+      yield state.copyWith(
+        status: GalleryStatus.success,
+        gallery: gallery,
+      );
+      //todo: add 404 checking to trigger 404
+    } on SocketException {
+      print('kir to netet');
+      yield state.copyWith(status: GalleryStatus.failure);
+    } on Exception {
+      yield state.copyWith(status: GalleryStatus.failure);
     }
   }
 
@@ -32,8 +59,8 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     try {
       final gallery = await galleryRepository.getGallery(path: event.path);
       yield state.copyWith(
-        status: GalleryStatus.successPush,
-        galleries: List.of(state.galleries)..add(gallery),
+        status: GalleryStatus.successPushed,
+        pushedGallery: gallery,
       );
       //todo: add 404 checking to trigger 404
     } on SocketException {
@@ -45,24 +72,19 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
   }
 
   Stream<GalleryState> _mapGalleryPpoRequestedToState() async* {
-    assert(state.galleries.isNotEmpty);
-    if (state.galleries.length > 1) {
-      yield state.copyWith(galleries: List.of(state.galleries)..removeLast());
-    } else {
-      yield state.copyWith(status: GalleryStatus.loading);
-      try {
-        final gallery = await galleryRepository.getGallery(
-            path: state.galleries.last.parent ?? '');
-        yield state.copyWith(
-          status: GalleryStatus.successPop,
-          galleries: [gallery],
-        );
-      } on SocketException {
-        print('kir to netet');
-        yield state.copyWith(status: GalleryStatus.failure);
-      } on Exception {
-        yield state.copyWith(status: GalleryStatus.failure);
-      }
+    yield state.copyWith(status: GalleryStatus.loading);
+    try {
+      final gallery =
+          await galleryRepository.getGallery(path: state.gallery!.parent ?? '');
+      yield state.copyWith(
+        status: GalleryStatus.successPopped,
+        poppedGallery: gallery,
+      );
+    } on SocketException {
+      print('kir to netet');
+      yield state.copyWith(status: GalleryStatus.failure);
+    } on Exception {
+      yield state.copyWith(status: GalleryStatus.failure);
     }
   }
 }

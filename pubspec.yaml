@@ -47,6 +47,8 @@ dependencies:
     path: services/fullscreen_service
   video_service:
     path: services/video_service
+  routers_service:
+    path: services/routers_service
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
+import 'package:routers_service/routers_service.dart';
 
 const kIconSizeSelected = 0.4;
 const kIconSizeUnselected = 0.25;
@@ -15,8 +15,7 @@ class MediaPreviewWidget extends StatefulWidget {
     required this.containerHeight,
     required this.selectionAnimationDuration,
     required this.selectionAnimationCurve,
-    required this.onTap,
-    required this.onRouteChanged,
+    required this.onUnselectedTapped,
   });
 
   final int index;
@@ -27,8 +26,7 @@ class MediaPreviewWidget extends StatefulWidget {
   final double containerHeight;
   final Duration selectionAnimationDuration;
   final Curve selectionAnimationCurve;
-  final VoidCallback onTap;
-  final HandleRouteChangedFunction onRouteChanged;
+  final VoidCallback onUnselectedTapped;
 
   @override
   _MediaPreviewWidgetState createState() => _MediaPreviewWidgetState();
@@ -77,9 +75,17 @@ class _MediaPreviewWidgetState extends State<MediaPreviewWidget> {
         child: InkWell(
           onTap: () {
             if (widget.isSelected || widget.gridView) {
-              widget.onRouteChanged(widget.media.path, media: widget.media);
+              final browserState =
+                  GalleryRouterStateScope.of(context)!.browserState!;
+              final newState = browserState
+                  .rebuild((b) => b..media = widget.media.toBuilder());
+              final newPath = MediaFullscreenPath(
+                  browserState.galleriesHistory.last, widget.media.path);
+              GalleryRouterStateScope.of(context)!
+                ..routePath = newPath
+                ..browserState = newState;
             } else {
-              widget.onTap();
+              widget.onUnselectedTapped();
             }
           },
           child: Hero(

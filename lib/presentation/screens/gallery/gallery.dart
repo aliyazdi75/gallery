@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gallery/presentation/screens/routers/index.dart';
-import 'package:gallery_service/gallery_service.dart';
+import 'package:routers_service/routers_service.dart';
+
+import 'router.dart';
 
 class GalleryShell extends StatefulWidget {
   final GalleryRoutersState routersState;
@@ -13,14 +13,13 @@ class GalleryShell extends StatefulWidget {
 }
 
 class _GalleryShellState extends State<GalleryShell> {
-  late InnerRouterDelegate _routerDelegate;
+  late InnerGalleryRouterDelegate _routerDelegate;
   late ChildBackButtonDispatcher _backButtonDispatcher;
-  final galleryRepository = GalleryRepository();
 
   @override
   void initState() {
     super.initState();
-    _routerDelegate = InnerRouterDelegate(widget.routersState);
+    _routerDelegate = InnerGalleryRouterDelegate(widget.routersState);
   }
 
   @override
@@ -51,17 +50,9 @@ class _GalleryShellState extends State<GalleryShell> {
 
     _backButtonDispatcher.takePriority();
 
-    return RepositoryProvider.value(
-      value: galleryRepository,
-      child: BlocProvider<GalleryBloc>(
-        create: (context) => GalleryBloc(
-          galleryRepository: galleryRepository,
-        ),
-        child: Router(
-          routerDelegate: _routerDelegate,
-          backButtonDispatcher: _backButtonDispatcher,
-        ),
-      ),
+    return Router(
+      routerDelegate: _routerDelegate,
+      backButtonDispatcher: _backButtonDispatcher,
     );
   }
 }

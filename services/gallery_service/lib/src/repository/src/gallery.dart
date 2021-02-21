@@ -4,6 +4,10 @@ import 'package:gallery_service/src/models/index.dart';
 import 'package:gallery_service/src/providers/api/index.dart';
 
 class GalleryRepository {
+  GalleryRepository({this.gallery});
+
+  final Gallery? gallery;
+
   Future<Gallery> getGallery({required String path}) async {
     final query = GalleryQuery(
       (b) => b..path = path,

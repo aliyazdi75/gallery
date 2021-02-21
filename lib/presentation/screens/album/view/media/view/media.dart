@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/l10n/index.dart';
 import 'package:gallery/presentation/screens/album/view/media/cubit/media_cubit.dart';
 import 'package:gallery/presentation/screens/album/view/media/view/media_preview.dart';
-import 'package:gallery/presentation/screens/routers/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 
 import 'page_button.dart';
@@ -15,13 +14,9 @@ const viewportFraction = 0.2;
 const initialPageIndex = 0;
 
 class MediaWidget extends StatefulWidget {
-  MediaWidget({
-    required this.medias,
-    required this.onRouteChanged,
-  });
+  MediaWidget({required this.medias});
 
   final List<Media> medias;
-  final HandleRouteChangedFunction onRouteChanged;
 
   @override
   _MediaWidgetState createState() => _MediaWidgetState();
@@ -78,8 +73,7 @@ class _MediaWidgetState extends State<MediaWidget>
               containerHeight: containerHeight,
               selectionAnimationDuration: selectionAnimationDuration,
               selectionAnimationCurve: selectionAnimationCurve,
-              onTap: onTap,
-              onRouteChanged: widget.onRouteChanged,
+              onUnselectedTapped: onTap,
             );
           },
         );

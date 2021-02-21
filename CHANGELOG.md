@@ -3,6 +3,7 @@
 - Some UI improvements
 - Add Fullscreen service
 - Support Navigation for fullscreen
+- Support Browser Back and Forward
 - Support sound null safety
 - Fix some bugs
 

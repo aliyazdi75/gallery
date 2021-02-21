@@ -6,11 +6,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/l10n/index.dart';
+import 'package:gallery/presentation/routers/index.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
-import 'package:gallery/presentation/screens/routers/index.dart';
+import 'package:gallery_service/gallery_service.dart';
 import 'package:layout_service/layout_service.dart';
 import 'package:options_service/options_service.dart';
+import 'package:routers_service/routers_service.dart';
 import 'package:themes_service/themes_service.dart';
 
 void main() {
@@ -23,27 +25,44 @@ void main() {
   };
   //todo: should fix this for build mode
   // UrlStrategy.configure();
-  runApp(GalleryApp(routersState: GalleryRoutersState()));
+  runApp(GalleryApp());
 }
 
-class GalleryApp extends StatelessWidget {
+class GalleryApp extends StatefulWidget {
   GalleryApp({
     Key? key,
-    required this.routersState,
     this.isTestMode = false,
     this.initialRoute,
-  })  : routeInformationParser = GalleryRouteInformationParser(routersState),
-        routerDelegate = GalleryRouterDelegate(routersState),
-        super(key: key);
+  }) : super(key: key);
 
   final bool isTestMode;
   final String? initialRoute;
-  final GalleryRoutersState routersState;
-  final GalleryRouteInformationParser routeInformationParser;
-  final GalleryRouterDelegate routerDelegate;
 
+  @override
+  _GalleryAppState createState() => _GalleryAppState();
+}
+
+class _GalleryAppState extends State<GalleryApp> {
+  final GalleryRouteInformationParser routeInformationParser =
+      GalleryRouteInformationParser();
   final authenticationRepository = AuthenticationRepository();
   final accountRepository = AccountRepository();
+  late final GalleryRouterDelegate routerDelegate;
+  late final GalleryRoutersState routerState;
+
+  @override
+  void initState() {
+    routerState = GalleryRoutersState();
+    routerDelegate = GalleryRouterDelegate(routerState);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    routerDelegate.dispose();
+    routerState.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +72,7 @@ class GalleryApp extends StatelessWidget {
         textScaleFactor: systemTextScaleFactorOption,
         // locale: Locale('fa'),
         platform: defaultTargetPlatform,
-        isTestMode: isTestMode,
+        isTestMode: widget.isTestMode,
       ),
       child: Builder(
         builder: (context) {
@@ -140,15 +159,15 @@ class RootPage extends StatelessWidget {
   RootPage({
     Key? key,
     required this.albumPath,
-    required this.onRouteChanged,
+    this.gallery,
   }) : super(key: key);
 
   final String albumPath;
-  final HandleRouteChangedFunction onRouteChanged;
+  final Gallery? gallery;
 
   @override
   Widget build(BuildContext context) {
-    return AlbumPage(albumPath: albumPath, onRouteChanged: onRouteChanged);
+    return AlbumPage(albumPath: albumPath, gallery: gallery);
     // return const SplashPage();
   }
 }

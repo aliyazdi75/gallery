@@ -1,7 +1,7 @@
 import 'package:authentication_service/authentication_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/l10n/index.dart';
 import 'package:login_service/login_service.dart';
 
 class LoginForm extends StatelessWidget {

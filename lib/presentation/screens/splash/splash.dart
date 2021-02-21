@@ -2,7 +2,7 @@ import 'package:authentication_service/authentication_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
+import 'package:gallery/l10n/index.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage();

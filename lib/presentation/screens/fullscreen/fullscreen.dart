@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_gen/gen_l10n/gallery_localizations.dart';
 import 'package:fullscreen_service/fullscreen_service.dart';
-import 'package:gallery/presentation/screens/routers/index.dart';
+import 'package:gallery/l10n/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 
 import 'image/image_fullscreen.dart';
@@ -13,14 +12,12 @@ class MediaFullscreen extends StatefulWidget {
   MediaFullscreen({
     required this.albumPath,
     required this.mediaPath,
-    required this.onRouteChanged,
     this.media,
   });
 
   final String albumPath;
   final String mediaPath;
   final Media? media;
-  final HandleRouteChangedFunction onRouteChanged;
 
   @override
   _MediaFullscreenState createState() => _MediaFullscreenState();

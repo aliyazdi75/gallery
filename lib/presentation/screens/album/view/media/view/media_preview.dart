@@ -117,7 +117,7 @@ class _MediaPreviewWidgetState extends State<MediaPreviewWidget> {
                   ),
                   if (widget.isVideoType)
                     for (Widget widget in stackedWidget) widget,
-                  if (!isMobile)
+                  if (isDesktop())
                     Positioned.fill(
                       child: AnimatedOpacity(
                         opacity: widget.gridView

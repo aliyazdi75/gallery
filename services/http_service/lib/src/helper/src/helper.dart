@@ -119,12 +119,12 @@ class HttpHelper implements HttpClientBase {
           usingLocal
               ? usingSSL
                   ? Uri.https(
-                      isMobile ? avdAuthority : authority,
+                      isMobile() ? avdAuthority : authority,
                       '/gallery/api/$path',
                       queryParams,
                     )
                   : Uri.http(
-                      isMobile ? avdAuthority : authority,
+                      isMobile() ? avdAuthority : authority,
                       '/gallery/api/$path',
                       queryParams,
                     )
@@ -162,12 +162,12 @@ class HttpHelper implements HttpClientBase {
           usingLocal
               ? usingSSL
                   ? Uri.https(
-                      isMobile ? avdAuthority : authority,
+                      isMobile() ? avdAuthority : authority,
                       '/gallery/api/$path',
                       queryParams,
                     )
                   : Uri.http(
-                      isMobile ? avdAuthority : authority,
+                      isMobile() ? avdAuthority : authority,
                       '/gallery/api/$path',
                       queryParams,
                     )

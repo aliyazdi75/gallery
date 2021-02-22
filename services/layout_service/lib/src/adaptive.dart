@@ -74,14 +74,15 @@ SizeType sizeTypeOf(BuildContext context) {
   }
 }
 
-bool get isMobile => Platform.isIOS || Platform.isAndroid;
+bool isMobile() {
+  if (kIsWeb) return false;
+  return Platform.isIOS || Platform.isAndroid;
+}
 
-bool get isDesktop =>
-    kIsWeb ||
-    Platform.isLinux ||
-    Platform.isMacOS ||
-    Platform.isWindows ||
-    Platform.isFuchsia;
+bool isDesktop() {
+  if (kIsWeb) return true;
+  return Platform.isLinux || Platform.isMacOS || Platform.isWindows;
+}
 
 bool isLargeDisplay(BuildContext context) {
   return sizeTypeOf(context) == SizeType.large;

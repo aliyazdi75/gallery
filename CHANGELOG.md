@@ -1,4 +1,4 @@
-*version **1.1.0** includes*:
+*version **1.1.1** includes*:
 - Migrate to navigation 2
 - Some UI improvements and animations
 - Add Grip view

@@ -34,7 +34,6 @@ class _MediaWidgetState extends State<MediaWidget>
   late ScrollController _scrollController;
   late PageController _imagePageController;
   bool _gridView = true;
-  bool _isLarge = true;
 
   @override
   void initState() {
@@ -42,7 +41,7 @@ class _MediaWidgetState extends State<MediaWidget>
     _scrollController = ScrollController();
     _imagePageController = PageController(
       initialPage: initialPageIndex,
-      viewportFraction: smallSizeViewportFraction,
+      viewportFraction: largeSizeViewportFraction,
       keepPage: true,
     );
   }
@@ -60,8 +59,10 @@ class _MediaWidgetState extends State<MediaWidget>
     final deviceHeight = MediaQuery.of(context).size.height;
     final selectedHeight = deviceHeight * 0.6;
     final unSelectedHeight = deviceHeight * 0.4;
-
-    _adaptivePageController(context);
+    //todo: think about this
+    _setSizePageController(isLargeDisplay(context)
+        ? largeSizeViewportFraction
+        : smallSizeViewportFraction);
     Widget mediaItemBuilder(int index) => BlocBuilder<MediaCubit, int>(
           builder: (context, state) {
             final isSelected = index == state;
@@ -159,26 +160,14 @@ class _MediaWidgetState extends State<MediaWidget>
     );
   }
 
-  void _adaptivePageController(BuildContext context) {
-    if (isLargeDisplay(context) && !_isLarge) {
-      _isLarge = true;
-      _imagePageController = PageController(
-        initialPage: _imagePageController.hasClients
-            ? _imagePageController.page!.floor()
-            : initialPageIndex,
-        viewportFraction: largeSizeViewportFraction,
-        keepPage: true,
-      );
-    } else if (!isLargeDisplay(context) && _isLarge) {
-      _isLarge = false;
-      _imagePageController = PageController(
-        initialPage: _imagePageController.hasClients
-            ? _imagePageController.page!.floor()
-            : initialPageIndex,
-        viewportFraction: smallSizeViewportFraction,
-        keepPage: true,
-      );
-    }
+  void _setSizePageController(double viewportFraction) {
+    _imagePageController = PageController(
+      initialPage: _imagePageController.hasClients
+          ? _imagePageController.page!.floor()
+          : initialPageIndex,
+      viewportFraction: viewportFraction,
+      keepPage: true,
+    );
   }
 
   void _animateToPage(int index) {

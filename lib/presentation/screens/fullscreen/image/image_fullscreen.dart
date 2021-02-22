@@ -8,6 +8,7 @@ class ImageFullscreen extends StatelessWidget {
   final String albumPath;
   final Media media;
 
+  //todo: change to InteractiveViewer widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(

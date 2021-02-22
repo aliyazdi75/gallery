@@ -8,6 +8,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  animations:
+    dependency: "direct main"
+    description:
+      name: animations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0-nullsafety.0"
   async:
     dependency: transitive
     description:

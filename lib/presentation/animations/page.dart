@@ -1,4 +1,8 @@
+import 'package:animations/animations.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+const transitionDuration = Duration(milliseconds: 500);
 
 class FadeAnimationPage extends Page<dynamic> {
   final Widget child;
@@ -9,6 +13,16 @@ class FadeAnimationPage extends Page<dynamic> {
   Route createRoute(BuildContext context) {
     return PageRouteBuilder<dynamic>(
       settings: this,
+      transitionDuration: transitionDuration,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        return FadeThroughTransition(
+          fillColor: Theme.of(context).cardColor,
+          animation: animation,
+          secondaryAnimation: secondaryAnimation,
+          child: child,
+        );
+      },
+      reverseTransitionDuration: transitionDuration,
       pageBuilder: (context, animation, animation2) {
         var curveTween = CurveTween(curve: Curves.easeIn);
         return FadeTransition(
@@ -19,21 +33,3 @@ class FadeAnimationPage extends Page<dynamic> {
     );
   }
 }
-
-//
-// class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
-//   NoAnimationMaterialPageRoute({
-//     required WidgetBuilder builder,
-//     RouteSettings? settings,
-//   }) : super(builder: builder, settings: settings);
-//
-//   @override
-//   Widget buildTransitions(
-//     BuildContext context,
-//     Animation<double> animation,
-//     Animation<double> secondaryAnimation,
-//     Widget child,
-//   ) {
-//     return child;
-//   }
-// }

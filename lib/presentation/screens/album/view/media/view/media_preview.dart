@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gallery_service/gallery_service.dart';
+import 'package:layout_service/layout_service.dart';
 import 'package:routers_service/routers_service.dart';
 
 const kIconSizeSelected = 0.4;
@@ -116,34 +117,35 @@ class _MediaPreviewWidgetState extends State<MediaPreviewWidget> {
                   ),
                   if (widget.isVideoType)
                     for (Widget widget in stackedWidget) widget,
-                  Positioned.fill(
-                    child: AnimatedOpacity(
-                      opacity: widget.gridView
-                          ? 1.0
-                          : widget.isSelected
-                              ? 0.0
-                              : 1.0,
-                      duration: widget.selectionAnimationDuration,
-                      curve: widget.selectionAnimationCurve,
+                  if (!isMobile)
+                    Positioned.fill(
                       child: AnimatedOpacity(
-                        opacity:
-                            _onHover || (widget.isSelected && !widget.gridView)
+                        opacity: widget.gridView
+                            ? 1.0
+                            : widget.isSelected
                                 ? 0.0
                                 : 1.0,
-                        duration: const Duration(milliseconds: 250),
-                        child: MouseRegion(
-                          onEnter: _onMouseEnter,
-                          onExit: _onMouseExit,
-                          child: Opacity(
-                            opacity: 0.4,
-                            child: Container(
-                              color: Colors.black,
+                        duration: widget.selectionAnimationDuration,
+                        curve: widget.selectionAnimationCurve,
+                        child: AnimatedOpacity(
+                          opacity: _onHover ||
+                                  (widget.isSelected && !widget.gridView)
+                              ? 0.0
+                              : 1.0,
+                          duration: const Duration(milliseconds: 250),
+                          child: MouseRegion(
+                            onEnter: _onMouseEnter,
+                            onExit: _onMouseExit,
+                            child: Opacity(
+                              opacity: 0.4,
+                              child: Container(
+                                color: Colors.black,
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),

@@ -1,6 +1,8 @@
 *version **1.1.0** includes*:
 - Migrate to navigation 2
-- Some UI improvements
+- Some UI improvements and animations
+- Add Grip view
+- Add jump to top button
 - Add Fullscreen service
 - Support Navigation for fullscreen
 - Support Browser Back and Forward

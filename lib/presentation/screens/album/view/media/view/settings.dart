@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-const animationDuration = Duration(milliseconds: 500);
-const animationCurve = Curves.easeInToLinear;
+const animationDuration = Duration(milliseconds: 250);
+const animationCurve = Curves.easeInOutBack;
 const fabHeight = 56.0;
 
 class SettingsWidget extends StatefulWidget {
@@ -26,8 +26,9 @@ class _SettingsWidgetState extends State<SettingsWidget>
     with TickerProviderStateMixin {
   final startPosition = 0.0;
   final endPosition = fabHeight + 10.0;
-  bool _showJumpButton = false;
+  bool _jumpButtonExist = false;
 
+  late double _scrollControllerOffset;
   late final AnimationController gridViewAnimationController;
   late final AnimationController jumpButtonAnimationController;
   late final Animation<double> jumpButtonAnimation;
@@ -35,6 +36,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
   @override
   void initState() {
     super.initState();
+    _scrollControllerOffset = widget.scrollController.offset;
     gridViewAnimationController = AnimationController(
       vsync: this,
       duration: animationDuration,
@@ -48,16 +50,15 @@ class _SettingsWidgetState extends State<SettingsWidget>
       end: endPosition,
     ).animate(CurvedAnimation(
       parent: jumpButtonAnimationController,
-      curve: Curves.easeInOutBack,
+      curve: animationCurve,
     ));
     widget.scrollController.addListener(() {
-      if (widget.scrollController.offset >= 200 && !_showJumpButton) {
-        jumpButtonAnimationController.forward();
-        _showJumpButton = true;
+      _scrollControllerOffset = widget.scrollController.offset;
+      if (_scrollControllerOffset >= 200 && !_jumpButtonExist) {
+        _showJumpButton();
       }
-      if (widget.scrollController.offset < 200 && _showJumpButton) {
-        jumpButtonAnimationController.reverse();
-        _showJumpButton = false;
+      if (_scrollControllerOffset < 200 && _jumpButtonExist) {
+        _hideJumpButton();
       }
     });
   }
@@ -66,6 +67,7 @@ class _SettingsWidgetState extends State<SettingsWidget>
   void dispose() {
     super.dispose();
     gridViewAnimationController.dispose();
+    jumpButtonAnimationController.dispose();
   }
 
   @override
@@ -73,22 +75,23 @@ class _SettingsWidgetState extends State<SettingsWidget>
     final girdViewIconColor = Colors.deepPurple;
     final baseIconColor = Colors.indigoAccent;
 
-    return SingleChildScrollView(
-      child: Stack(
-        children: <Widget>[
-          Transform(
-            transform: Matrix4.translationValues(
-              0.0,
-              jumpButtonAnimation.value,
-              0.0,
-            ),
-            child: FloatingActionButton(
-              heroTag: 'Up',
-              onPressed: () => widget.onJumpIconTap(),
-              child: const Icon(Icons.arrow_upward),
-            ),
+    return Column(
+      children: <Widget>[
+        Transform(
+          transform: Matrix4.translationValues(
+            0.0,
+            jumpButtonAnimation.value,
+            0.0,
           ),
-          TweenAnimationBuilder<Color?>(
+          child: FloatingActionButton(
+            heroTag: 'Up',
+            onPressed: () => widget.onJumpIconTap(),
+            child: const Icon(Icons.arrow_upward),
+          ),
+        ),
+        Transform.translate(
+          offset: const Offset(0.0, -1 * fabHeight),
+          child: TweenAnimationBuilder<Color?>(
             tween: ColorTween(
               begin: widget.gridView ? baseIconColor : girdViewIconColor,
               end: widget.gridView ? girdViewIconColor : baseIconColor,
@@ -101,8 +104,12 @@ class _SettingsWidgetState extends State<SettingsWidget>
               onPressed: () {
                 if (widget.gridView) {
                   gridViewAnimationController.forward();
+                  _hideJumpButton();
                 } else {
                   gridViewAnimationController.reverse();
+                  if (_scrollControllerOffset >= 200 && !_jumpButtonExist) {
+                    _showJumpButton();
+                  }
                 }
                 widget.onGridViewIconTap();
               },
@@ -113,8 +120,18 @@ class _SettingsWidgetState extends State<SettingsWidget>
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
+  }
+
+  void _showJumpButton() {
+    jumpButtonAnimationController..forward();
+    _jumpButtonExist = true;
+  }
+
+  void _hideJumpButton() {
+    jumpButtonAnimationController.reverse();
+    _jumpButtonExist = false;
   }
 }

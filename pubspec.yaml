@@ -21,6 +21,7 @@ dependencies:
   intl: ^0.17.0
   cupertino_icons: ^1.0.2
   flutter_bloc: ^7.0.0-nullsafety.2
+  animations: ^2.0.0-nullsafety.0
   #todo: get from pub after null safety supported
   photo_view:
     git: https://github.com/DevNico/photo_view

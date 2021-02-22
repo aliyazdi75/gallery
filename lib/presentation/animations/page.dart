@@ -16,7 +16,6 @@ class FadeAnimationPage extends Page<dynamic> {
       transitionDuration: transitionDuration,
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return FadeThroughTransition(
-          fillColor: Theme.of(context).cardColor,
           animation: animation,
           secondaryAnimation: secondaryAnimation,
           child: child,

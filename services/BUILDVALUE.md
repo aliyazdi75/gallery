@@ -3,6 +3,9 @@
 Download `Built Value Snippets` from
 [Plugin](https://plugins.jetbrains.com/plugin/13786-built-value-snippets):
 
+Build you classes without commands bellow then run this:
+`flutter packages pub run build_runner build --delete-conflicting-outputs`
+
 ## Features
 
 | Shortcut   | Expanded                 | Description                                                                                                                                                                             |

@@ -30,9 +30,9 @@ V=c[22]
 X=c[23]
 N=c[24]
 B.oi.prototype={
-gy8:function(){return"\u0641\u0627\u0631\u063a \u0627\u0644\u062a\u062d\u0635\u06cc\u0644\u0627\u0646 \u0633\u06cc\u062a"},
-gEg:function(){return"\u0648\u0631\u0648\u062f"},
-gEf:function(){return"\u0627\u0646\u062a\u0638\u0627\u0631..."},
+gy7:function(){return"\u0641\u0627\u0631\u063a \u0627\u0644\u062a\u062d\u0635\u06cc\u0644\u0627\u0646 \u0633\u06cc\u062a"},
+gEf:function(){return"\u0648\u0631\u0648\u062f"},
+gEe:function(){return"\u0627\u0646\u062a\u0638\u0627\u0631..."},
 gSk:function(d){return"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc"},
 gSl:function(){return"\u0646\u0627\u0645 \u06a9\u0627\u0631\u0628\u0631\u06cc \u0646\u0628\u0627\u06cc\u062f \u062e\u0627\u0644\u06cc \u0628\u0627\u0634\u062f"},
 gR6:function(d){return"\u0631\u0645\u0632 \u0639\u0628\u0648\u0631"},
@@ -42,7 +42,7 @@ gtl:function(){return"\u06af\u0631\u0641\u062a\u0646 \u06af\u0627\u0644\u0631\u0
 gQL:function(){return"\u0647\u06cc\u0686 \u0645\u062d\u062a\u0648\u0627\u06cc\u06cc \u0645\u0648\u062c\u0648\u062f \u0646\u0645\u06cc \u0628\u0627\u0634\u062f :("}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
 y(B.oi,X.hw)})()
-H.an7(b.typeUniverse,JSON.parse('{"aqR":"a5","ars":"a5","aqU":"aD","aqV":"aD","aqQ":"ca","asS":"el","ar_":"ah","asg":"a9","arm":"a9","asD":"fB","ara":"hI","ark":"h9","ar5":"ee","asr":"ee","arB":"j1","are":"bU","aqY":"jc","oi":{"hw":[]}}'))
+H.an7(b.typeUniverse,JSON.parse('{"aqR":"a5","ars":"a5","aqU":"aD","aqV":"aD","aqQ":"ca","asR":"el","ar_":"ah","asf":"a9","arm":"a9","asC":"fB","ara":"hI","ark":"h9","ar5":"ee","asq":"ee","arB":"j1","are":"bU","aqY":"jc","oi":{"hw":[]}}'))
 0
 0}
-$__dart_deferred_initializers__["GnaQ7V3svEg5HyVEczmYG8zrSxM="] = $__dart_deferred_initializers__.current
+$__dart_deferred_initializers__["nH+5FqhJlIlQuHfi8pM16dDyTG8="] = $__dart_deferred_initializers__.current

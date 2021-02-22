@@ -1,6 +1,7 @@
 name: gallery
 description: >
-  Gallery Application.
+  A responsive Flutter gallery application for
+  any platform using the micro-service architecture.
 homepage: https://aliyazdi75.github.io/gallery
 repository: https://github.com/aliyazdi75/gallery
 issue_tracker: https://github.com/aliyazdi75/gallery/issues

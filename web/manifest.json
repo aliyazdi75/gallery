@@ -5,7 +5,7 @@
     "display": "standalone",
     "background_color": "#030303",
     "theme_color": "#030303",
-    "description": "A responsive Flutter gallery application for any platform using the micro-service architecture.",
+    "description": "The Gallery Application.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

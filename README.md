@@ -16,11 +16,11 @@ Read about architecture here:
 
 ## Features
 
-- Sound Null­Safety
+- Sound Null-Safety
 - Navigation 2
 - Localization
-- Multi­Themes
-- Multi­Devices Adaptive Size
+- Multi-Themes
+- Multi-Devices Adaptive Size
 
 ## Discussion
 Do you have any questions related to architectures and features, don't

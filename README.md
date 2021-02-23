@@ -26,14 +26,14 @@ Read about architecture here:
 Do you have any questions related to architectures and features, don't
 hesitate to make your first
 [discussion](https://github.com/aliyazdi75/gallery/discussions/new) and
-join our [Discord](https://discord.gg/y4RcnyK5uT) serve.
+join my [Discord](https://discord.gg/y4RcnyK5uT) server.
 
 ## Support
-Have an idea, [PRs](https://github.com/aliyazdi75/gallery/fork) and
+Have an idea? [PRs](https://github.com/aliyazdi75/gallery/fork) and
 [issues](https://github.com/aliyazdi75/gallery/issues/new/choose) are
 most welcome.
 
-Got no time? If you found my project and articles helpful
+Got no time? If you found my project and articles helpful,
 [Share](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Faliyazdi75%2Fgallery%2F)
 and Star.
 

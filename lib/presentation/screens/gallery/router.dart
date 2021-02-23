@@ -23,7 +23,6 @@ class InnerGalleryRouterDelegate extends RouterDelegate<RouterConfiguration>
     }
   }
 
-  //todo: the problem is that the build method called before app states
   @override
   Widget build(BuildContext context) {
     // debugPrint('browserState:' + _routerState.browserState.toString());

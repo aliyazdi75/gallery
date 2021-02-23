@@ -26,6 +26,16 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-68XWE45L1T"></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-68XWE45L1T');
+  </script>
+
   <title>Gallery</title>
   <link rel="manifest" href="manifest.json">
 </head>
@@ -33,7 +43,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {
-        navigator.serviceWorker.register('flutter_service_worker.js?v=3129352573');
+        navigator.serviceWorker.register('flutter_service_worker.js?v=1468537325');
       });
     }
   </script>

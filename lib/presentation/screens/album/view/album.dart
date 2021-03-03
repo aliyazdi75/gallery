@@ -138,7 +138,7 @@ class AlbumPage extends StatelessWidget {
                               ),
                             for (Album album in state.gallery!.albums)
                               FloatingActionButton.extended(
-                                heroTag: _DefaultHeroTag(),
+                                heroTag: UniqueKey,
                                 onPressed: () {
                                   context
                                       .read<GalleryBloc>()
@@ -168,5 +168,3 @@ class AlbumPage extends StatelessWidget {
     );
   }
 }
-
-class _DefaultHeroTag {}

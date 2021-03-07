@@ -21,7 +21,7 @@ dependencies:
   intl: ^0.17.0
   cupertino_icons: ^1.0.2
   flutter_bloc: ^7.0.0-nullsafety.2
-  animations: ^2.0.0-nullsafety.0
+  animations: ^2.0.0
   #todo: get from pub after null safety supported
   photo_view:
     git: https://github.com/DevNico/photo_view
@@ -54,7 +54,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.10.0
+  pedantic: ^1.11.0
 #  flutter_launcher_icons: any
 
 #flutter_icons:
@@ -68,7 +68,21 @@ flutter:
 
   assets:
     - fonts/google_fonts/
-    - assets/response.json
+    - assets/responses/paths/p1.json
+    - assets/responses/paths/p2.json
+    - assets/responses/paths/p3.json
+    - assets/responses/paths/p4.json
+    - assets/responses/paths/p5.json
+    - assets/responses/files/f1.json
+    - assets/responses/files/f2.json
+    - assets/responses/files/f3.json
+    - assets/responses/files/f4.json
+    - assets/responses/files/f5.json
+    - assets/responses/files/f6.json
+    - assets/responses/files/f7.json
+    - assets/responses/files/f8.json
+    - assets/responses/files/f9.json
+    - assets/responses/files/f10.json
 
   fonts:
     - family: IRANSans-Medium

@@ -75,53 +75,56 @@ class _SettingsWidgetState extends State<SettingsWidget>
     final girdViewIconColor = Colors.deepPurple;
     final baseIconColor = Colors.indigoAccent;
 
-    return Column(
-      children: <Widget>[
-        Transform(
-          transform: Matrix4.translationValues(
-            0.0,
-            jumpButtonAnimation.value,
-            0.0,
-          ),
-          child: FloatingActionButton(
-            heroTag: 'Up',
-            onPressed: () => widget.onJumpIconTap(),
-            child: const Icon(Icons.arrow_upward),
-          ),
-        ),
-        Transform.translate(
-          offset: const Offset(0.0, -1 * fabHeight),
-          child: TweenAnimationBuilder<Color?>(
-            tween: ColorTween(
-              begin: widget.gridView ? baseIconColor : girdViewIconColor,
-              end: widget.gridView ? girdViewIconColor : baseIconColor,
+    return Padding(
+      padding: const EdgeInsets.only(top: 5.0),
+      child: Column(
+        children: <Widget>[
+          Transform(
+            transform: Matrix4.translationValues(
+              0.0,
+              jumpButtonAnimation.value,
+              0.0,
             ),
-            duration: animationDuration,
-            curve: animationCurve,
-            builder: (context, color, child) => FloatingActionButton(
-              heroTag: 'Grip',
-              backgroundColor: color,
-              onPressed: () {
-                if (widget.gridView) {
-                  gridViewAnimationController.forward();
-                  _hideJumpButton();
-                } else {
-                  gridViewAnimationController.reverse();
-                  if (_scrollControllerOffset >= 200 && !_jumpButtonExist) {
-                    _showJumpButton();
+            child: FloatingActionButton(
+              heroTag: 'Up',
+              onPressed: () => widget.onJumpIconTap(),
+              child: const Icon(Icons.arrow_upward),
+            ),
+          ),
+          Transform.translate(
+            offset: const Offset(0.0, -1 * fabHeight),
+            child: TweenAnimationBuilder<Color?>(
+              tween: ColorTween(
+                begin: widget.gridView ? baseIconColor : girdViewIconColor,
+                end: widget.gridView ? girdViewIconColor : baseIconColor,
+              ),
+              duration: animationDuration,
+              curve: animationCurve,
+              builder: (context, color, child) => FloatingActionButton(
+                heroTag: 'Grip',
+                backgroundColor: color,
+                onPressed: () {
+                  if (widget.gridView) {
+                    gridViewAnimationController.forward();
+                    _hideJumpButton();
+                  } else {
+                    gridViewAnimationController.reverse();
+                    if (_scrollControllerOffset >= 200 && !_jumpButtonExist) {
+                      _showJumpButton();
+                    }
                   }
-                }
-                widget.onGridViewIconTap();
-              },
-              child: AnimatedIcon(
-                icon: AnimatedIcons.view_list,
-                progress: gridViewAnimationController,
-                color: Colors.white,
+                  widget.onGridViewIconTap();
+                },
+                child: AnimatedIcon(
+                  icon: AnimatedIcons.view_list,
+                  progress: gridViewAnimationController,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

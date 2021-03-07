@@ -18,7 +18,7 @@ Read about architecture here:
 
 - Sound Null-Safety
 - Navigation 2
-- Mobile and Web Fullscreen Functionality
+- Web Fullscreen Functionality
 - Keyboard Shortcut
 - Localization
 - Multi-Themes

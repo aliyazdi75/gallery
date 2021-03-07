@@ -110,14 +110,20 @@ class _MediaWidgetState extends State<MediaWidget>
                   ),
                 )
               : _gridView
-                  ? GridView.extent(
-                      key: const PageStorageKey('Grid'),
+                  ? Scrollbar(
                       controller: _scrollController,
-                      maxCrossAxisExtent: deviceHeight * 0.4,
-                      children: widget.medias
-                          .map<Widget>((media) =>
-                              mediaItemBuilder(widget.medias.indexOf(media)))
-                          .toList(),
+                      showTrackOnHover: true,
+                      isAlwaysShown: true,
+                      child: GridView.extent(
+                        key: const PageStorageKey('Grid'),
+                        padding: const EdgeInsets.all(10.0),
+                        controller: _scrollController,
+                        maxCrossAxisExtent: deviceHeight * 0.4,
+                        children: widget.medias
+                            .map<Widget>((media) =>
+                                mediaItemBuilder(widget.medias.indexOf(media)))
+                            .toList(),
+                      ),
                     )
                   : Stack(
                       children: [

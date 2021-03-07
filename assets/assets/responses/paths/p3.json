@@ -1,0 +1,32 @@
+{
+  "path": "/p3/",
+  "current": "p3",
+  "parent": "p1",
+  "albums": [
+    {
+      "name": "Root5",
+      "path": "p5",
+      "thumbnail": ""
+    }
+  ],
+  "images": [
+    {
+      "name": "f9",
+      "path": "f9",
+      "thumbnail": "https://i.pinimg.com/originals/8e/be/9b/8ebe9bc29c7229f535dca12a47050b56.jpg",
+      "url": "https://i.pinimg.com/originals/8e/be/9b/8ebe9bc29c7229f535dca12a47050b56.jpg",
+      "type": "image",
+      "height": 667,
+      "width": 1000
+    },
+    {
+      "name": "f10",
+      "path": "f10",
+      "thumbnail": "https://image.freepik.com/free-photo/two-girls-hand-holding-together_1150-4110.jpg",
+      "url": "https://image.freepik.com/free-photo/two-girls-hand-holding-together_1150-4110.jpg",
+      "type": "image",
+      "height": 667,
+      "width": 1000
+    }
+  ]
+}

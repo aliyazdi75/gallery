@@ -1,0 +1,32 @@
+{
+  "path": "/p2/",
+  "current": "p2",
+  "parent": "p1",
+  "albums": [
+    {
+      "name": "Root4",
+      "path": "p4",
+      "thumbnail": ""
+    }
+  ],
+  "images": [
+    {
+      "name": "f7",
+      "path": "f7",
+      "thumbnail": "https://www.wonderslist.com/wp-content/uploads/2017/07/Most-Beautiful-Girls-in-the-world.jpg",
+      "url": "https://www.wonderslist.com/wp-content/uploads/2017/07/Most-Beautiful-Girls-in-the-world.jpg",
+      "type": "image",
+      "height": 667,
+      "width": 1000
+    },
+    {
+      "name": "f8",
+      "path": "f8",
+      "thumbnail": "https://i.pinimg.com/originals/11/8f/fc/118ffcb079117d00f01ed4d618f2ff26.jpg",
+      "url": "https://i.pinimg.com/originals/11/8f/fc/118ffcb079117d00f01ed4d618f2ff26.jpg",
+      "type": "image",
+      "height": 667,
+      "width": 1000
+    }
+  ]
+}

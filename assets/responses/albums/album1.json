@@ -1,23 +1,23 @@
 {
   "path": "/",
-  "current": "p1",
+  "current": "album1",
   "parent": null,
   "albums": [
     {
       "name": "Root2",
-      "path": "p2",
+      "path": "album2",
       "thumbnail": ""
     },
     {
       "name": "Root3",
-      "path": "p3",
+      "path": "album3",
       "thumbnail": ""
     }
   ],
   "images": [
     {
-      "name": "f1",
-      "path": "f1",
+      "name": "photo1",
+      "path": "photo1",
       "thumbnail": "https://mylatinawife.com/wp-content/uploads/2018/12/Venezuela-women.jpg",
       "url": "https://mylatinawife.com/wp-content/uploads/2018/12/Venezuela-women.jpg",
       "type": "image",
@@ -25,8 +25,8 @@
       "width": 1000
     },
     {
-      "name": "f2",
-      "path": "f2",
+      "name": "photo2",
+      "path": "photo2",
       "thumbnail": "https://www.salondeauville.com/wp-content/uploads/2019/04/girl-1545885_960_720.jpg",
       "url": "https://www.salondeauville.com/wp-content/uploads/2019/04/girl-1545885_960_720.jpg",
       "type": "image",
@@ -34,8 +34,8 @@
       "width": 1000
     },
     {
-      "name": "f3",
-      "path": "f3",
+      "name": "photo3",
+      "path": "photo3",
       "thumbnail": "https://www.teahub.io/photos/full/288-2882406_nature-woman-girl-model-beautiful-young-outdoors-forest.jpg",
       "url": "https://www.teahub.io/photos/full/288-2882406_nature-woman-girl-model-beautiful-young-outdoors-forest.jpg",
       "type": "image",
@@ -43,8 +43,8 @@
       "width": 1000
     },
     {
-      "name": "f4",
-      "path": "f4",
+      "name": "photo4",
+      "path": "photo4",
       "thumbnail": "https://ak.picdn.net/shutterstock/videos/28896448/thumb/1.jpg",
       "url": "https://ak.picdn.net/shutterstock/videos/28896448/thumb/1.jpg",
       "type": "image",
@@ -52,17 +52,17 @@
       "width": 1000
     },
     {
-      "name": "f5",
-      "path": "f5",
-      "thumbnail": "https://lh3.googleusercontent.com/proxy/1nWbgOSQj0Yzdp7v_8tYKOl_Glf25AjvkKgQYD-cGoVWBAog1QrkC1NpnAOLIr7mjLFBT0pfd-LPzTiPMgrMMrv122AW1MN_PO5zvl4Q-_7jgJYSy2Z0Esf4QIQP9XZvbzvhg4rr",
-      "url": "https://lh3.googleusercontent.com/proxy/1nWbgOSQj0Yzdp7v_8tYKOl_Glf25AjvkKgQYD-cGoVWBAog1QrkC1NpnAOLIr7mjLFBT0pfd-LPzTiPMgrMMrv122AW1MN_PO5zvl4Q-_7jgJYSy2Z0Esf4QIQP9XZvbzvhg4rr",
+      "name": "photo5",
+      "path": "photo5",
+      "thumbnail": "https://i.pinimg.com/originals/31/c1/e0/31c1e07b1812167b6963d09e1048dbfd.jpg",
+      "url": "https://i.pinimg.com/originals/31/c1/e0/31c1e07b1812167b6963d09e1048dbfd.jpg",
       "type": "image",
       "height": 667,
       "width": 1000
     },
     {
-      "name": "f6",
-      "path": "f6",
+      "name": "photo6",
+      "path": "photo6",
       "thumbnail": "https://i.pinimg.com/736x/66/41/7f/66417f11ac45cddb409343fd94984fe0.jpg",
       "url": "https://i.pinimg.com/736x/66/41/7f/66417f11ac45cddb409343fd94984fe0.jpg",
       "type": "image",

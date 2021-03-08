@@ -8,5 +8,8 @@
   "passwordNotEmpty": "رمز عبور نباید خالی باشد",
   "authenticationFailure": "احراز هویت ناموفق",
   "galleryFailure": "گرفتن گالری ناموفق",
-  "noMedia": "هیچ محتوایی موجود نمی باشد :("
+  "noMedia": "هیچ محتوایی موجود نمی باشد :(",
+  "homeTitle": "خونه",
+  "unknownPageTitle": "۴۰۴",
+  "unknownPageDescription": "شرمنده ما این ضفحه رو نداریم :(\nاجازه بده ببرمت خونه"
 }

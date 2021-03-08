@@ -28,8 +28,11 @@ class FullscreenBloc extends Bloc<FullscreenEvent, FullscreenState> {
     yield state.copyWith(status: FullscreenStatus.loading);
 
     try {
-      final media = await fullscreenRepository.getMedia(path: event.path!);
+      final media = await fullscreenRepository.getMedia(path: event.path);
       yield state.copyWith(status: FullscreenStatus.success, media: media);
+    } on NotFoundException {
+      print('kir to oon urlet');
+      yield state.copyWith(status: FullscreenStatus.notFound);
     } on SocketException {
       print('kir to netet');
       yield state.copyWith(status: FullscreenStatus.failure);

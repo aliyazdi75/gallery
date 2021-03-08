@@ -47,16 +47,6 @@ class SocketException extends HttpException {
   String toString() => 'SocketException in $url';
 }
 
-class NotFoundException extends HttpException {
-  final String url;
-
-  NotFoundException(this.url, [String? key, String? value])
-      : super(NotFoundException, key, value);
-
-  @override
-  String toString() => 'NotFoundException in $url';
-}
-
 class ServerException extends HttpException {
   final String url;
 
@@ -75,6 +65,15 @@ class NotHandleException extends HttpException {
 
   @override
   String toString() => 'NotHandleException in $url';
+}
+
+class NotFoundException implements Exception {
+  final String url;
+
+  NotFoundException(this.url);
+
+  @override
+  String toString() => 'NotFoundException in $url';
 }
 
 class BadRequestException implements Exception {

@@ -33,10 +33,22 @@
   },
   "galleryFailure": "Gallery Failure",
   "@galleryFailure": {
-    "description": "Gallery Failure"
+    "description": "Gallery Failure Text"
   },
   "noMedia": "There is no content here :(",
   "@noMedia": {
-    "description": "There is no content here :("
+    "description": "noMedia Text"
+  },
+  "homeTitle": "Home",
+  "@unknownPageTitle": {
+    "description": "homeTitle Text"
+  },
+  "unknownPageTitle": "404",
+  "@unknownPageTitle": {
+    "description": "unknownPageTitle Text"
+  },
+  "unknownPageDescription": "Sorry we don't have this page :(\nlet me Take you back home.",
+  "@unknownPageDescription": {
+    "description": "unknownPageDescription Text"
   }
 }

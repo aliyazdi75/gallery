@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gallery/l10n/index.dart';
 import 'package:gallery/presentation/screens/album/view/media/cubit/media_cubit.dart';
 import 'package:gallery/presentation/screens/album/view/media/view/media_preview.dart';
+import 'package:gallery/presentation/widgets/index.dart';
 import 'package:gallery_service/gallery_service.dart';
 import 'package:layout_service/layout_service.dart';
 
@@ -97,18 +98,7 @@ class _MediaWidgetState extends State<MediaWidget>
                   onJumpIconTap: () => _scrollTopAnimation(),
                 ),
           body: widget.medias.isEmpty
-              ? Center(
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(10.0, 2.0, 10.0, 2.0),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.3),
-                      borderRadius: const BorderRadius.all(
-                        Radius.elliptical(50, 50),
-                      ),
-                    ),
-                    child: Text(GalleryLocalizations.of(context)!.noMedia),
-                  ),
-                )
+              ? HoverContainer(Text(GalleryLocalizations.of(context)!.noMedia))
               : _gridView
                   ? Scrollbar(
                       controller: _scrollController,

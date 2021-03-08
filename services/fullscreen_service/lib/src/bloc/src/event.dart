@@ -5,14 +5,14 @@ abstract class FullscreenEvent extends Equatable {
   const FullscreenEvent();
 
   @override
-  List<Object?> get props => [];
+  List<Object> get props => [];
 }
 
 class FullscreenPushRequested extends FullscreenEvent {
-  const FullscreenPushRequested({this.path});
+  const FullscreenPushRequested(this.path);
 
-  final String? path;
+  final String path;
 
   @override
-  List<Object?> get props => [path];
+  List<Object> get props => [path];
 }

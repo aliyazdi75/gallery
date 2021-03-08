@@ -4,12 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fullscreen_service/fullscreen_service.dart';
 import 'package:gallery/l10n/index.dart';
 import 'package:gallery_service/gallery_service.dart';
+import 'package:routers_service/routers_service.dart';
 
 import 'image/image_fullscreen.dart';
 import 'video/video_fullscreen.dart';
 
-class MediaFullscreen extends StatefulWidget {
-  MediaFullscreen({
+class MediaFullscreenPage extends StatefulWidget {
+  MediaFullscreenPage({
     required this.albumPath,
     required this.mediaPath,
     this.media,
@@ -20,10 +21,11 @@ class MediaFullscreen extends StatefulWidget {
   final Media? media;
 
   @override
-  _MediaFullscreenState createState() => _MediaFullscreenState();
+  _MediaFullscreenPageState createState() => _MediaFullscreenPageState();
 }
 
-class _MediaFullscreenState extends State<MediaFullscreen> {
+class _MediaFullscreenPageState extends State<MediaFullscreenPage> {
+  final fullscreenRepository = FullscreenRepository();
   bool _isFullscreen = false;
   late final RequestFullscreen requestFullscreen;
 
@@ -58,16 +60,18 @@ class _MediaFullscreenState extends State<MediaFullscreen> {
               handleFullscreenButton: _handleFullscreenButton,
             );
     }
-    final fullscreenRepository = FullscreenRepository();
-    return RepositoryProvider<FullscreenRepository>.value(
-      value: fullscreenRepository,
+    return RepositoryProvider<FullscreenRepository>(
+      create: (_) => fullscreenRepository,
       child: BlocProvider<FullscreenBloc>(
         create: (_) =>
             FullscreenBloc(fullscreenRepository: fullscreenRepository),
         child: BlocListener<FullscreenBloc, FullscreenState>(
           listener: (context, state) async {
             switch (state.status) {
-              case FullscreenStatus.success:
+              case FullscreenStatus.notFound:
+                GalleryRouterStateScope.of(context)!
+                  ..browserState = BrowserState.fromJson(<String, dynamic>{})
+                  ..routePath = const UnknownPagePath();
                 break;
               case FullscreenStatus.failure:
                 ScaffoldMessenger.of(context)
@@ -88,7 +92,7 @@ class _MediaFullscreenState extends State<MediaFullscreen> {
             builder: (context, state) {
               if (state.status == FullscreenStatus.initial) {
                 BlocProvider.of<FullscreenBloc>(context)
-                    .add(FullscreenPushRequested(path: widget.mediaPath));
+                    .add(FullscreenPushRequested(widget.mediaPath));
               }
               if (state.status == FullscreenStatus.success) {
                 return state.media!.type == MediaType.image

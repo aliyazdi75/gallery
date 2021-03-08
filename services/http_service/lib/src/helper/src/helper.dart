@@ -83,11 +83,7 @@ class HttpHelper implements HttpClientBase {
           );
         // 404
         case HttpStatus.notFound:
-          throw NotFoundException(
-            response.request!.url.path,
-            'This Uri Not Founded',
-            response.statusCode.toString(),
-          );
+          throw NotFoundException(response.request!.url.path);
         // 500
         case HttpStatus.internalServerError:
           throw ServerException(

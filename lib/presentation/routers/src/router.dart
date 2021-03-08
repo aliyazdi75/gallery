@@ -45,13 +45,7 @@ class GalleryRouterDelegate extends RouterDelegate<RouterConfiguration>
       child: Navigator(
         key: navigatorKey,
         pages: [
-          if (routerState.routePath is UnknownPagePath)
-            //todo: create 404 page
-            FadeAnimationPage(
-              key: const ValueKey('404'),
-              child: const LoginPage(),
-            )
-          else if (routerState.routePath is LoginPagePath)
+          if (routerState.routePath is LoginPagePath)
             FadeAnimationPage(
               key: const ValueKey(LoginPagePath),
               child: const LoginPage(),

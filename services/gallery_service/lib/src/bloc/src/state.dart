@@ -6,6 +6,7 @@ enum GalleryStatus {
   success,
   successPushed,
   successPopped,
+  notFound,
   failure,
 }
 

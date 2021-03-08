@@ -1,6 +1,6 @@
 part of 'bloc.dart';
 
-enum FullscreenStatus { initial, loading, success, failure }
+enum FullscreenStatus { initial, loading, success, notFound, failure }
 
 class FullscreenState extends Equatable {
   const FullscreenState({

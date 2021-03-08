@@ -3,6 +3,7 @@ import 'package:gallery/main.dart';
 import 'package:gallery/presentation/animations/page.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
 import 'package:gallery/presentation/screens/fullscreen/fullscreen.dart';
+import 'package:gallery/presentation/screens/unknown/unknown.dart';
 import 'package:routers_service/routers_service.dart';
 
 class InnerGalleryRouterDelegate extends RouterDelegate<RouterConfiguration>
@@ -35,39 +36,46 @@ class InnerGalleryRouterDelegate extends RouterDelegate<RouterConfiguration>
         key: navigatorKey,
         observers: [heroController],
         pages: [
-          if (_routerState.routePath is RootPagePath ||
-              _routerState.browserState!.galleriesHistory
-                  .contains(RootPagePath.kRootPageLocation))
+          if (_routerState.routePath is UnknownPagePath)
             FadeAnimationPage(
-              key: const ValueKey(RootPagePath),
-              child: RootPage(
-                albumPath: RootPagePath.kRootPageLocation,
-                gallery: _routerState.browserState!.gallery,
-              ),
-            ),
-          if (_routerState.routePath is AlbumPagePath ||
-              _routerState.routePath is MediaFullscreenPath) ...[
-            for (String galleryPath in _routerState
-                .browserState!.galleriesHistory
-                .where((gallery) => gallery != RootPagePath.kRootPageLocation))
+              key: const ValueKey(UnknownPagePath),
+              child: const UnknownPage(),
+            )
+          else ...[
+            if (_routerState.routePath is RootPagePath ||
+                _routerState.browserState!.galleriesHistory
+                    .contains(RootPagePath.kRootPageLocation))
               FadeAnimationPage(
-                key: ValueKey(galleryPath),
-                child: AlbumPage(
-                  albumPath: galleryPath,
+                key: const ValueKey(RootPagePath),
+                child: RootPage(
+                  albumPath: RootPagePath.kRootPageLocation,
                   gallery: _routerState.browserState!.gallery,
                 ),
               ),
-            if (_routerState.routePath is MediaFullscreenPath)
-              FadeAnimationPage(
-                key: const ValueKey(MediaFullscreenPath),
-                child: MediaFullscreen(
-                  albumPath:
-                      (_routerState.routePath as MediaFullscreenPath).albumPath,
-                  mediaPath:
-                      (_routerState.routePath as MediaFullscreenPath).mediaPath,
-                  media: _routerState.browserState!.media,
+            if (_routerState.routePath is AlbumPagePath ||
+                _routerState.routePath is MediaFullscreenPath) ...[
+              for (String galleryPath
+                  in _routerState.browserState!.galleriesHistory.where(
+                      (gallery) => gallery != RootPagePath.kRootPageLocation))
+                FadeAnimationPage(
+                  key: ValueKey(galleryPath),
+                  child: AlbumPage(
+                    albumPath: galleryPath,
+                    gallery: _routerState.browserState!.gallery,
+                  ),
                 ),
-              ),
+              if (_routerState.routePath is MediaFullscreenPath)
+                FadeAnimationPage(
+                  key: const ValueKey(MediaFullscreenPath),
+                  child: MediaFullscreenPage(
+                    albumPath: (_routerState.routePath as MediaFullscreenPath)
+                        .albumPath,
+                    mediaPath: (_routerState.routePath as MediaFullscreenPath)
+                        .mediaPath,
+                    media: _routerState.browserState!.media,
+                  ),
+                ),
+            ]
           ]
         ],
         onPopPage: (route, dynamic result) {

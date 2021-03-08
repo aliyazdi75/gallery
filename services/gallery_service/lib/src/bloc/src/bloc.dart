@@ -23,7 +23,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     } else if (event is GalleryPushRequested) {
       yield* _mapGalleryPushRequestedToState(event);
     } else if (event is GalleryPopRequested) {
-      yield* _mapGalleryPpoRequestedToState();
+      yield* _mapGalleryPopRequestedToState();
     }
   }
 
@@ -45,6 +45,9 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         gallery: gallery,
       );
       //todo: add 404 checking to trigger 404
+    } on NotFoundException {
+      print('kir to oon urlet');
+      yield state.copyWith(status: GalleryStatus.notFound);
     } on SocketException {
       print('kir to netet');
       yield state.copyWith(status: GalleryStatus.failure);
@@ -63,6 +66,9 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         pushedGallery: gallery,
       );
       //todo: add 404 checking to trigger 404
+    } on NotFoundException {
+      print('kir to oon urlet');
+      yield state.copyWith(status: GalleryStatus.notFound);
     } on SocketException {
       print('kir to netet');
       yield state.copyWith(status: GalleryStatus.failure);
@@ -71,7 +77,7 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
     }
   }
 
-  Stream<GalleryState> _mapGalleryPpoRequestedToState() async* {
+  Stream<GalleryState> _mapGalleryPopRequestedToState() async* {
     yield state.copyWith(status: GalleryStatus.loading);
     try {
       final gallery =
@@ -80,6 +86,9 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         status: GalleryStatus.successPopped,
         poppedGallery: gallery,
       );
+    } on NotFoundException {
+      print('kir to oon urlet');
+      yield state.copyWith(status: GalleryStatus.notFound);
     } on SocketException {
       print('kir to netet');
       yield state.copyWith(status: GalleryStatus.failure);

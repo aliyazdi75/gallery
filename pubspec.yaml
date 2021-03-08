@@ -22,9 +22,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_bloc: ^7.0.0-nullsafety.2
   animations: ^2.0.0
-  #todo: get from pub after null safety supported
-  photo_view:
-    git: https://github.com/DevNico/photo_view
+  photo_view: ^0.11.0
 
   video_dependency_service:
     path: services/dependencies_service/video_dependency_service
@@ -68,21 +66,21 @@ flutter:
 
   assets:
     - fonts/google_fonts/
-    - assets/responses/paths/p1.json
-    - assets/responses/paths/p2.json
-    - assets/responses/paths/p3.json
-    - assets/responses/paths/p4.json
-    - assets/responses/paths/p5.json
-    - assets/responses/files/f1.json
-    - assets/responses/files/f2.json
-    - assets/responses/files/f3.json
-    - assets/responses/files/f4.json
-    - assets/responses/files/f5.json
-    - assets/responses/files/f6.json
-    - assets/responses/files/f7.json
-    - assets/responses/files/f8.json
-    - assets/responses/files/f9.json
-    - assets/responses/files/f10.json
+    - assets/responses/albums/album1.json
+    - assets/responses/albums/album2.json
+    - assets/responses/albums/album3.json
+    - assets/responses/albums/album4.json
+    - assets/responses/albums/album5.json
+    - assets/responses/photos/photo1.json
+    - assets/responses/photos/photo2.json
+    - assets/responses/photos/photo3.json
+    - assets/responses/photos/photo4.json
+    - assets/responses/photos/photo5.json
+    - assets/responses/photos/photo6.json
+    - assets/responses/photos/photo7.json
+    - assets/responses/photos/photo8.json
+    - assets/responses/photos/photo9.json
+    - assets/responses/photos/photo10.json
 
   fonts:
     - family: IRANSans-Medium

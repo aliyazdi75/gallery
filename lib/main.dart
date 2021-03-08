@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gallery/core/url_strategy/index.dart';
 import 'package:gallery/l10n/index.dart';
 import 'package:gallery/presentation/routers/index.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
@@ -24,7 +25,7 @@ void main() {
     // }
   };
   //todo: should fix this for build mode
-  // UrlStrategy.configure();
+  UrlStrategy.configure();
   runApp(GalleryApp());
 }
 
@@ -78,8 +79,8 @@ class _GalleryAppState extends State<GalleryApp> {
         builder: (context) {
           return MultiRepositoryProvider(
             providers: [
-              RepositoryProvider.value(value: authenticationRepository),
-              RepositoryProvider.value(value: accountRepository),
+              RepositoryProvider(create: (_) => authenticationRepository),
+              RepositoryProvider(create: (_) => accountRepository),
             ],
             child: BlocProvider(
               create: (_) => AuthenticationBloc(

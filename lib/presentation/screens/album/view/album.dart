@@ -18,8 +18,8 @@ class AlbumPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final browserState = GalleryRouterStateScope.of(context)!.browserState!;
-    return RepositoryProvider.value(
-      value: galleryRepository,
+    return RepositoryProvider(
+      create: (_) => galleryRepository,
       child: BlocProvider<GalleryBloc>(
         create: (context) => GalleryBloc(
           galleryRepository: galleryRepository,
@@ -63,6 +63,11 @@ class AlbumPage extends StatelessWidget {
                 GalleryRouterStateScope.of(context)!
                   ..routePath = newPath
                   ..browserState = newState;
+                break;
+              case GalleryStatus.notFound:
+                GalleryRouterStateScope.of(context)!
+                  ..browserState = BrowserState.fromJson(<String, dynamic>{})
+                  ..routePath = const UnknownPagePath();
                 break;
               case GalleryStatus.failure:
                 ScaffoldMessenger.of(context)
@@ -138,7 +143,7 @@ class AlbumPage extends StatelessWidget {
                               ),
                             for (Album album in state.gallery!.albums)
                               FloatingActionButton.extended(
-                                heroTag: UniqueKey,
+                                heroTag: UniqueKey(),
                                 onPressed: () {
                                   context
                                       .read<GalleryBloc>()

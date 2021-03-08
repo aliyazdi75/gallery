@@ -1,8 +1,8 @@
 self.$__dart_deferred_initializers__=self.$__dart_deferred_initializers__||Object.create(null)
 $__dart_deferred_initializers__.current=function(a,b,c,$){var C,H,J,P,W,Y,S,B,F,M,Q,A,L,E,U,O,R,K,Z={
-aAK:function(){X.uq("en")
-return new Z.nu()},
-nu:function nu(){}},D,T,G,V,X,N
+aB5:function(){X.ux("en")
+return new Z.nz()},
+nz:function nz(){}},D,T,G,V,X,N
 a.setFunctionNamesIfNecessary([Z])
 C=c[0]
 H=c[1]
@@ -29,20 +29,23 @@ G=c[21]
 V=c[22]
 X=c[23]
 N=c[24]
-Z.nu.prototype={
-gxy:function(){return"Gallery"},
-gDE:function(){return"Login"},
-gDD:function(){return"Loading..."},
-gRl:function(d){return"Username"},
-gRm:function(){return"Username must not empty"},
-gQb:function(d){return"Password"},
-gQc:function(){return"Password must not empty"},
-gN5:function(){return"Authentication Failure"},
-grR:function(){return"Gallery Failure"},
-gPR:function(){return"There is no content here :("}}
+Z.nz.prototype={
+gxA:function(){return"Gallery"},
+gDF:function(){return"Login"},
+gDE:function(){return"Loading..."},
+gRt:function(d){return"Username"},
+gRu:function(){return"Username must not empty"},
+gQg:function(d){return"Password"},
+gQh:function(){return"Password must not empty"},
+gN9:function(){return"Authentication Failure"},
+grX:function(){return"Gallery Failure"},
+gPW:function(){return"There is no content here :("},
+gP6:function(){return"Home"},
+gRj:function(){return"404"},
+gRi:function(){return"Sorry we don't have this page :(\nlet me Take you back home."}}
 var z=a.updateTypes([]);(function inheritance(){var y=a.inherit
-y(Z.nu,X.he)})()
-H.ajO(b.typeUniverse,JSON.parse('{"an1":"a0","anD":"a0","an0":"ae","anM":"ae","aoY":"eb","an8":"a9","aon":"a7","anx":"a7","aoJ":"fm","aoH":"dG","anl":"hq","anv":"fW","anf":"e4","aox":"e4","anN":"iD","anp":"bH","an6":"iN","nu":{"he":[]}}'))
+y(Z.nz,X.he)})()
+H.ak7(b.typeUniverse,JSON.parse('{"ank":"a0","anV":"a0","anj":"ae","ao2":"ae","ape":"ec","anq":"aa","aoE":"a7","anP":"a7","ap_":"fm","aoY":"dF","anD":"hr","anN":"fW","anx":"e4","aoO":"e4","ao3":"iE","anH":"bH","ano":"iO","nz":{"he":[]}}'))
 0
 0}
-$__dart_deferred_initializers__["kVY0rtoex+CZWwlu2VCI1PJr3iY="] = $__dart_deferred_initializers__.current
+$__dart_deferred_initializers__["839JB5pQ0LHyipwTG9VqOT7TlbQ="] = $__dart_deferred_initializers__.current

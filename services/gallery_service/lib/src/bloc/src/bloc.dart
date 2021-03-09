@@ -44,7 +44,6 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         status: GalleryStatus.success,
         gallery: gallery,
       );
-      //todo: add 404 checking to trigger 404
     } on NotFoundException {
       print('kir to oon urlet');
       yield state.copyWith(status: GalleryStatus.notFound);
@@ -65,7 +64,6 @@ class GalleryBloc extends Bloc<GalleryEvent, GalleryState> {
         status: GalleryStatus.successPushed,
         pushedGallery: gallery,
       );
-      //todo: add 404 checking to trigger 404
     } on NotFoundException {
       print('kir to oon urlet');
       yield state.copyWith(status: GalleryStatus.notFound);

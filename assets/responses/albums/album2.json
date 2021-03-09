@@ -13,8 +13,8 @@
     {
       "name": "photo7",
       "path": "photo7",
-      "thumbnail": "https://www.wonderslist.com/wp-content/uploads/2017/07/Most-Beautiful-Girls-in-the-world.jpg",
-      "url": "https://www.wonderslist.com/wp-content/uploads/2017/07/Most-Beautiful-Girls-in-the-world.jpg",
+      "thumbnail": "https://developers.google.com/community/gdg/images/stories/flutter-chicago.jpg",
+      "url": "https://developers.google.com/community/gdg/images/stories/flutter-chicago.jpg",
       "type": "image",
       "height": 667,
       "width": 1000
@@ -22,8 +22,8 @@
     {
       "name": "photo8",
       "path": "photo8",
-      "thumbnail": "https://i.pinimg.com/originals/11/8f/fc/118ffcb079117d00f01ed4d618f2ff26.jpg",
-      "url": "https://i.pinimg.com/originals/11/8f/fc/118ffcb079117d00f01ed4d618f2ff26.jpg",
+      "thumbnail": "https://developers.google.com/events/flutter-interact/images/photos/home-photo-group.jpg",
+      "url": "https://developers.google.com/events/flutter-interact/images/photos/home-photo-group.jpg",
       "type": "image",
       "height": 667,
       "width": 1000

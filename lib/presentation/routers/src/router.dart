@@ -29,7 +29,6 @@ class GalleryRouterDelegate extends RouterDelegate<RouterConfiguration>
   }
 
   //todo: add state to check weather the user is authenticated and if not route to login page
-  //todo: add 404 exception to redirect to UnknownPagePath
   @override
   Future<void> setNewRoutePath(RouterConfiguration configuration) {
     routerState.routePath = configuration.path;

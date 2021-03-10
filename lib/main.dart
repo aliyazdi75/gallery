@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gallery/core/url_strategy/index.dart';
 import 'package:gallery/l10n/index.dart';
 import 'package:gallery/presentation/routers/index.dart';
 import 'package:gallery/presentation/screens/album/view/album.dart';
@@ -24,8 +23,8 @@ void main() {
     //   exit(1);
     // }
   };
-  //todo: should fix this for build mode
-  UrlStrategy.configure();
+  //todo: should fix this for build mode in Github Page
+  // UrlStrategy.configure();
   runApp(GalleryApp());
 }
 

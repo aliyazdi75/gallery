@@ -32,6 +32,6 @@ abstract class Pagination<T>
         specifiedType: specifiedType) as Pagination<T>;
   }
 
-  static Serializer<Pagination<Object>> get serializer =>
+  static Serializer<Pagination<Object?>> get serializer =>
       _$paginationSerializer;
 }

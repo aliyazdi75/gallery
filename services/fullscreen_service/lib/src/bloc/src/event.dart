@@ -9,10 +9,12 @@ abstract class FullscreenEvent extends Equatable {
 }
 
 class FullscreenPushRequested extends FullscreenEvent {
-  const FullscreenPushRequested(this.path);
+  const FullscreenPushRequested(
+      {required this.albumPath, required this.mediaPath});
 
-  final String path;
+  final String albumPath;
+  final String mediaPath;
 
   @override
-  List<Object> get props => [path];
+  List<Object> get props => [albumPath, mediaPath];
 }

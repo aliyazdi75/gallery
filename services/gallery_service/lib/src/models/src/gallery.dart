@@ -24,8 +24,8 @@ abstract class Gallery implements Built<Gallery, GalleryBuilder> {
 
   factory Gallery([void Function(GalleryBuilder) updates]) = _$Gallery;
 
-  static Gallery fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(Gallery.serializer, json);
+  static Gallery fromJson(String serialized) {
+    return serializers.fromJson(Gallery.serializer, serialized)!;
   }
 
   static Serializer<Gallery> get serializer => _$gallerySerializer;
@@ -40,13 +40,8 @@ abstract class GalleryQuery
   factory GalleryQuery([void Function(GalleryQueryBuilder) updates]) =
       _$GalleryQuery;
 
-  Map<String, dynamic> toJson() {
-    return serializers.serializeWith(GalleryQuery.serializer, this)
-        as Map<String, dynamic>;
-  }
-
-  static GalleryQuery fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(GalleryQuery.serializer, json);
+  String toJson() {
+    return serializers.toJson(GalleryQuery.serializer, this);
   }
 
   static Serializer<GalleryQuery> get serializer => _$galleryQuerySerializer;

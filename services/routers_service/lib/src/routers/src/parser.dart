@@ -18,8 +18,9 @@ class GalleryRouteInformationParser
       RouteInformation routeInformation) {
     final uri = Uri.parse(routeInformation.location!);
     final state = routeInformation.state;
-    final browserState = BrowserState.fromJson(
-        state == null ? <String, dynamic>{} : state as Map<String, dynamic>);
+    final browserState = state == null
+        ? BrowserState()
+        : BrowserState.fromJson(state.toString());
 
     // '/'
     if (uri.pathSegments.isEmpty) {

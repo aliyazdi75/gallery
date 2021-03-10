@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:constants_service/constants_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_service/http_service.dart';
-import 'package:layout_service/layout_service.dart';
 
 import 'exception.dart';
 import 'header.dart';
@@ -12,16 +11,16 @@ import 'header.dart';
 typedef HttpMethod = Future<http.Response> Function();
 
 abstract class HttpClientBase {
-  Future<Map<String, dynamic>> httpGet({
-    Map<String, String>? queryParams,
-    HttpHeaderType headerType,
+  Future<String> httpGet({
+    String? queryParams,
+    HttpHeaderType headerType = HttpHeaderType.anonymous,
   });
 
-  Future<Map<String, dynamic>> httpPost({
-    required Object badRequestModel,
-    Map<String, String>? queryParams,
-    Map<String, dynamic>? body,
-    HttpHeaderType headerType,
+  Future<String> httpPost({
+    required String body,
+    String? queryParams,
+    Object? badRequestModel,
+    HttpHeaderType headerType = HttpHeaderType.anonymous,
   });
 }
 
@@ -31,16 +30,15 @@ class HttpHelper implements HttpClientBase {
   final http.Client _httpClient = http.Client();
   final String path;
 
-  Future<Map<String, dynamic>> _responseData(
+  String _responseData(
     http.Response response, {
     Object? badRequestModel,
-  }) async {
+  }) {
     try {
       switch (response.statusCode) {
         // 200
         case HttpStatus.ok:
-          return json.decode(utf8.decode(response.bodyBytes))
-              as Map<String, dynamic>;
+          return utf8.decode(response.bodyBytes);
         // 201
         case HttpStatus.created:
         // 204
@@ -50,16 +48,12 @@ class HttpHelper implements HttpClientBase {
           if (badRequestModel == RegisterBadRequest) {
             throw BadRequestException(
               response.request!.url.path,
-              RegisterBadRequest.fromJson(
-                  json.decode(utf8.decode(response.bodyBytes))
-                      as Map<String, dynamic>),
+              RegisterBadRequest.fromJson(utf8.decode(response.bodyBytes)),
             );
           } else if (badRequestModel == LoginBadRequest) {
             throw BadRequestException(
               response.request!.url.path,
-              LoginBadRequest.fromJson(
-                  json.decode(utf8.decode(response.bodyBytes))
-                      as Map<String, dynamic>),
+              LoginBadRequest.fromJson(utf8.decode(response.bodyBytes)),
             );
           }
           throw NotHandleException(
@@ -105,36 +99,20 @@ class HttpHelper implements HttpClientBase {
   }
 
   @override
-  Future<Map<String, dynamic>> httpGet({
-    Map<String, String>? queryParams,
+  Future<String> httpGet({
+    String? queryParams,
     HttpHeaderType headerType = HttpHeaderType.anonymous,
   }) async {
     try {
       return _responseData(
         await _httpClient.get(
-          usingLocal
-              ? usingSSL
-                  ? Uri.https(
-                      isMobile() ? avdAuthority : authority,
-                      '/gallery/api/$path',
-                      queryParams,
-                    )
-                  : Uri.http(
-                      isMobile() ? avdAuthority : authority,
-                      '/gallery/api/$path',
-                      queryParams,
-                    )
-              : usingSSL
-                  ? Uri.https(
-                      serverUrl,
-                      '/gallery/api/$path',
-                      queryParams,
-                    )
-                  : Uri.http(
-                      serverUrl,
-                      '/gallery/api/$path',
-                      queryParams,
-                    ),
+          Uri.https(
+            serverAuthority,
+            '$serverApiPath/$path',
+            queryParams == null
+                ? null
+                : json.decode(queryParams) as Map<String, dynamic>,
+          ),
           headers: HttpHeader.setHeader(headerType),
         ),
       );
@@ -146,43 +124,105 @@ class HttpHelper implements HttpClientBase {
   }
 
   @override
-  Future<Map<String, dynamic>> httpPost({
-    required Object badRequestModel,
-    Map<String, String>? queryParams,
-    Map<String, dynamic>? body,
+  Future<String> httpPost({
+    required String body,
+    String? queryParams,
+    Object? badRequestModel,
     HttpHeaderType headerType = HttpHeaderType.anonymous,
   }) async {
     try {
       return _responseData(
         await _httpClient.post(
-          usingLocal
-              ? usingSSL
-                  ? Uri.https(
-                      isMobile() ? avdAuthority : authority,
-                      '/gallery/api/$path',
-                      queryParams,
-                    )
-                  : Uri.http(
-                      isMobile() ? avdAuthority : authority,
-                      '/gallery/api/$path',
-                      queryParams,
-                    )
-              : usingSSL
-                  ? Uri.https(
-                      serverUrl,
-                      '/gallery/api/$path',
-                      queryParams,
-                    )
-                  : Uri.http(
-                      serverUrl,
-                      '/gallery/api/$path',
-                      queryParams,
-                    ),
+          Uri.https(
+            serverAuthority,
+            '$serverApiPath/$path',
+            queryParams == null
+                ? null
+                : json.decode(queryParams) as Map<String, dynamic>,
+          ),
           headers: HttpHeader.setHeader(headerType),
-          body: json.encode(body),
+          body: body,
         ),
         badRequestModel: badRequestModel,
       );
+    } on SocketException catch (e) {
+      throw SocketException(e.url, e.key, e.value);
+    } on JsonUnsupportedObjectError catch (e) {
+      throw JsonUnsupportedObjectError(e);
+    }
+  }
+}
+
+class GithubHttpHelper implements HttpClientBase {
+  GithubHttpHelper(this.path);
+
+  final http.Client _httpClient = http.Client();
+  final String path;
+
+  String _responseData(http.Response response) {
+    try {
+      switch (response.statusCode) {
+        // 200
+        case HttpStatus.ok:
+          return utf8.decode(response.bodyBytes);
+        // 404
+        case HttpStatus.notFound:
+          throw NotFoundException(response.request!.url.path);
+        // Others
+        default:
+          throw NotHandleException(
+            response.request!.url.path,
+            'This Status Code Not Handled',
+            response.statusCode.toString(),
+          );
+      }
+    } on JsonUnsupportedObjectError catch (e) {
+      throw JsonUnsupportedObjectError(e);
+    }
+  }
+
+  @override
+  Future<String> httpGet({
+    String? queryParams,
+    HttpHeaderType headerType = HttpHeaderType.anonymous,
+  }) async {
+    try {
+      return _responseData(
+        await _httpClient.get(
+          Uri.https(
+            githubAuthority,
+            '$githubApiPath/$githubAuthor/$githubRepository/$path',
+          ),
+          headers: GithubHttpHeader.setHeader(headerType),
+        ),
+      );
+    } on SocketException catch (e) {
+      throw SocketException(e.url, e.key, e.value);
+    } on http.ClientException catch (e) {
+      throw http.ClientException(e.message, e.uri);
+    }
+  }
+
+  @override
+  Future<String> httpPost({
+    required String body,
+    String? queryParams,
+    Object? badRequestModel,
+    HttpHeaderType headerType = HttpHeaderType.anonymous,
+  }) async {
+    try {
+      return _responseData(
+        await _httpClient.post(
+          Uri.https(
+            githubAuthority,
+            '$githubApiPath/$githubAuthor/$githubRepository/$path',
+          ),
+          headers: GithubHttpHeader.setHeader(headerType),
+          body: body,
+        ),
+      );
+    } on TypeError {
+      throw NotFoundException(path);
     } on SocketException catch (e) {
       throw SocketException(e.url, e.key, e.value);
     } on JsonUnsupportedObjectError catch (e) {

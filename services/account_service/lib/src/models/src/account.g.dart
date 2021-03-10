@@ -15,9 +15,9 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
   final String wireName = 'Account';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Account object,
+  Iterable<Object?> serialize(Serializers serializers, Account object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
       'username',
@@ -57,7 +57,7 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
   }
 
   @override
-  Account deserialize(Serializers serializers, Iterable<Object> serialized,
+  Account deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new AccountBuilder();
 
@@ -65,7 +65,7 @@ class _$AccountSerializer implements StructuredSerializer<Account> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,

@@ -26,13 +26,12 @@ abstract class Register implements Built<Register, RegisterBuilder> {
 
   factory Register([void Function(RegisterBuilder) updates]) = _$Register;
 
-  Map<String, dynamic> toJson() {
-    return serializers.serializeWith(Register.serializer, this)
-        as Map<String, dynamic>;
+  String toJson() {
+    return serializers.toJson(Register.serializer, this);
   }
 
-  static Register fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(Register.serializer, json);
+  static Register fromJson(String serialized) {
+    return serializers.fromJson(Register.serializer, serialized)!;
   }
 
   static Serializer<Register> get serializer => _$registerSerializer;

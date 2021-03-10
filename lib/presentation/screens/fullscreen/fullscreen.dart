@@ -70,7 +70,7 @@ class _MediaFullscreenPageState extends State<MediaFullscreenPage> {
             switch (state.status) {
               case FullscreenStatus.notFound:
                 GalleryRouterStateScope.of(context)!
-                  ..browserState = BrowserState.fromJson(<String, dynamic>{})
+                  ..browserState = BrowserState()
                   ..routePath = const UnknownPagePath();
                 break;
               case FullscreenStatus.failure:
@@ -92,7 +92,10 @@ class _MediaFullscreenPageState extends State<MediaFullscreenPage> {
             builder: (context, state) {
               if (state.status == FullscreenStatus.initial) {
                 BlocProvider.of<FullscreenBloc>(context)
-                    .add(FullscreenPushRequested(widget.mediaPath));
+                    .add(FullscreenPushRequested(
+                  albumPath: widget.albumPath,
+                  mediaPath: widget.mediaPath,
+                ));
               }
               if (state.status == FullscreenStatus.success) {
                 return state.media!.type == MediaType.image

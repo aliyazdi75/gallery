@@ -15,9 +15,9 @@ class _$RegisterSerializer implements StructuredSerializer<Register> {
   final String wireName = 'Register';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Register object,
+  Iterable<Object?> serialize(Serializers serializers, Register object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'token',
       serializers.serialize(object.token,
           specifiedType: const FullType(String)),
@@ -52,7 +52,7 @@ class _$RegisterSerializer implements StructuredSerializer<Register> {
   }
 
   @override
-  Register deserialize(Serializers serializers, Iterable<Object> serialized,
+  Register deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new RegisterBuilder();
 
@@ -60,7 +60,7 @@ class _$RegisterSerializer implements StructuredSerializer<Register> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,

@@ -24,8 +24,8 @@ abstract class Login implements Built<Login, LoginBuilder> {
 
   factory Login([void Function(LoginBuilder) updates]) = _$Login;
 
-  static Login fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(Login.serializer, json);
+  static Login fromJson(String serialized) {
+    return serializers.fromJson(Login.serializer, serialized)!;
   }
 
   static Serializer<Login> get serializer => _$loginSerializer;
@@ -40,9 +40,8 @@ abstract class LoginBody implements Built<LoginBody, LoginBodyBuilder> {
 
   factory LoginBody([void Function(LoginBodyBuilder) updates]) = _$LoginBody;
 
-  Map<String, dynamic> toJson() {
-    return serializers.serializeWith(LoginBody.serializer, this)
-        as Map<String, dynamic>;
+  String toJson() {
+    return serializers.toJson(LoginBody.serializer, this);
   }
 
   static Serializer<LoginBody> get serializer => _$loginBodySerializer;

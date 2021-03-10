@@ -1,43 +1,50 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:constants_service/constants_service.dart';
+import 'package:convert/convert.dart';
 import 'package:fullscreen_service/src/providers/api/index.dart';
-import 'package:fullscreen_service/src/providers/asset/index.dart';
 import 'package:gallery_service/gallery_service.dart';
-import 'package:http_service/http_service.dart';
+import 'package:github_service/github_service.dart';
 
 class FullscreenRepository {
-  Future<Media> getMedia({required String path}) async {
-    final mediaResponse = usingAssetResponse
-        ? await FullscreenAsset.getMedia(_assetsResponsePath(path))
-        : await FullscreenApi.getMedia(path);
-    return mediaResponse;
+  Future<Media> getMedia(
+      {required String albumPath, required String mediaPath}) async {
+    if (usingGithubAssetProvider) {
+      final githubContent =
+          await GithubApi.getGithubContent(_galleryDecodePath(mediaPath));
+      return _getGithubMedia(githubContent, albumPath, mediaPath);
+    }
+    return await FullscreenApi.getMedia(mediaPath);
   }
 
-  String _assetsResponsePath(String path) {
-    switch (path) {
-      case 'photo1':
-        return assetResponsePhoto1;
-      case 'photo2':
-        return assetResponsePhoto2;
-      case 'photo3':
-        return assetResponsePhoto3;
-      case 'photo4':
-        return assetResponsePhoto4;
-      case 'photo5':
-        return assetResponsePhoto5;
-      case 'photo6':
-        return assetResponsePhoto6;
-      case 'photo7':
-        return assetResponsePhoto7;
-      case 'photo8':
-        return assetResponsePhoto8;
-      case 'photo9':
-        return assetResponsePhoto9;
-      case 'photo10':
-        return assetResponsePhoto10;
-      default:
-        throw NotFoundException(path);
-    }
+  String _galleryDecodePath(String galleryEncodedPath) {
+    final bytes = hex.decode(galleryEncodedPath);
+    return utf8.decode(bytes);
+  }
+
+  String _galleryEncodePath(String galleryPath) {
+    final bytes = utf8.encode(galleryPath);
+    return hex.encode(bytes);
+  }
+
+  Media _getGithubMedia(
+    GithubContent githubContent,
+    String galleryDecodedPath,
+    String mediaDecodedPath,
+  ) {
+    final galleryEncodedPath = _galleryDecodePath(galleryDecodedPath);
+    final mediaEncodedPath = _galleryDecodePath(mediaDecodedPath);
+
+    final fileType = githubContent.name.split('.').last;
+    final isImage = supportedGithubImageFiles.contains(fileType.toLowerCase());
+    return Media(
+      (b) => b
+        ..name = githubContent.name
+        ..path = _galleryEncodePath('$galleryEncodedPath/$mediaEncodedPath')
+        ..type = isImage ? MediaType.image : MediaType.video
+        ..thumbnail = githubContent.url
+        ..url = githubContent.url,
+    );
   }
 }

@@ -18,8 +18,8 @@ abstract class HttpExceptionModel
           [void Function(HttpExceptionModelBuilder) updates]) =
       _$HttpExceptionModel;
 
-  static HttpExceptionModel fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(HttpExceptionModel.serializer, json);
+  static HttpExceptionModel fromJson(String serialized) {
+    return serializers.fromJson(HttpExceptionModel.serializer, serialized)!;
   }
 
   static Serializer<HttpExceptionModel> get serializer =>
@@ -43,8 +43,8 @@ abstract class RegisterBadRequest
           [void Function(RegisterBadRequestBuilder) updates]) =
       _$RegisterBadRequest;
 
-  static RegisterBadRequest fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(RegisterBadRequest.serializer, json);
+  static RegisterBadRequest fromJson(String serialized) {
+    return serializers.fromJson(RegisterBadRequest.serializer, serialized)!;
   }
 
   static Serializer<RegisterBadRequest> get serializer =>
@@ -65,8 +65,8 @@ abstract class LoginBadRequest
   factory LoginBadRequest([void Function(LoginBadRequestBuilder) updates]) =
       _$LoginBadRequest;
 
-  static LoginBadRequest fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(LoginBadRequest.serializer, json);
+  static LoginBadRequest fromJson(String serialized) {
+    return serializers.fromJson(LoginBadRequest.serializer, serialized)!;
   }
 
   static Serializer<LoginBadRequest> get serializer =>
@@ -85,8 +85,8 @@ abstract class GalleryBadRequest
   factory GalleryBadRequest([void Function(GalleryBadRequestBuilder) updates]) =
       _$GalleryBadRequest;
 
-  static GalleryBadRequest fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(GalleryBadRequest.serializer, json);
+  static GalleryBadRequest fromJson(String serialized) {
+    return serializers.fromJson(GalleryBadRequest.serializer, serialized)!;
   }
 
   static Serializer<GalleryBadRequest> get serializer =>

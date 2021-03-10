@@ -15,23 +15,20 @@ class _$AlbumSerializer implements StructuredSerializer<Album> {
   final String wireName = 'Album';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Album object,
+  Iterable<Object?> serialize(Serializers serializers, Album object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'path',
       serializers.serialize(object.path, specifiedType: const FullType(String)),
-      'thumbnail',
-      serializers.serialize(object.thumbnail,
-          specifiedType: const FullType(String)),
     ];
 
     return result;
   }
 
   @override
-  Album deserialize(Serializers serializers, Iterable<Object> serialized,
+  Album deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new AlbumBuilder();
 
@@ -39,7 +36,7 @@ class _$AlbumSerializer implements StructuredSerializer<Album> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -47,10 +44,6 @@ class _$AlbumSerializer implements StructuredSerializer<Album> {
           break;
         case 'path':
           result.path = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
-          break;
-        case 'thumbnail':
-          result.thumbnail = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
       }
@@ -65,17 +58,13 @@ class _$Album extends Album {
   final String name;
   @override
   final String path;
-  @override
-  final String thumbnail;
 
   factory _$Album([void Function(AlbumBuilder)? updates]) =>
       (new AlbumBuilder()..update(updates)).build();
 
-  _$Album._({required this.name, required this.path, required this.thumbnail})
-      : super._() {
+  _$Album._({required this.name, required this.path}) : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'Album', 'name');
     BuiltValueNullFieldError.checkNotNull(path, 'Album', 'path');
-    BuiltValueNullFieldError.checkNotNull(thumbnail, 'Album', 'thumbnail');
   }
 
   @override
@@ -88,24 +77,19 @@ class _$Album extends Album {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Album &&
-        name == other.name &&
-        path == other.path &&
-        thumbnail == other.thumbnail;
+    return other is Album && name == other.name && path == other.path;
   }
 
   @override
   int get hashCode {
-    return $jf(
-        $jc($jc($jc(0, name.hashCode), path.hashCode), thumbnail.hashCode));
+    return $jf($jc($jc(0, name.hashCode), path.hashCode));
   }
 
   @override
   String toString() {
     return (newBuiltValueToStringHelper('Album')
           ..add('name', name)
-          ..add('path', path)
-          ..add('thumbnail', thumbnail))
+          ..add('path', path))
         .toString();
   }
 }
@@ -121,10 +105,6 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
   String? get path => _$this._path;
   set path(String? path) => _$this._path = path;
 
-  String? _thumbnail;
-  String? get thumbnail => _$this._thumbnail;
-  set thumbnail(String? thumbnail) => _$this._thumbnail = thumbnail;
-
   AlbumBuilder();
 
   AlbumBuilder get _$this {
@@ -132,7 +112,6 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
     if ($v != null) {
       _name = $v.name;
       _path = $v.path;
-      _thumbnail = $v.thumbnail;
       _$v = null;
     }
     return this;
@@ -154,9 +133,7 @@ class AlbumBuilder implements Builder<Album, AlbumBuilder> {
     final _$result = _$v ??
         new _$Album._(
             name: BuiltValueNullFieldError.checkNotNull(name, 'Album', 'name'),
-            path: BuiltValueNullFieldError.checkNotNull(path, 'Album', 'path'),
-            thumbnail: BuiltValueNullFieldError.checkNotNull(
-                thumbnail, 'Album', 'thumbnail'));
+            path: BuiltValueNullFieldError.checkNotNull(path, 'Album', 'path'));
     replace(_$result);
     return _$result;
   }

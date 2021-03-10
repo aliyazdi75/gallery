@@ -66,7 +66,7 @@ class AlbumPage extends StatelessWidget {
                 break;
               case GalleryStatus.notFound:
                 GalleryRouterStateScope.of(context)!
-                  ..browserState = BrowserState.fromJson(<String, dynamic>{})
+                  ..browserState = BrowserState()
                   ..routePath = const UnknownPagePath();
                 break;
               case GalleryStatus.failure:

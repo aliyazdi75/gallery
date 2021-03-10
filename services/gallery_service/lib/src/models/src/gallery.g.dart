@@ -17,9 +17,9 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
   final String wireName = 'Gallery';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Gallery object,
+  Iterable<Object?> serialize(Serializers serializers, Gallery object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'path',
       serializers.serialize(object.path, specifiedType: const FullType(String)),
       'current',
@@ -46,7 +46,7 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
   }
 
   @override
-  Gallery deserialize(Serializers serializers, Iterable<Object> serialized,
+  Gallery deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GalleryBuilder();
 
@@ -54,7 +54,7 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'path':
           result.path = serializers.deserialize(value,
@@ -71,13 +71,13 @@ class _$GallerySerializer implements StructuredSerializer<Gallery> {
         case 'albums':
           result.albums.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(BuiltList, const [const FullType(Album)]))
+                      const FullType(BuiltList, const [const FullType(Album)]))!
               as BuiltList<Object>);
           break;
         case 'images':
           result.medias.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(BuiltList, const [const FullType(Media)]))
+                      const FullType(BuiltList, const [const FullType(Media)]))!
               as BuiltList<Object>);
           break;
       }
@@ -94,9 +94,9 @@ class _$GalleryQuerySerializer implements StructuredSerializer<GalleryQuery> {
   final String wireName = 'GalleryQuery';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GalleryQuery object,
+  Iterable<Object?> serialize(Serializers serializers, GalleryQuery object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object?>[];
     Object? value;
     value = object.path;
     if (value != null) {
@@ -109,7 +109,8 @@ class _$GalleryQuerySerializer implements StructuredSerializer<GalleryQuery> {
   }
 
   @override
-  GalleryQuery deserialize(Serializers serializers, Iterable<Object> serialized,
+  GalleryQuery deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GalleryQueryBuilder();
 
@@ -117,7 +118,7 @@ class _$GalleryQuerySerializer implements StructuredSerializer<GalleryQuery> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'path':
           result.path = serializers.deserialize(value,

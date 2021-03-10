@@ -20,13 +20,12 @@ abstract class BrowserState
   factory BrowserState([void Function(BrowserStateBuilder) updates]) =
       _$BrowserState;
 
-  Map<String, dynamic> toJson() {
-    return serializers.serializeWith(BrowserState.serializer, this)
-        as Map<String, dynamic>;
+  String toJson() {
+    return serializers.toJson(BrowserState.serializer, this);
   }
 
-  static BrowserState fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(BrowserState.serializer, json);
+  static BrowserState fromJson(String serialized) {
+    return serializers.fromJson(BrowserState.serializer, serialized)!;
   }
 
   static Serializer<BrowserState> get serializer => _$browserStateSerializer;

@@ -26,9 +26,7 @@ class MediaWidget extends StatefulWidget {
 }
 
 class _MediaWidgetState extends State<MediaWidget>
-    with
-        SingleTickerProviderStateMixin,
-        AutomaticKeepAliveClientMixin<MediaWidget> {
+    with AutomaticKeepAliveClientMixin<MediaWidget> {
   @override
   bool get wantKeepAlive => true;
 

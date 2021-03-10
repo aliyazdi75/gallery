@@ -17,16 +17,12 @@ abstract class Media implements Built<Media, MediaBuilder> {
 
   String get url;
 
-  int get height;
-
-  int get width;
-
   Media._();
 
   factory Media([void Function(MediaBuilder) updates]) = _$Media;
 
-  static Media fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(Media.serializer, json);
+  static Media fromJson(String serialized) {
+    return serializers.fromJson(Media.serializer, serialized)!;
   }
 
   static Serializer<Media> get serializer => _$mediaSerializer;
@@ -41,10 +37,6 @@ class MediaType extends EnumClass {
   static BuiltSet<MediaType> get values => _$mediaTypeValues;
 
   static MediaType valueOf(String name) => _$mediaTypeValueOf(name);
-
-  static MediaType deserialize(String string) {
-    return serializers.deserializeWith(MediaType.serializer, string);
-  }
 
   static Serializer<MediaType> get serializer => _$mediaTypeSerializer;
 }

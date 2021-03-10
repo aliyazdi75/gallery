@@ -16,9 +16,9 @@ class _$LoginSerializer implements StructuredSerializer<Login> {
   final String wireName = 'Login';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Login object,
+  Iterable<Object?> serialize(Serializers serializers, Login object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'username',
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
@@ -62,7 +62,7 @@ class _$LoginSerializer implements StructuredSerializer<Login> {
   }
 
   @override
-  Login deserialize(Serializers serializers, Iterable<Object> serialized,
+  Login deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LoginBuilder();
 
@@ -70,7 +70,7 @@ class _$LoginSerializer implements StructuredSerializer<Login> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'token':
           result.token = serializers.deserialize(value,
@@ -110,9 +110,9 @@ class _$LoginBodySerializer implements StructuredSerializer<LoginBody> {
   final String wireName = 'LoginBody';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, LoginBody object,
+  Iterable<Object?> serialize(Serializers serializers, LoginBody object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'username',
       serializers.serialize(object.username,
           specifiedType: const FullType(String)),
@@ -125,7 +125,7 @@ class _$LoginBodySerializer implements StructuredSerializer<LoginBody> {
   }
 
   @override
-  LoginBody deserialize(Serializers serializers, Iterable<Object> serialized,
+  LoginBody deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LoginBodyBuilder();
 
@@ -133,7 +133,7 @@ class _$LoginBodySerializer implements StructuredSerializer<LoginBody> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'username':
           result.username = serializers.deserialize(value,

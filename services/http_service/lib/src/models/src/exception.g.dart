@@ -23,9 +23,10 @@ class _$HttpExceptionModelSerializer
   final String wireName = 'HttpExceptionModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, HttpExceptionModel object,
+  Iterable<Object?> serialize(
+      Serializers serializers, HttpExceptionModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'key',
       serializers.serialize(object.key, specifiedType: const FullType(String)),
       'value',
@@ -38,7 +39,7 @@ class _$HttpExceptionModelSerializer
 
   @override
   HttpExceptionModel deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new HttpExceptionModelBuilder();
 
@@ -46,7 +47,7 @@ class _$HttpExceptionModelSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'key':
           result.key = serializers.deserialize(value,
@@ -71,9 +72,10 @@ class _$RegisterBadRequestSerializer
   final String wireName = 'RegisterBadRequest';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, RegisterBadRequest object,
+  Iterable<Object?> serialize(
+      Serializers serializers, RegisterBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object?>[];
     Object? value;
     value = object.username;
     if (value != null) {
@@ -112,7 +114,7 @@ class _$RegisterBadRequestSerializer
 
   @override
   RegisterBadRequest deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new RegisterBadRequestBuilder();
 
@@ -120,30 +122,30 @@ class _$RegisterBadRequestSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'username':
           result.username.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'password':
           result.password.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'email':
           result.email.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'non_field_errors':
           result.nonFieldErrors.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
       }
@@ -161,9 +163,9 @@ class _$LoginBadRequestSerializer
   final String wireName = 'LoginBadRequest';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, LoginBadRequest object,
+  Iterable<Object?> serialize(Serializers serializers, LoginBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object?>[];
     Object? value;
     value = object.username;
     if (value != null) {
@@ -194,7 +196,7 @@ class _$LoginBadRequestSerializer
 
   @override
   LoginBadRequest deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new LoginBadRequestBuilder();
 
@@ -202,24 +204,24 @@ class _$LoginBadRequestSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'username':
           result.username.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'password':
           result.password.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'non_field_errors':
           result.nonFieldErrors.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
       }
@@ -237,9 +239,9 @@ class _$GalleryBadRequestSerializer
   final String wireName = 'GalleryBadRequest';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, GalleryBadRequest object,
+  Iterable<Object?> serialize(Serializers serializers, GalleryBadRequest object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
+    final result = <Object?>[];
     Object? value;
     value = object.path;
     if (value != null) {
@@ -262,7 +264,7 @@ class _$GalleryBadRequestSerializer
 
   @override
   GalleryBadRequest deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new GalleryBadRequestBuilder();
 
@@ -270,18 +272,18 @@ class _$GalleryBadRequestSerializer
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'path':
           result.path.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'non_field_errors':
           result.nonFieldErrors.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
       }

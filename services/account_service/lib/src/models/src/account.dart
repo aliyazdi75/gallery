@@ -24,13 +24,12 @@ abstract class Account implements Built<Account, AccountBuilder> {
 
   factory Account([void Function(AccountBuilder) updates]) = _$Account;
 
-  Map<String, dynamic> toJson() {
-    return serializers.serializeWith(Account.serializer, this)
-        as Map<String, dynamic>;
+  String toJson() {
+    return serializers.toJson(Account.serializer, this);
   }
 
-  static Account fromJson(Map<String, dynamic> json) {
-    return serializers.deserializeWith(Account.serializer, json);
+  static Account fromJson(String serialized) {
+    return serializers.fromJson(Account.serializer, serialized)!;
   }
 
   static Serializer<Account> get serializer => _$accountSerializer;

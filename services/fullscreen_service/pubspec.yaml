@@ -7,6 +7,7 @@ environment:
   sdk: ">=2.12.0-0 <3.0.0"
 
 dependencies:
+  convert: ^3.0.0
   bloc_dependency_service:
     path: ../dependencies_service/bloc_dependency_service
   http_service:
@@ -15,6 +16,8 @@ dependencies:
     path: ../constants_service
   gallery_service:
     path: ../gallery_service
+  github_service:
+    path: ../github_service
 
 dev_dependencies:
   pedantic: ^1.11.0

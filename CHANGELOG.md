@@ -1,4 +1,16 @@
-*version **1.1.1** includes*:
+*version **1.5.0** includes*:
+- Add 404 navigation
+- Add Github API provider
+- Unique HEX URL generator
+- Enhance HTTP service
+- Enhance model service
+- Upgrade packages
+- Change web render to html
+- Update readme with demo gif
+- Remove assets
+- Fix some bugs and improvements
+
+- *version **1.1.1** includes*:
 - Migrate to navigation 2
 - Some UI improvements and animations
 - Add Grip view

@@ -16,9 +16,9 @@ class _$BrowserStateSerializer implements StructuredSerializer<BrowserState> {
   final String wireName = 'BrowserState';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, BrowserState object,
+  Iterable<Object?> serialize(Serializers serializers, BrowserState object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'galleriesHistory',
       serializers.serialize(object.galleriesHistory,
           specifiedType:
@@ -43,7 +43,8 @@ class _$BrowserStateSerializer implements StructuredSerializer<BrowserState> {
   }
 
   @override
-  BrowserState deserialize(Serializers serializers, Iterable<Object> serialized,
+  BrowserState deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new BrowserStateBuilder();
 
@@ -51,21 +52,21 @@ class _$BrowserStateSerializer implements StructuredSerializer<BrowserState> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'galleriesHistory':
           result.galleriesHistory.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(String)]))
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
               as BuiltList<Object>);
           break;
         case 'gallery':
           result.gallery.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Gallery)) as Gallery);
+              specifiedType: const FullType(Gallery))! as Gallery);
           break;
         case 'media':
           result.media.replace(serializers.deserialize(value,
-              specifiedType: const FullType(Media)) as Media);
+              specifiedType: const FullType(Media))! as Media);
           break;
       }
     }

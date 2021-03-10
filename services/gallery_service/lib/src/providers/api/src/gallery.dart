@@ -3,10 +3,8 @@ import 'package:http_service/http_service.dart';
 
 class GalleryApi {
   static Future<Gallery> getGalleryList(GalleryQuery query) async {
-    Map<String, dynamic> response;
-
-    final queryParams = Map<String, String>.from(query.toJson());
-    response = await HttpHelper('list').httpGet(queryParams: queryParams);
+    final response =
+        await HttpHelper('list').httpGet(queryParams: query.toJson());
     return Gallery.fromJson(response);
   }
 }

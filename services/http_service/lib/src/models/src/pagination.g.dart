@@ -6,18 +6,19 @@ part of 'pagination.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Pagination<Object>> _$paginationSerializer =
+Serializer<Pagination<Object?>> _$paginationSerializer =
     new _$PaginationSerializer();
 
 class _$PaginationSerializer
-    implements StructuredSerializer<Pagination<Object>> {
+    implements StructuredSerializer<Pagination<Object?>> {
   @override
   final Iterable<Type> types = const [Pagination, _$Pagination];
   @override
   final String wireName = 'Pagination';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Pagination<Object> object,
+  Iterable<Object?> serialize(
+      Serializers serializers, Pagination<Object?> object,
       {FullType specifiedType = FullType.unspecified}) {
     final isUnderspecified =
         specifiedType.isUnspecified || specifiedType.parameters.isEmpty;
@@ -25,7 +26,7 @@ class _$PaginationSerializer
     final parameterT =
         isUnderspecified ? FullType.object : specifiedType.parameters[0];
 
-    final result = <Object>[];
+    final result = <Object?>[];
     Object? value;
     value = object.count;
     if (value != null) {
@@ -58,8 +59,8 @@ class _$PaginationSerializer
   }
 
   @override
-  Pagination<Object> deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+  Pagination<Object?> deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final isUnderspecified =
         specifiedType.isUnspecified || specifiedType.parameters.isEmpty;
@@ -68,14 +69,14 @@ class _$PaginationSerializer
         isUnderspecified ? FullType.object : specifiedType.parameters[0];
 
     final result = isUnderspecified
-        ? new PaginationBuilder<Object>()
-        : serializers.newBuilder(specifiedType) as PaginationBuilder<Object>;
+        ? new PaginationBuilder<Object?>()
+        : serializers.newBuilder(specifiedType) as PaginationBuilder<Object?>;
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'count':
           result.count = serializers.deserialize(value,
@@ -91,7 +92,7 @@ class _$PaginationSerializer
           break;
         case 'results':
           result.results.replace(serializers.deserialize(value,
-                  specifiedType: new FullType(BuiltList, [parameterT]))
+                  specifiedType: new FullType(BuiltList, [parameterT]))!
               as BuiltList<Object>);
           break;
       }

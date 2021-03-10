@@ -36,9 +36,9 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
   final String wireName = 'Media';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Media object,
+  Iterable<Object?> serialize(Serializers serializers, Media object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'name',
       serializers.serialize(object.name, specifiedType: const FullType(String)),
       'path',
@@ -51,17 +51,13 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
           specifiedType: const FullType(String)),
       'url',
       serializers.serialize(object.url, specifiedType: const FullType(String)),
-      'height',
-      serializers.serialize(object.height, specifiedType: const FullType(int)),
-      'width',
-      serializers.serialize(object.width, specifiedType: const FullType(int)),
     ];
 
     return result;
   }
 
   @override
-  Media deserialize(Serializers serializers, Iterable<Object> serialized,
+  Media deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new MediaBuilder();
 
@@ -69,7 +65,7 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'name':
           result.name = serializers.deserialize(value,
@@ -90,14 +86,6 @@ class _$MediaSerializer implements StructuredSerializer<Media> {
         case 'url':
           result.url = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
-          break;
-        case 'height':
-          result.height = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
-          break;
-        case 'width':
-          result.width = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
           break;
       }
     }
@@ -134,10 +122,6 @@ class _$Media extends Media {
   final String thumbnail;
   @override
   final String url;
-  @override
-  final int height;
-  @override
-  final int width;
 
   factory _$Media([void Function(MediaBuilder)? updates]) =>
       (new MediaBuilder()..update(updates)).build();
@@ -147,17 +131,13 @@ class _$Media extends Media {
       required this.path,
       required this.type,
       required this.thumbnail,
-      required this.url,
-      required this.height,
-      required this.width})
+      required this.url})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, 'Media', 'name');
     BuiltValueNullFieldError.checkNotNull(path, 'Media', 'path');
     BuiltValueNullFieldError.checkNotNull(type, 'Media', 'type');
     BuiltValueNullFieldError.checkNotNull(thumbnail, 'Media', 'thumbnail');
     BuiltValueNullFieldError.checkNotNull(url, 'Media', 'url');
-    BuiltValueNullFieldError.checkNotNull(height, 'Media', 'height');
-    BuiltValueNullFieldError.checkNotNull(width, 'Media', 'width');
   }
 
   @override
@@ -175,23 +155,15 @@ class _$Media extends Media {
         path == other.path &&
         type == other.type &&
         thumbnail == other.thumbnail &&
-        url == other.url &&
-        height == other.height &&
-        width == other.width;
+        url == other.url;
   }
 
   @override
   int get hashCode {
     return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc($jc($jc(0, name.hashCode), path.hashCode),
-                        type.hashCode),
-                    thumbnail.hashCode),
-                url.hashCode),
-            height.hashCode),
-        width.hashCode));
+        $jc($jc($jc($jc(0, name.hashCode), path.hashCode), type.hashCode),
+            thumbnail.hashCode),
+        url.hashCode));
   }
 
   @override
@@ -201,9 +173,7 @@ class _$Media extends Media {
           ..add('path', path)
           ..add('type', type)
           ..add('thumbnail', thumbnail)
-          ..add('url', url)
-          ..add('height', height)
-          ..add('width', width))
+          ..add('url', url))
         .toString();
   }
 }
@@ -231,14 +201,6 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
   String? get url => _$this._url;
   set url(String? url) => _$this._url = url;
 
-  int? _height;
-  int? get height => _$this._height;
-  set height(int? height) => _$this._height = height;
-
-  int? _width;
-  int? get width => _$this._width;
-  set width(int? width) => _$this._width = width;
-
   MediaBuilder();
 
   MediaBuilder get _$this {
@@ -249,8 +211,6 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
       _type = $v.type;
       _thumbnail = $v.thumbnail;
       _url = $v.url;
-      _height = $v.height;
-      _width = $v.width;
       _$v = null;
     }
     return this;
@@ -276,11 +236,7 @@ class MediaBuilder implements Builder<Media, MediaBuilder> {
             type: BuiltValueNullFieldError.checkNotNull(type, 'Media', 'type'),
             thumbnail: BuiltValueNullFieldError.checkNotNull(
                 thumbnail, 'Media', 'thumbnail'),
-            url: BuiltValueNullFieldError.checkNotNull(url, 'Media', 'url'),
-            height: BuiltValueNullFieldError.checkNotNull(
-                height, 'Media', 'height'),
-            width:
-                BuiltValueNullFieldError.checkNotNull(width, 'Media', 'width'));
+            url: BuiltValueNullFieldError.checkNotNull(url, 'Media', 'url'));
     replace(_$result);
     return _$result;
   }

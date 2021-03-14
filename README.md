@@ -33,7 +33,7 @@ If you want to that check this
 - Localization
 - Multi-Themes
 - Multi-Devices Adaptive Size
-``
+
 ## Discussion
 Do you have any questions related to architectures and features, don't
 hesitate to make your first

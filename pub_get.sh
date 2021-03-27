@@ -1,0 +1,1 @@
+for f in $(find . -name pubspec.yaml); do pushd $(dirname $f); flutter pub get; popd; done

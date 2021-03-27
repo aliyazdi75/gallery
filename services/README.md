@@ -2,6 +2,9 @@
 
 Host your awesome services here.
 
+## Run `flutter pub get` for all services
+Instead of running `flutter pub get` for each service, you can run `./pub_get.sh ` in the `root` directory.
+
 ## Creating a new service
 Creating a new service (using the
 [stagehand package](https://pub.dev/packages/stagehand)):
@@ -9,6 +12,7 @@ Creating a new service (using the
 * `mkdir <name_service>`
 * `cd <name_service>`
 * `flutter pub global run stagehand package-simple`
+* `flutter pub get`
 * change `analysis_options.yaml` with this:
 ```
 include: package:pedantic/analysis_options.yaml

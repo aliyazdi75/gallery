@@ -25,7 +25,7 @@ If you want to that check this
 ## Features
 
 - Sound Null-Safety
-- Navigation 2
+- Navigator 2
 - Two External API providers(Server, Github)
 - Unique HEX URL generator for github content API
 - Web Fullscreen Functionality
